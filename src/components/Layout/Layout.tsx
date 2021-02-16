@@ -14,7 +14,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
    return (
       <>
          <SideMenuBar />
-
          <TopNav />
          <MainLgNav />
          {children}

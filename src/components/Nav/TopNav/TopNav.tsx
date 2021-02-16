@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FB, Phone } from "../../../utils/svgs/Svg";
+import { FB, Mail, Phone } from "../../../utils/svgs/Svg";
 
 interface TopNavProps {}
 
@@ -18,6 +18,13 @@ export const TopNav: React.FC<TopNavProps> = ({}) => {
                   <Link href="#">
                      <a>
                         <FB />
+                     </a>
+                  </Link>
+               </li>
+               <li className="topNavLi  border-l border-gray-300">
+                  <Link href="mailto:info.technolux.bd@gmail.com">
+                     <a>
+                        <Mail />
                      </a>
                   </Link>
                </li>

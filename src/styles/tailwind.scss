@@ -13,6 +13,18 @@ $darkBlue: #00adb5;
    @apply p-2 cursor-pointer text-gray-300;
 }
 
+.sideBarMainNav {
+   @apply text-3xl hover:text-darkBlue my-3  font-nav;
+}
+
+.sideBarMainNavMore {
+   @apply text-xl hover:text-darkBlue  font-nav  ml-7 my-3 flex;
+}
+
+.sideBarUtilsChildren {
+   @apply text-gray-500 text-sm pb-1 hover:text-darkBlue;
+}
+
 // .body {
 //    background: rgba(0, 0, 0, 0.336);
 // }
