@@ -31,7 +31,7 @@ export const TopNav: React.FC<TopNavProps> = ({}) => {
                <li className="topNavLi  border-l border-gray-300">
                   <Link href="#">
                      <a className="flex">
-                        <Phone />
+                        <Phone width={20} height={20} />
                      </a>
                   </Link>
                </li>
