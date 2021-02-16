@@ -13,7 +13,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
    } = useCtx();
    return (
       <>
-         {!showSidebar && <SideMenuBar />}
+         <SideMenuBar />
 
          <TopNav />
          <MainLgNav />

@@ -2,7 +2,7 @@ import { HIDE_SIDE_BAR, SHOW_SIDE_BAR } from "../types";
 
 type Action = {
    type: string;
-   payload: any;
+   payload?: any;
 };
 
 interface stateInterFace {

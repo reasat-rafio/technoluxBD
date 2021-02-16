@@ -2,14 +2,23 @@ import { useRef, useState } from "react";
 import { useClientSize } from "../../../utils/hooks/useClientSIze";
 import { Cart, Menu, Search } from "../../../utils/svgs/Svg";
 import Image from "next/image";
+import { useCtx } from "../../../store";
+import { showSideNavBar } from "../../../store/actions/domActions";
 
 interface MainLgNavProps {}
 
 export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
+   // navbar ref to cal the height width of the page and components
    const navRef = useRef<HTMLDivElement>(null);
    const { Pageheight, compHeight } = useClientSize(navRef);
+   // searchbar border focus state
    const [searchBarFocus, setSearchBarFocus] = useState<boolean>(false);
-
+   // store
+   const { domDispatch } = useCtx();
+   // MenuBtn Click Action
+   const sideBarOpenAction = () => {
+      domDispatch(showSideNavBar());
+   };
    return (
       <nav
          ref={navRef}
@@ -23,7 +32,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
             } container m-auto flex justify-between items-center font-nav  transition-all duration-300`}
          >
             <div className="flex ">
-               <span className="my-auto">
+               <span className="my-auto" onClick={sideBarOpenAction}>
                   <Menu />
                </span>
                <div className="cursor-pointer mx-5">
