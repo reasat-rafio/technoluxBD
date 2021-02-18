@@ -1,11 +1,17 @@
+import { GLobalLayout } from "../components/Layout/GLobalLayout";
 import { GlobalState } from "../store";
 import "../styles/tailwind.scss";
+import { CookiesProvider } from "react-cookie";
 
 function MyApp({ Component, pageProps }) {
    return (
-      <GlobalState>
-         <Component {...pageProps} />
-      </GlobalState>
+      <CookiesProvider>
+         <GlobalState>
+            <GLobalLayout>
+               <Component {...pageProps} />
+            </GLobalLayout>
+         </GlobalState>
+      </CookiesProvider>
    );
 }
 

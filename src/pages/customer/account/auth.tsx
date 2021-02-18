@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Layout } from "../../../components/Layout/Layout";
-import Image from "next/image";
-import { FacebookIcon, GoogleIcon } from "../../../utils/svgs/SocialSvg";
 import { useRouter } from "next/router";
 import { Login } from "../../../components/Auth/Login";
 import { Resgister } from "../../../components/Auth/Resgister";
+import "react-toastify/dist/ReactToastify.css";
 
 interface authProps {}
-
+// toast.configure();
 const auth: React.FC<authProps> = ({}) => {
    // state for outputing login || register section
    const [auth, setAuth] = useState<string>("register");

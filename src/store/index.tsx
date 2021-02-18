@@ -1,5 +1,6 @@
 import { useContext, createContext, useReducer, useEffect } from "react";
 import { domReducer, initialDomState } from "./reducers/domReducer";
+import { initialUserState, userReducer } from "./reducers/userState";
 
 // import {
 //    initialSearchbarState,
@@ -21,20 +22,20 @@ type Action = {
 type ProfileReducer = (state: any, action: Action) => any;
 
 export const GlobalState: React.FC<StoreProps> = ({ children }) => {
-   //    const [userState, userDispatch] = useReducer(
-   //       userReducer,
-   //       initialUserState,
-   //       () => {
-   //          if (typeof window !== "undefined") {
-   //             const localData = localStorage.getItem("TxBDuserState");
-   //             return localData ? JSON.parse(localData) : initialUserState;
-   //          }
-   //          return initialUserState;
-   //       }
-   //    );
-   //    useEffect(() => {
-   //       localStorage.setItem("TxBDuserState", JSON.stringify(userState));
-   //    }, [userState]);
+   const [userState, userDispatch] = useReducer(
+      userReducer,
+      initialUserState,
+      () => {
+         if (typeof window !== "undefined") {
+            const localData = localStorage.getItem("TxBDuserState");
+            return localData ? JSON.parse(localData) : initialUserState;
+         }
+         return initialUserState;
+      }
+   );
+   useEffect(() => {
+      localStorage.setItem("TxBDuserState", JSON.stringify(userState));
+   }, [userState]);
 
    //    const [searchState, searchDispatch] = useReducer(
    //       searchReducer,
@@ -44,7 +45,9 @@ export const GlobalState: React.FC<StoreProps> = ({ children }) => {
    const [domState, domDispatch] = useReducer(domReducer, initialDomState);
 
    return (
-      <Store.Provider value={{ domState, domDispatch }}>
+      <Store.Provider
+         value={{ domState, userState, domDispatch, userDispatch }}
+      >
          {children}
       </Store.Provider>
    );

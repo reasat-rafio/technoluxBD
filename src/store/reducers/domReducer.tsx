@@ -28,6 +28,7 @@ export const domReducer = (state: stateInterFace, action: Action) => {
             ...state,
             showSidebar: false,
          };
+
       default:
          return state;
    }

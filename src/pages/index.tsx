@@ -1,7 +1,11 @@
 import Head from "next/head";
 import { Layout } from "../components/Layout/Layout";
+import { useCtx } from "../store";
 
 export default function Home() {
+   const { userState } = useCtx();
+   console.log(userState);
+
    return (
       <Layout>
          <div className="">

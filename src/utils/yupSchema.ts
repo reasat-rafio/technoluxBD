@@ -13,8 +13,8 @@ export const RegisterSchema = yup.object().shape({
       .required("Password is required"),
    con_password: yup
       .string()
-      .min(6, "Password must be longer than 4 character")
-      .required("Password is required"),
+      .required()
+      .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
 export const LoginSchema = yup.object().shape({

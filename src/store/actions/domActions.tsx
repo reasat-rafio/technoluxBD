@@ -1,4 +1,4 @@
-import { HIDE_SIDE_BAR, SHOW_SIDE_BAR } from "../types";
+import { HIDE_SIDE_BAR, SHOW_SIDE_BAR, SHOW_TOAST } from "../types";
 
 export const showSideNavBar = () => {
    return {
@@ -11,3 +11,11 @@ export const hideSideNavBar = () => {
       type: HIDE_SIDE_BAR,
    };
 };
+
+// export const showToast = (payload: string) => {
+
+//    return {
+//       type: SHOW_TOAST,
+//       payload,
+//    };
+// };

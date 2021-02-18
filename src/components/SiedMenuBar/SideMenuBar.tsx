@@ -3,6 +3,7 @@ import {
    Cross,
    Fire,
    Lignting_bolt,
+   LogOut,
    Minus,
    Phone,
    Plus,
@@ -16,12 +17,18 @@ import { sideBarVarients, sideBarMoreVarients } from "../../utils/animation";
 import { useRef, useState } from "react";
 import { useOutsideAlerter } from "../../utils/hooks/useOutSideClickAlerter";
 import { HIDE_SIDE_BAR } from "../../store/types";
+import { logOutAaction } from "../../store/actions/userAction";
+import { Notify } from "../../utils/Toast";
+import { useCookies } from "react-cookie";
+
 interface SideMenuBarProps {}
 
 export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
    const {
       domDispatch,
+      userDispatch,
       domState: { showSidebar },
+      userState: { isLoggedIn },
    } = useCtx();
    // Side Menu close onClick action
    const closeSideMenubarAction = () => {
@@ -33,7 +40,16 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
    // Show more deals and categories state
    const [showMoreDeals, setShowMoreDeals] = useState<boolean>(false);
    const [showMoreCategories, setShowMoreCategories] = useState<boolean>(false);
+   //cookies
+   const [cookies, removeCookie] = useCookies(["userjwt"]);
+   console.log(cookies);
 
+   // Logout action
+   const logOut = () => {
+      userDispatch(logOutAaction());
+      removeCookie("userjwt", "", { path: "/" });
+      Notify("info", "Loggedout Successfully");
+   };
    return (
       <>
          <div
@@ -203,14 +219,26 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                   </section>
 
                   <section className="cursor-pointer">
-                     <span className="sideBarMainNav flex justify-between ">
-                        <Link href="/customer/account/auth">
-                           <a>Login / Register</a>
-                        </Link>
-                        <span className="my-auto">
-                           <User />
-                        </span>
-                     </span>
+                     {isLoggedIn ? (
+                        <div
+                           className="sideBarMainNav flex justify-between"
+                           onClick={logOut}
+                        >
+                           <button>Logout</button>
+                           <span className="my-auto">
+                              <LogOut />
+                           </span>
+                        </div>
+                     ) : (
+                        <div className="sideBarMainNav flex justify-between">
+                           <Link href="/customer/account/auth">
+                              <a>Login / Register</a>
+                           </Link>
+                           <span className="my-auto">
+                              <User />
+                           </span>
+                        </div>
+                     )}
                   </section>
                </motion.div>
             )}
