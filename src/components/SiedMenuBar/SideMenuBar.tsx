@@ -204,7 +204,7 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
 
                   <section className="cursor-pointer">
                      <span className="sideBarMainNav flex justify-between ">
-                        <Link href="#">
+                        <Link href="/customer/account/auth">
                            <a>Login / Register</a>
                         </Link>
                         <span className="my-auto">

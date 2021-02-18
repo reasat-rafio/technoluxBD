@@ -13,6 +13,7 @@ interface stateInterFace {
 export const initialDomState = {
    isLoggedIn: false,
    showSidebar: false,
+   showOverlayAuthPage: false,
 };
 
 export const domReducer = (state: stateInterFace, action: Action) => {

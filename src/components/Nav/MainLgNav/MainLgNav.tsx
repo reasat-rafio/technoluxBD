@@ -23,8 +23,8 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
       <nav
          ref={navRef}
          className={` ${
-            compHeight + 10 < Pageheight && " fixed top-0  shadow-lg z-20"
-         } w-full  bg-white`}
+            compHeight + 10 < Pageheight && " fixed top-0  shadow-lg"
+         } w-full  bg-white z-30`}
       >
          <section
             className={` ${

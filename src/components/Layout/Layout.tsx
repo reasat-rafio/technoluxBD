@@ -1,4 +1,5 @@
 import { useCtx } from "../../store";
+
 import { MainLgNav } from "../Nav/MainLgNav/MainLgNav";
 import { TopNav } from "../Nav/TopNav/TopNav";
 import { SideMenuBar } from "../SiedMenuBar/SideMenuBar";
@@ -16,6 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
          <SideMenuBar />
          <TopNav />
          <MainLgNav />
+
          {children}
       </>
    );

@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { FB, Mail, Phone } from "../../../utils/svgs/Svg";
+import { useRouter } from "next/router";
 
 interface TopNavProps {}
 
 export const TopNav: React.FC<TopNavProps> = ({}) => {
+   const router = useRouter();
+
    return (
       <nav className=" w-full transition-all duration-300  bg-black text-white xl:block lg:block   text-xs hidden  ">
          <section className="container  m-auto flex justify-between items-center font-nav ">
@@ -46,7 +49,10 @@ export const TopNav: React.FC<TopNavProps> = ({}) => {
                <li className="topNavLi">
                   <p>WELCOME TO TECHNOLUX BD</p>
                </li>
-               <li className="topNavLi  border-l border-gray-300">
+               <li
+                  className="topNavLi  border-l border-gray-300"
+                  onClick={() => router.push("/customer/account/auth")}
+               >
                   <button>LOGIN / REGISTER</button>
                </li>
             </ul>
