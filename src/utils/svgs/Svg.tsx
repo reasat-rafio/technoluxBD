@@ -45,26 +45,28 @@ export const Mail = () => {
    );
 };
 
-export const Menu = () => {
+export const Menu = (props) => {
    return (
       <svg
-         className="cursor-pointer "
+         width="30"
+         height="30"
+         className="cursor-pointer transition-all duration-300 motion-safe:animate-spin"
          xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 20 20"
-         fill="currentColor"
-         width="27"
-         height="27"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
       >
          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
+            strokeLinecap="round"
+            strokeWidth={2}
+            strokeLinejoin="round"
+            d={props.strokes}
          />
       </svg>
    );
 };
 
-export const Search = ({ searchBarFocus }) => {
+export const Search = ({ searchBarFocus, height }) => {
    return (
       <svg
          className={`${
@@ -72,8 +74,8 @@ export const Search = ({ searchBarFocus }) => {
          } transition-all duration-300`}
          xmlns="http://www.w3.org/2000/svg"
          fill="none"
-         width="30"
-         height="30"
+         width={height}
+         height={height}
          viewBox="0 0 24 24"
          stroke="currentColor"
       >
@@ -93,10 +95,16 @@ export const Cart = () => {
          width="30"
          height="30"
          xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 20 20"
-         fill="currentColor"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
       >
-         <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+         />
       </svg>
    );
 };
@@ -265,6 +273,86 @@ export const LogOut = () => {
             strokeLinejoin="round"
             strokeWidth={2}
             d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+         />
+      </svg>
+   );
+};
+
+export const Home = () => {
+   return (
+      <svg
+         width="20"
+         height="20"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+         />
+      </svg>
+   );
+};
+
+export const CartBag = () => {
+   return (
+      <svg
+         width="20"
+         height="20"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+         />
+      </svg>
+   );
+};
+
+export const Messenger = () => {
+   return (
+      <svg
+         width="20"
+         height="20"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+         />
+      </svg>
+   );
+};
+
+export const Account = () => {
+   return (
+      <svg
+         width="20"
+         height="20"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
          />
       </svg>
    );

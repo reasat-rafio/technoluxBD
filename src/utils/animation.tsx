@@ -31,3 +31,25 @@ export const sideBarMoreVarients = {
    },
    exit: { opacity: 0, y: -10 },
 };
+
+export const searchPageVarients = {
+   inital: {
+      opacity: 0,
+      y: "200vh",
+   },
+   animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+         duration: 0.5,
+         type: "tween",
+      },
+   },
+   exit: {
+      transition: {
+         duration: 0.5,
+         type: "tween",
+      },
+      y: "200vh",
+   },
+};

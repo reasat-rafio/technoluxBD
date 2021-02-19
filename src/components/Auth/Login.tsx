@@ -64,6 +64,35 @@ export const Login: React.FC<LoginProps> = ({}) => {
       }
    };
 
+   // Facebook login
+   const faceBookLogin = async () => {
+      try {
+         console.log("test");
+
+         const res = await axios.get(
+            `https://technoluxbd.herokuapp.com/connect/facebook`
+         );
+         console.log(res);
+      } catch (error) {
+         console.log("error", error);
+      }
+   };
+
+   // Google login
+
+   const googleLogin = async () => {
+      try {
+         console.log("test");
+
+         const { data } = await axios.get(
+            `https://technoluxbd.herokuapp.com/connect/google`
+         );
+         console.log(data);
+      } catch (error) {
+         console.log("error", error);
+      }
+   };
+
    return (
       <div className="w-full ">
          <form
@@ -104,7 +133,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
          </h2>
 
          <div className="w-96 gap-3 flex justify-center items-center my-5 cursor-pointer ">
-            <span className="socialIcons">
+            <span className="socialIcons" onClick={faceBookLogin}>
                <Image
                   src={FacebookIcon}
                   height="40"
@@ -112,7 +141,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                   layout="intrinsic"
                />
             </span>
-            <span className="socialIcons">
+            <span className="socialIcons" onClick={googleLogin}>
                <Image
                   src={GoogleIcon}
                   height="40"

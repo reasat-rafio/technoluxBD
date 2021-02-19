@@ -1,4 +1,9 @@
-import { HIDE_SIDE_BAR, SHOW_SIDE_BAR, SHOW_TOAST } from "../types";
+import {
+   HIDE_SIDE_BAR,
+   SHOW_SEARCH_PAGE,
+   SHOW_SIDE_BAR,
+   HIDE_SEARCH_PAGE,
+} from "../types";
 
 export const showSideNavBar = () => {
    return {
@@ -12,10 +17,14 @@ export const hideSideNavBar = () => {
    };
 };
 
-// export const showToast = (payload: string) => {
+export const showSearchPage = () => {
+   return {
+      type: SHOW_SEARCH_PAGE,
+   };
+};
 
-//    return {
-//       type: SHOW_TOAST,
-//       payload,
-//    };
-// };
+export const hideSearchPage = () => {
+   return {
+      type: HIDE_SEARCH_PAGE,
+   };
+};

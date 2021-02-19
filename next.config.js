@@ -1,6 +1,6 @@
 module.exports = {
    serverRuntimeConfig: {},
    publicRuntimeConfig: {
-      API_URL: "http://localhost:1337",
+      API_URL: "https://technoluxbd.herokuapp.com",
    },
 };

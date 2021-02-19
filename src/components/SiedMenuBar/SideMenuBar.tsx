@@ -42,7 +42,6 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
    const [showMoreCategories, setShowMoreCategories] = useState<boolean>(false);
    //cookies
    const [cookies, removeCookie] = useCookies(["userjwt"]);
-   console.log(cookies);
 
    // Logout action
    const logOut = () => {
@@ -66,7 +65,7 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                   initial="inital"
                   animate="animate"
                   exit="exit"
-                  className={`fixed h-full w-96 right-0 top-0 bg-white p-8 z-40 overflow-auto`}
+                  className={`fixed h-full md:w-96 w-full  right-0 top-0 bg-white p-8 z-40 overflow-auto`}
                >
                   <div onClick={closeSideMenubarAction} className="mt-3 mb-4">
                      <Cross />

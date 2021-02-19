@@ -19,21 +19,31 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
    const sideBarOpenAction = () => {
       domDispatch(showSideNavBar());
    };
+
+   const [menuStokes, setMenuStrokes] = useState<string>(
+      "M4 6h16M4 12h16M4 18h16"
+   );
+
    return (
       <nav
          ref={navRef}
          className={` ${
-            compHeight + 10 < Pageheight && " fixed top-0  shadow-lg"
+            compHeight + 10 < Pageheight && " md:fixed md:top-0  md:shadow-lg"
          } w-full  bg-white z-10`}
       >
          <section
             className={` ${
-               compHeight + 10 < Pageheight ? "py-2" : "py-6"
+               compHeight + 10 < Pageheight ? "py-1" : "py-4"
             } container m-auto flex justify-between items-center font-nav  transition-all duration-300`}
          >
             <div className="flex ">
-               <span className="my-auto" onClick={sideBarOpenAction}>
-                  <Menu />
+               <span
+                  onMouseOver={() => setMenuStrokes("M4 6h16M4 12h16M4 18h7")}
+                  onMouseOut={() => setMenuStrokes("M4 6h16M4 12h16M4 18h16")}
+                  className="my-auto hidden md:block hover:text-gray-500"
+                  onClick={sideBarOpenAction}
+               >
+                  <Menu strokes={menuStokes} />
                </span>
                <div className="cursor-pointer mx-5">
                   <Image
@@ -45,7 +55,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                </div>
             </div>
 
-            <div className="flex-1 ">
+            <div className="flex-1 hidden md:block">
                <div
                   className={`flex border  transition-all duration-300  ${
                      searchBarFocus ? "border-darkBlue" : "border-gray-400"
@@ -59,12 +69,12 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                      onBlur={() => setSearchBarFocus(false)}
                   />
                   <button className="outline-none overflow-auto">
-                     <Search searchBarFocus={searchBarFocus} />
+                     <Search height={30} searchBarFocus={searchBarFocus} />
                   </button>
                </div>
             </div>
             <div className="flex mx-5">
-               <div className="p-2 border-r border-gray-400">
+               <div className="p-2  md:border-r border-gray-400">
                   <div className="relative cursor-pointer">
                      <Cart />
                      <span
@@ -76,9 +86,21 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                   </div>
                </div>
                <div className="my-auto p-2  ">
-                  <div>
+                  <div className="hidden md:block">
                      <span>0</span>/ <span>৳0.00</span>
                   </div>
+                  <span
+                     onMouseOver={() =>
+                        setMenuStrokes("M4 6h16M4 12h16M4 18h7")
+                     }
+                     onMouseOut={() =>
+                        setMenuStrokes("M4 6h16M4 12h16M4 18h16")
+                     }
+                     className="my-auto block md:hidden"
+                     onClick={sideBarOpenAction}
+                  >
+                     <Menu strokes={menuStokes} />
+                  </span>
                </div>
             </div>
          </section>

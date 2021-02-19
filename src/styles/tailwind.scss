@@ -34,6 +34,7 @@ $darkBlue: #00adb5;
    @apply border rounded-md p-1 hover:bg-gray-100 transition-all duration-150;
 }
 
-// .body {
-//    background: rgba(0, 0, 0, 0.336);
-// }
+// bottom sm nav
+.btmNavLi {
+   @apply cursor-pointer flex flex-col justify-center items-center;
+}
