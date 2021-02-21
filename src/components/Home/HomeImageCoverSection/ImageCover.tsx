@@ -6,7 +6,7 @@ import SwiperCore, {
    EffectFade,
 } from "swiper";
 import "swiper/swiper-bundle.css";
-import Image from "next/image";
+import { Poster } from "../../../utils/_components/Poster";
 
 interface ImageCoverProps {
    cover_img: any[];
@@ -22,7 +22,7 @@ export const ImageCover: React.FC<ImageCoverProps> = ({ cover_img }) => {
             effect="fade"
             navigation
             autoplay={{ disableOnInteraction: false }}
-            pagination={{ clickable: true, el: ".swiper-pagination" }}
+            pagination={{ clickable: true }}
          >
             {cover_img.map(({ _id, formats: { small, thumbnail }, url }) => (
                <SwiperSlide key={_id}>
@@ -32,12 +32,14 @@ export const ImageCover: React.FC<ImageCoverProps> = ({ cover_img }) => {
                      style={{
                         width: "100%",
                         maxHeight: 400,
-                        borderRadius: "5px",
+                        borderRadius: "2px",
                      }}
                   />
                </SwiperSlide>
             ))}
          </Swiper>
+
+         <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png" />
       </>
    );
 };

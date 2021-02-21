@@ -14,7 +14,7 @@ export const sideBarVarients = {
    exit: {
       opacity: 0,
       x: 500,
-      transition: { duration: 0.2, ease: [0.48, 0.15, 0.25, 0.96] },
+      transition: { duration: 0.5, ease: [0.48, 0.15, 0.25, 0.96] },
    },
 };
 

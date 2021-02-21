@@ -3,6 +3,7 @@ import {
    SHOW_SEARCH_PAGE,
    SHOW_SIDE_BAR,
    HIDE_SEARCH_PAGE,
+   SET_PAGE_WIDTH_ON_RESIZE,
 } from "../types";
 
 export const showSideNavBar = () => {
@@ -26,5 +27,12 @@ export const showSearchPage = () => {
 export const hideSearchPage = () => {
    return {
       type: HIDE_SEARCH_PAGE,
+   };
+};
+
+export const pageResizeWidth = (payload: number) => {
+   return {
+      type: SET_PAGE_WIDTH_ON_RESIZE,
+      payload,
    };
 };

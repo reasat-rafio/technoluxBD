@@ -105,7 +105,7 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                                  <li>
                                     <a className="sideBarMainNavMore" href="#">
                                        <span className="my-auto">
-                                          <Lignting_bolt />
+                                          <Lignting_bolt position={20} />
                                        </span>
                                        Flash Deals
                                     </a>

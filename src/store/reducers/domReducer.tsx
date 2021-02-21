@@ -1,6 +1,7 @@
 import {
    HIDE_SEARCH_PAGE,
    HIDE_SIDE_BAR,
+   SET_PAGE_WIDTH_ON_RESIZE,
    SHOW_SEARCH_PAGE,
    SHOW_SIDE_BAR,
 } from "../types";
@@ -15,6 +16,7 @@ interface stateInterFace {
    showSidebar: boolean;
    showOverlayAuthPage: boolean;
    showSearchPage: boolean;
+   pageWidth: number;
 }
 
 export const initialDomState = {
@@ -22,6 +24,7 @@ export const initialDomState = {
    showSidebar: false,
    showOverlayAuthPage: false,
    showSearchPage: false,
+   pageWidth: 0,
 };
 
 export const domReducer = (state: stateInterFace, action: Action) => {
@@ -46,6 +49,11 @@ export const domReducer = (state: stateInterFace, action: Action) => {
          return {
             ...state,
             showSearchPage: false,
+         };
+      case SET_PAGE_WIDTH_ON_RESIZE:
+         return {
+            ...state,
+            pageWidth: action.payload,
          };
 
       default:

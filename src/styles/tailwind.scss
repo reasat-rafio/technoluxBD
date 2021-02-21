@@ -38,3 +38,28 @@ $darkBlue: #00adb5;
 .btmNavLi {
    @apply cursor-pointer flex flex-col justify-center items-center;
 }
+
+// poster images
+.posterImg {
+   backface-visibility: hidden;
+   transition: all 400ms ease;
+   content: "";
+   position: absolute;
+   width: 0;
+   height: 100%;
+   left: 50%;
+   top: 0;
+   opacity: 0;
+   background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+}
+
+.posterDiv:hover {
+   .posterImg {
+      content: "";
+      height: 100%;
+      opacity: 1;
+      left: 0;
+      backface-visibility: visible;
+      width: 100%;
+   }
+}

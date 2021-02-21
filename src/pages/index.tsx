@@ -9,8 +9,9 @@ import axios from "axios";
 import getConfig from "next/config";
 import { HomePage } from "../components/Home/HomePage";
 
-export default function Home({ cover_img }) {
-   console.log(cover_img);
+export default function Home({ cover_img, products }) {
+   console.log(products);
+
    const { userState } = useCtx();
 
    // const [session, loading] = useSession();
@@ -25,7 +26,7 @@ export default function Home({ cover_img }) {
             </Head>
 
             <main className="w-full ">
-               <HomePage cover_img={cover_img} />
+               <HomePage cover_img={cover_img} products={products} />
             </main>
          </div>
       </Layout>
@@ -35,10 +36,12 @@ export default function Home({ cover_img }) {
 export const getStaticProps: GetStaticProps = async (context) => {
    const { publicRuntimeConfig } = getConfig();
    const { data } = await axios.get(`http://localhost:1337/cover-images`);
+   const res = await axios.get(`http://localhost:1337/tests`);
 
    return {
       props: {
          cover_img: data[0].img,
+         products: res.data,
       },
    };
 };

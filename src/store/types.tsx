@@ -4,3 +4,4 @@ export const USER_LOG_IN = "USER_LOG_IN";
 export const USER_LOG_OUT = "USER_LOG_OUT";
 export const SHOW_SEARCH_PAGE = "SHOW_SEARCH_PAGE";
 export const HIDE_SEARCH_PAGE = "HIDE_SEARCH_PAGE";
+export const SET_PAGE_WIDTH_ON_RESIZE = "SET_PAGE_WIDTH_ON_RESIZE";
