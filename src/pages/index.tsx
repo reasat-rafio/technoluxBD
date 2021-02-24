@@ -8,9 +8,14 @@ import { GetStaticProps } from "next";
 import axios from "axios";
 import getConfig from "next/config";
 import { HomePage } from "../components/Home/HomePage";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { GET_ALL_NAME } from "../graphql/queries";
 
-export default function Home({ cover_img, products }) {
-   console.log(products);
+export default function Home({
+   data,
+   //  cover_img, products
+}) {
+   console.log(data);
 
    const { userState } = useCtx();
 
@@ -26,7 +31,9 @@ export default function Home({ cover_img, products }) {
             </Head>
 
             <main className="w-full ">
-               <HomePage cover_img={cover_img} products={products} />
+               <HomePage
+               //  cover_img={cover_img} products={products}
+               />
             </main>
          </div>
       </Layout>
@@ -35,13 +42,35 @@ export default function Home({ cover_img, products }) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
    const { publicRuntimeConfig } = getConfig();
-   const { data } = await axios.get(`http://localhost:1337/cover-images`);
-   const res = await axios.get(`http://localhost:1337/tests`);
+   // const { data } = await axios.get(
+   //    `https://technoluxbd.herokuapp.com/cover-images`
+   // );
+   // const res = await axios.get(`https://technoluxbd.herokuapp.com/tests`);
+   // const e = await axios.get("https://technoluxbd.herokuapp.com/tests");
+   const client = new ApolloClient({
+      uri: "http://localhost:1337/graphql",
+      cache: new InMemoryCache(),
+   });
 
-   return {
-      props: {
-         cover_img: data[0].img,
-         products: res.data,
-      },
-   };
+   try {
+      const { data } = await client.query({ query: GET_ALL_NAME });
+
+      return {
+         props: {
+            // cover_img: data[0].img,
+            // products: res.data,
+            data,
+         },
+      };
+   } catch (error) {
+      console.log(error);
+
+      return {
+         props: {
+            // cover_img: data[0].img,
+            // products: res.data,
+            data: error.message,
+         },
+      };
+   }
 };

@@ -17,7 +17,6 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ products }) => {
    const {
       domState: { pageWidth },
    } = useCtx();
-   console.log(pageWidth);
 
    useEffect(() => {
       if (pageWidth > 910) {
