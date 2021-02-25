@@ -2,19 +2,15 @@ import { FlashDeals } from "./FlashDeals/FlashDeals";
 import { ImageCover } from "./HomeImageCoverSection/ImageCover";
 
 interface IndexProps {
-   // cover_img: any;
-   // products: any[];
+   coverImg: any[];
+   flashDeals: any[];
 }
 
-export const HomePage: React.FC<IndexProps> = (
-   {
-      //  cover_img, products
-   }
-) => {
+export const HomePage: React.FC<IndexProps> = ({ coverImg, flashDeals }) => {
    return (
       <div className="mx-auto container">
-         {/* <ImageCover cover_img={cover_img} /> */}
-         {/* <FlashDeals products={products} /> */}
+         <ImageCover coverImg={coverImg} />
+         <FlashDeals flashDeals={flashDeals} />
       </div>
    );
 };

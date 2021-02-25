@@ -9,14 +9,9 @@ import axios from "axios";
 import getConfig from "next/config";
 import { HomePage } from "../components/Home/HomePage";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GET_ALL_NAME } from "../graphql/queries";
+import { GET_HOME_FLASH_DEALS, GET_THE_COVER_IMGS } from "../graphql/queries";
 
-export default function Home({
-   data,
-   //  cover_img, products
-}) {
-   console.log(data);
-
+export default function Home({ flashDeals, coverImg }) {
    const { userState } = useCtx();
 
    // const [session, loading] = useSession();
@@ -31,9 +26,7 @@ export default function Home({
             </Head>
 
             <main className="w-full ">
-               <HomePage
-               //  cover_img={cover_img} products={products}
-               />
+               <HomePage coverImg={coverImg} flashDeals={flashDeals} />
             </main>
          </div>
       </Layout>
@@ -42,35 +35,19 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps = async (context) => {
    const { publicRuntimeConfig } = getConfig();
-   // const { data } = await axios.get(
-   //    `https://technoluxbd.herokuapp.com/cover-images`
-   // );
-   // const res = await axios.get(`https://technoluxbd.herokuapp.com/tests`);
-   // const e = await axios.get("https://technoluxbd.herokuapp.com/tests");
+
    const client = new ApolloClient({
       uri: "http://localhost:1337/graphql",
       cache: new InMemoryCache(),
    });
 
-   try {
-      const { data } = await client.query({ query: GET_ALL_NAME });
+   const flash_deals = await client.query({ query: GET_HOME_FLASH_DEALS });
+   const cover_img = await client.query({ query: GET_THE_COVER_IMGS });
 
-      return {
-         props: {
-            // cover_img: data[0].img,
-            // products: res.data,
-            data,
-         },
-      };
-   } catch (error) {
-      console.log(error);
-
-      return {
-         props: {
-            // cover_img: data[0].img,
-            // products: res.data,
-            data: error.message,
-         },
-      };
-   }
+   return {
+      props: {
+         coverImg: cover_img.data.coverImages,
+         flashDeals: flash_deals.data.products,
+      },
+   };
 };

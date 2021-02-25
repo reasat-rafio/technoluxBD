@@ -14,6 +14,17 @@ module.exports = {
             nav: ["Roboto", " sans-serif"],
             text: ["Nunito", " sans-serif"],
          },
+         height: {
+            lgCard: "350px",
+            smCard: "400px",
+            // xsCard:
+         },
+         maxHeight: {
+            smCard: "400px",
+         },
+         minHeight: {
+            smCard: "350px",
+         },
       },
       screens: {
          sm: "600px",

@@ -5,33 +5,44 @@ import "swiper/swiper-bundle.css";
 import { useCtx } from "../../../store";
 import { useEffect, useState } from "react";
 interface FlashDealsProps {
-   products: any[];
+   flashDeals: any[];
 }
 
-export const FlashDeals: React.FC<FlashDealsProps> = ({ products }) => {
+export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
    // swiper slidesPerView
-   const [cardsPerView, setCardsPerView] = useState<number>(5);
+   const [cardsPerView, setCardsPerView] = useState<number>(0);
    // global state
+   const [pgWidth, setPgWidth] = useState<string>("");
+   // img
+   const [hoverImageChange, setHoverImageChange] = useState(false);
    const {
       domState: { pageWidth },
    } = useCtx();
 
    useEffect(() => {
-      if (pageWidth > 910) {
+      if (pageWidth > 1180) {
+         setPgWidth("lg");
          setCardsPerView(6);
-      } else if (pageWidth < 900 && pageWidth > 700) {
+      } else if (pageWidth < 1180 && pageWidth > 720) {
          setCardsPerView(4);
-      } else if (pageWidth < 700 && pageWidth > 0) {
+         setPgWidth("md");
+      } else if (pageWidth < 720 && pageWidth > 550) {
          setCardsPerView(2);
+         setPgWidth("sm");
+      } else if (pageWidth < 550 && pageWidth > 0) {
+         setCardsPerView(2);
+         setPgWidth("xs");
+      } else if (pageWidth == 0) {
+         return;
       }
    }, [pageWidth]);
 
    return (
       <main>
-         <section className="flex border-b font-nav text-xl font-semibold">
-            <div className="py-3 border-b-2 border-darkBlue flex gap-1">
+         <section className="flex border-b font-nav text-xl font-semibold ">
+            <div className="py-3 border-b-4 border-darkBlue flex gap-1">
                <span>
                   <Lignting_bolt position={25} />
                </span>
@@ -39,40 +50,44 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ products }) => {
             </div>
          </section>
          {/* card section */}
-         <section>
+         <section className="my-4 ">
             <Swiper
                slidesPerView={cardsPerView}
                id="main"
                autoplay={{ disableOnInteraction: false }}
                spaceBetween={10}
             >
-               {products.map((product) =>
-                  product.products.map(
-                     ({ name, img, offer_price, regular_price }, i) => (
-                        <SwiperSlide key={i}>
-                           <div className="border cursor-pointer">
+               {flashDeals.map(
+                  ({ name, img, offer_price, regular_price }, i) => {
+                     return (
+                        <SwiperSlide key={name}>
+                           <div
+                              onMouseEnter={() => setHoverImageChange(true)}
+                              onMouseLeave={() => setHoverImageChange(false)}
+                              className={`border cursor-pointer lg:h-lgCard md:h-80  text-center ${
+                                 pgWidth == "sm" && "h-smCard"
+                              } ${pgWidth == "xs" && "h-lgCard"}`}
+                           >
                               <img src={img[0].url} alt="" />
-                              <div>
-                                 <h1>{name}</h1>
-                                 <div>
-                                    {offer_price ? (
-                                       <>
-                                          <span className="line-through text-gray-500 text-sm">
-                                             ${regular_price}
-                                          </span>
-                                          <span className="text-darkBlue">
-                                             ${offer_price}
-                                          </span>
-                                       </>
-                                    ) : (
-                                       "adsasd"
-                                    )}
-                                 </div>
+                              <div className="p-3">
+                                 <h1 className="text-sm font-semibold text-center">
+                                    {name}
+                                 </h1>
+                                 {offer_price && (
+                                    <div className="my-2 flex gap-2 items-center justify-center">
+                                       <span className="line-through  text-sm">
+                                          ${regular_price}
+                                       </span>
+                                       <span className="text-darkBlue font-semibold">
+                                          ${offer_price}
+                                       </span>
+                                    </div>
+                                 )}
                               </div>
                            </div>
                         </SwiperSlide>
-                     )
-                  )
+                     );
+                  }
                )}
             </Swiper>
             <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">

@@ -9,12 +9,12 @@ import "swiper/swiper-bundle.css";
 import { Poster } from "../../../utils/_components/Poster";
 
 interface ImageCoverProps {
-   cover_img: any[];
+   coverImg: any[];
 }
 
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade]);
 
-export const ImageCover: React.FC<ImageCoverProps> = ({ cover_img }) => {
+export const ImageCover: React.FC<ImageCoverProps> = ({ coverImg }) => {
    return (
       <>
          <Swiper
@@ -24,8 +24,8 @@ export const ImageCover: React.FC<ImageCoverProps> = ({ cover_img }) => {
             autoplay={{ disableOnInteraction: false }}
             pagination={{ clickable: true }}
          >
-            {cover_img.map(({ _id, formats: { small, thumbnail }, url }) => (
-               <SwiperSlide key={_id}>
+            {coverImg[0].img.map(({ _id, url }, i) => (
+               <SwiperSlide key={i}>
                   <img
                      src={url}
                      alt="img"
