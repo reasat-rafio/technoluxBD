@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, EffectFade } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useCtx } from "../../../store";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
 interface FlashDealsProps {
    flashDeals: any[];
 }
@@ -17,6 +18,7 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
    const [pgWidth, setPgWidth] = useState<string>("");
    // img
    const [hoverImageChange, setHoverImageChange] = useState(false);
+
    const {
       domState: { pageWidth },
    } = useCtx();
@@ -59,16 +61,22 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
             >
                {flashDeals.map(
                   ({ name, img, offer_price, regular_price }, i) => {
+                     const imgRef = useRef<HTMLImageElement>();
+
                      return (
                         <SwiperSlide key={name}>
                            <div
-                              onMouseEnter={() => setHoverImageChange(true)}
-                              onMouseLeave={() => setHoverImageChange(false)}
+                              onMouseEnter={() =>
+                                 (imgRef.current.src = img[1].url)
+                              }
+                              onMouseLeave={() =>
+                                 (imgRef.current.src = img[0].url)
+                              }
                               className={`border cursor-pointer lg:h-lgCard md:h-80  text-center ${
                                  pgWidth == "sm" && "h-smCard"
                               } ${pgWidth == "xs" && "h-lgCard"}`}
                            >
-                              <img src={img[0].url} alt="" />
+                              <img ref={imgRef} src={img[0].url} alt="" />
                               <div className="p-3">
                                  <h1 className="text-sm font-semibold text-center">
                                     {name}
