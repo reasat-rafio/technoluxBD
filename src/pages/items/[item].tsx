@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Layout } from "../../components/Layout/Layout";
 import { Card } from "../../components/Product/Card/Card";
 import { ProductImages } from "../../components/Product/ProductImages/ProductImages";
+import { Tabs } from "../../components/Product/Tabs/Tabs";
 
 import { GET_ALL_PRODUCTS_ID } from "../../graphql/queries";
 
@@ -45,9 +46,9 @@ const item: React.FC<itemProps> = ({
       <Layout>
          <main className=" w-full">
             {/* Card */}
-            <section className="container m-auto grid grid-cols-3 p-8 font-text">
+            <section className="container m-auto grid  lg:grid-cols-3 grid-cols-2 p-8 font-text">
                {/* Image preview */}
-               <div className="col-span-1">
+               <div className="lg:col-span-1 col-span-2">
                   <ProductImages img={img} />
                </div>
                {/* product discription */}
@@ -62,6 +63,7 @@ const item: React.FC<itemProps> = ({
                   id={id}
                />
             </section>
+            <Tabs />
          </main>
       </Layout>
    );

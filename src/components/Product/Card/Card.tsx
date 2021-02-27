@@ -66,7 +66,7 @@ export const Card: React.FC<CardProps> = ({
    }, []);
 
    return (
-      <div className="shadow-lg col-span-2 p-8">
+      <div className="shadow-lg md:col-span-2 col-span-3 lg:p-8 p-2">
          <div>
             <p className="font-bold text-xl py-4">{name}</p>
             <div className="py-3 border-b">
@@ -93,7 +93,7 @@ export const Card: React.FC<CardProps> = ({
          </div>
          {/* Timer section */}
          <div className="py-4 text-xs border-b">
-            <div className=" my-2 flex gap-5 justify-start items-center p-1 border border-darkBlue rounded-full">
+            <div className=" my-2 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-darkBlue rounded-full">
                <img src={"/img/flash-sale-badge.png"} alt="" />
                <section>
                   <span className="font-bold text-sm pr-1">{timerDays}</span>
@@ -114,7 +114,7 @@ export const Card: React.FC<CardProps> = ({
             </div>
 
             <div className=" flex gap-2">
-               <div className="flex">
+               <div className="flex justify-center items-center">
                   <button
                      className="py-3 px-2 border rounded-l-md transition-all duration-150 hover:bg-lightBlue outline-none"
                      onClick={() => {
