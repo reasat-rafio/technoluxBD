@@ -6,7 +6,6 @@ import SwiperCore, {
    EffectFade,
 } from "swiper";
 import "swiper/swiper-bundle.css";
-import { Poster } from "../../../utils/_components/Poster";
 
 interface ImageCoverProps {
    coverImg: any[];
@@ -38,8 +37,6 @@ export const ImageCover: React.FC<ImageCoverProps> = ({ coverImg }) => {
                </SwiperSlide>
             ))}
          </Swiper>
-
-         <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png" />
       </>
    );
 };

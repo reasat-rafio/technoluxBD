@@ -4,6 +4,7 @@ import SwiperCore, { Autoplay, EffectFade } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
+import { Poster } from "../../../utils/_components/Poster";
 
 interface FlashDealsProps {
    flashDeals: any[];
@@ -66,17 +67,28 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
                      return (
                         <SwiperSlide key={name}>
                            <div
-                              onMouseEnter={() =>
-                                 (imgRef.current.src = img[1].url)
-                              }
-                              onMouseLeave={() =>
-                                 (imgRef.current.src = img[0].url)
-                              }
-                              className={`border cursor-pointer lg:h-lgCard md:h-80  text-center ${
+                              className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-300 ${
                                  pgWidth == "sm" && "h-smCard"
                               } ${pgWidth == "xs" && "h-lgCard"}`}
                            >
-                              <img ref={imgRef} src={img[0].url} alt="" />
+                              <Swiper
+                                 slidesPerView={1}
+                                 autoplay={{ disableOnInteraction: false }}
+                              >
+                                 {img.map((a, i) => (
+                                    <SwiperSlide key={i}>
+                                       <img
+                                          className="transition-all duration-150"
+                                          ref={imgRef}
+                                          src={a.url}
+                                          alt=""
+                                       />
+                                    </SwiperSlide>
+                                 ))}
+                              </Swiper>
+
+                              <div className=""></div>
+
                               <div className="p-3">
                                  <h1 className="text-sm font-semibold text-center">
                                     {name}
@@ -100,6 +112,12 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
             </Swiper>
             <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
                VIEW ALL
+            </div>
+
+            <div className="grid  md:grid-cols-3 grid-cols-1 md:gap-4">
+               <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png" />
+               <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png" />
+               <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Gaming-Consoles-v2.png" />
             </div>
          </section>
          Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
