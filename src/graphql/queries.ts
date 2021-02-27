@@ -7,6 +7,7 @@ export const GET_HOME_FLASH_DEALS = gql`
          sort: "createdAt:desc"
          where: { deals: { name: "flash_deals" } }
       ) {
+         id
          offer_time_till
          offer_price
          regular_price

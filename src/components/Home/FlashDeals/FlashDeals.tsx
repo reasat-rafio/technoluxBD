@@ -5,6 +5,7 @@ import "swiper/swiper-bundle.css";
 import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
 import { Poster } from "../../../utils/_components/Poster";
+import { useRouter } from "next/router";
 
 interface FlashDealsProps {
    flashDeals: any[];
@@ -17,8 +18,8 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
    const [cardsPerView, setCardsPerView] = useState<number>(0);
    // global state
    const [pgWidth, setPgWidth] = useState<string>("");
-   // img
-   const [hoverImageChange, setHoverImageChange] = useState(false);
+   // router
+   const router = useRouter();
 
    const {
       domState: { pageWidth },
@@ -61,53 +62,47 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
                spaceBetween={10}
             >
                {flashDeals.map(
-                  ({ name, img, offer_price, regular_price }, i) => {
-                     const imgRef = useRef<HTMLImageElement>();
-
-                     return (
-                        <SwiperSlide key={name}>
-                           <div
-                              className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-300 ${
-                                 pgWidth == "sm" && "h-smCard"
-                              } ${pgWidth == "xs" && "h-lgCard"}`}
+                  ({ name, img, offer_price, regular_price, id }, i) => (
+                     <SwiperSlide key={name}>
+                        <div
+                           className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-300 ${
+                              pgWidth == "sm" && "h-smCard"
+                           } ${pgWidth == "xs" && "h-lgCard"}`}
+                           onClick={() => router.push(`/items/${id}`)}
+                        >
+                           <Swiper
+                              slidesPerView={1}
+                              id="main"
+                              autoplay={{ disableOnInteraction: false }}
+                              style={{ maxWidth: "200px" }}
                            >
-                              <Swiper
-                                 slidesPerView={1}
-                                 autoplay={{ disableOnInteraction: false }}
-                              >
-                                 {img.map((a, i) => (
-                                    <SwiperSlide key={i}>
-                                       <img
-                                          className="transition-all duration-150"
-                                          ref={imgRef}
-                                          src={a.url}
-                                          alt=""
-                                       />
-                                    </SwiperSlide>
-                                 ))}
-                              </Swiper>
+                              {img.map((a, i) => (
+                                 <SwiperSlide key={i}>
+                                    <img src={a.url} alt="" />
+                                 </SwiperSlide>
+                              ))}
+                           </Swiper>
 
-                              <div className=""></div>
+                           <div className=""></div>
 
-                              <div className="p-3">
-                                 <h1 className="text-sm font-semibold text-center">
-                                    {name}
-                                 </h1>
-                                 {offer_price && (
-                                    <div className="my-2 flex gap-2 items-center justify-center">
-                                       <span className="line-through  text-sm">
-                                          ${regular_price}
-                                       </span>
-                                       <span className="text-darkBlue font-semibold">
-                                          ${offer_price}
-                                       </span>
-                                    </div>
-                                 )}
-                              </div>
+                           <div className="p-3">
+                              <h1 className="text-sm font-semibold text-center">
+                                 {name}
+                              </h1>
+                              {offer_price && (
+                                 <div className="my-2 flex gap-2 items-center justify-center">
+                                    <span className="line-through  text-sm">
+                                       ${regular_price}
+                                    </span>
+                                    <span className="text-darkBlue font-semibold">
+                                       ${offer_price}
+                                    </span>
+                                 </div>
+                              )}
                            </div>
-                        </SwiperSlide>
-                     );
-                  }
+                        </div>
+                     </SwiperSlide>
+                  )
                )}
             </Swiper>
             <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
