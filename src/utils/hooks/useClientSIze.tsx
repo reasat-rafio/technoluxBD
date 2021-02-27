@@ -8,8 +8,10 @@ export const useClientSize = (myRef: any) => {
       setCompHeight(myRef.current.getBoundingClientRect().y);
 
       const handleResize = () => {
-         setPageHeight(window.pageYOffset);
-         setCompHeight(myRef.current.getBoundingClientRect().y);
+         if (myRef.current) {
+            setPageHeight(window.pageYOffset);
+            setCompHeight(myRef.current.getBoundingClientRect().y);
+         }
       };
       window.addEventListener("scroll", handleResize);
 

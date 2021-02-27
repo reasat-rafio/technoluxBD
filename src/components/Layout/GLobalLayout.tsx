@@ -13,7 +13,7 @@ export const GLobalLayout: React.FC<GLobalLayoutProps> = ({ children }) => {
    // store
    const { domDispatch } = useCtx();
    const { width } = usePageResize(pageRef);
-   // Setting the page width in the global state api
+   // Setting the page width in the global state
    useEffect(() => {
       domDispatch(pageResizeWidth(width));
    }, [width]);

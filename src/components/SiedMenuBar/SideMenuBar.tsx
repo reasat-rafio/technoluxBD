@@ -72,7 +72,7 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                   </div>
                   <ul className="py-8 border-b transition-all duration-300 ">
                      <li className="flex justify-between">
-                        <Link href="">
+                        <Link href="/">
                            <a className="sideBarMainNav">Home</a>
                         </Link>
                      </li>
