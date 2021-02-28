@@ -63,7 +63,7 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
             >
                {flashDeals.map(
                   ({ name, img, offer_price, regular_price, id }, i) => (
-                     <SwiperSlide key={name}>
+                     <SwiperSlide key={i}>
                         <div
                            className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-300 ${
                               pgWidth == "sm" && "h-smCard"
