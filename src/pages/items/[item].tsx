@@ -63,7 +63,11 @@ const item: React.FC<itemProps> = ({
                   id={id}
                />
             </section>
-            <Tabs />
+            <Tabs
+               name={name}
+               Features={Features}
+               Specifications={Specifications}
+            />
          </main>
       </Layout>
    );

@@ -83,18 +83,16 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
                               ))}
                            </Swiper>
 
-                           <div className=""></div>
-
                            <div className="p-3">
-                              <h1 className="text-sm font-semibold text-center">
+                              <h1 className="text-sm font-medium text-center font-nav ">
                                  {name}
                               </h1>
                               {offer_price && (
                                  <div className="my-2 flex gap-2 items-center justify-center">
-                                    <span className="line-through  text-sm">
+                                    <span className="line-through  text-sm text-gray-400 font-text">
                                        ${regular_price}
                                     </span>
-                                    <span className="text-darkBlue font-semibold">
+                                    <span className="text-darkBlue font-semibold font-text">
                                        ${offer_price}
                                     </span>
                                  </div>

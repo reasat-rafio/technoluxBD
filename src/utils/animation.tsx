@@ -54,3 +54,41 @@ export const searchPageVarients = {
       y: "200vh",
    },
 };
+
+export const TabVariants = {
+   inital: {
+      x: -50,
+      originX: 0,
+   },
+   animate: {
+      x: 0,
+      transition: {},
+   },
+   exit: {
+      transition: {},
+      x: -50,
+      opacity: 0,
+      originX: 0,
+   },
+};
+
+export const TabPageChangeVariants = {
+   inital: {
+      x: "-100vw",
+      opacity: 0,
+   },
+   animate: {
+      x: 0,
+      transition: {
+         duration: 0.5,
+      },
+      opacity: 1,
+   },
+   exit: {
+      transition: {
+         duration: 0.3,
+      },
+      x: "100vw",
+      opacity: 0,
+   },
+};
