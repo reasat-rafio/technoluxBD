@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
 interface CardProps {
@@ -10,6 +11,31 @@ interface CardProps {
    regular_price: string;
    id: string;
 }
+
+const easing = [0.6, -0.05, 0.01, 0.99];
+
+const fadeIn = {
+   inital: {
+      y: 60,
+      opacity: 0,
+   },
+   animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+         duration: 0.5,
+         ease: easing,
+      },
+   },
+};
+
+const stagger = {
+   animate: {
+      transition: {
+         staggerChildren: 0.05,
+      },
+   },
+};
 
 export const Card: React.FC<CardProps> = ({
    available_offer,
@@ -66,14 +92,21 @@ export const Card: React.FC<CardProps> = ({
    }, []);
 
    return (
-      <div className="shadow-lg md:col-span-2 col-span-3 lg:p-8 p-2">
+      <motion.div
+         initial="inital"
+         animate="animate"
+         className="shadow-lg md:col-span-2 col-span-3 lg:p-8 p-2"
+         variants={stagger}
+      >
          <div>
-            <p className="font-bold text-xl py-4">{name}</p>
+            <motion.p variants={fadeIn} className="font-bold text-xl py-4">
+               {name}
+            </motion.p>
             <div className="py-3 border-b">
-               <p>
+               <motion.p variants={fadeIn}>
                   Brand: <span className="text-darkBlue">{brand}</span>
-               </p>
-               <div className="text-xl flex gap-4">
+               </motion.p>
+               <motion.div variants={fadeIn} className="text-xl flex gap-4">
                   {available_offer ? (
                      <>
                         <span className="line-through text-gray-500">
@@ -88,12 +121,12 @@ export const Card: React.FC<CardProps> = ({
                         ৳{regular_price}
                      </span>
                   )}
-               </div>
+               </motion.div>
             </div>
          </div>
          {/* Timer section */}
-         <div className="py-4 text-xs border-b">
-            <div className=" my-2 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-darkBlue rounded-full">
+         <motion.div variants={fadeIn} className="py-4 text-xs border-b">
+            <div className=" my-4 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-darkBlue rounded-full">
                <img src={"/img/flash-sale-badge.png"} alt="" />
                <section>
                   <span className="font-bold text-sm pr-1">{timerDays}</span>
@@ -113,7 +146,7 @@ export const Card: React.FC<CardProps> = ({
                </section>
             </div>
 
-            <div className=" flex gap-2">
+            <motion.div variants={fadeIn} className=" flex gap-2">
                <div className="flex justify-center items-center">
                   <button
                      className="py-3 px-2 border rounded-l-md transition-all duration-150 hover:bg-lightBlue outline-none"
@@ -143,9 +176,9 @@ export const Card: React.FC<CardProps> = ({
                <button className=" productBtn bg-lightBlue hover:bg-darkBlue ">
                   BUY NOW
                </button>
-            </div>
-         </div>
-         <div className="py-4">
+            </motion.div>
+         </motion.div>
+         <motion.div variants={fadeIn} className="py-4">
             <p>
                Product Id:{" "}
                <span className="text-xs text-gray-500">{id.toUpperCase()}</span>
@@ -160,7 +193,7 @@ export const Card: React.FC<CardProps> = ({
                ))}
             </div>
             <p>Color: </p>
-         </div>
-      </div>
+         </motion.div>
+      </motion.div>
    );
 };

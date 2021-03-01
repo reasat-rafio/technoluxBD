@@ -46,7 +46,7 @@ const item: React.FC<itemProps> = ({
       <Layout>
          <main className=" w-full">
             {/* Card */}
-            <section className="container m-auto grid  lg:grid-cols-3 grid-cols-2 p-8 font-text">
+            <section className="container m-auto grid gap-3  lg:grid-cols-3 grid-cols-2 p-8 font-text">
                {/* Image preview */}
                <div className="lg:col-span-1 col-span-2">
                   <ProductImages img={img} />

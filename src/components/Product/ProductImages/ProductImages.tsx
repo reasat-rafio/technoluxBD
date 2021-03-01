@@ -8,14 +8,16 @@ import SwiperCore, {
 } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useState } from "react";
+import ReactImageZoom from "react-image-zoom";
+import { motion } from "framer-motion";
 
 interface ProductImagesProps {
    img: any[];
 }
+
 // configring swiper
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs]);
 export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
-   console.log(img);
    const [thumbsSwiper, setThumbsSwiper] = useState();
    return (
       <div>
@@ -29,10 +31,21 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
          >
             {img.map(({ url }, i) => (
                <SwiperSlide key={i}>
-                  <img src={url} alt="img" />
+                  <motion.div
+                     initial={{ x: 200, opacity: 0 }}
+                     animate={{ x: 0, opacity: 1 }}
+                     transition={{ delay: 0.2 }}
+                  >
+                     <ReactImageZoom
+                        className="lg:m-0 md:m-auto"
+                        img={url}
+                        zoomPosition="original"
+                     />
+                  </motion.div>
                </SwiperSlide>
             ))}
          </Swiper>
+
          <Swiper
             id="thumbs"
             onSwiper={setThumbsSwiper}
@@ -41,7 +54,7 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
          >
             {img.map(({ formats: { thumbnail: { url } } }, i) => (
                <SwiperSlide key={i}>
-                  <img src={url} alt="img" />
+                  <img className="cursor-pointer" src={url} alt="img" />
                </SwiperSlide>
             ))}
          </Swiper>

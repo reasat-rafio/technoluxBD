@@ -13,7 +13,6 @@ import { GET_HOME_FLASH_DEALS, GET_THE_COVER_IMGS } from "../graphql/queries";
 
 export default function Home({ flashDeals, coverImg }) {
    const { userState } = useCtx();
-   console.log(flashDeals);
 
    // const [session, loading] = useSession();
    // console.log(session);

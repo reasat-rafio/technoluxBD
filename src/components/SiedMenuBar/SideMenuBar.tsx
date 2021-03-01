@@ -71,7 +71,10 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                      <Cross />
                   </div>
                   <ul className="py-8 border-b transition-all duration-300 ">
-                     <li className="flex justify-between">
+                     <li
+                        className="flex justify-between"
+                        onClick={closeSideMenubarAction}
+                     >
                         <Link href="/">
                            <a className="sideBarMainNav">Home</a>
                         </Link>
@@ -85,7 +88,7 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                               )
                            }
                         >
-                           <Link href="">
+                           <Link href="/">
                               <a className="sideBarMainNav">Deals</a>
                            </Link>
                            <span className="my-auto">
