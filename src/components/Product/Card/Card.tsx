@@ -1,5 +1,13 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
+import { useCtx } from "../../../store";
+import {
+   addFirstItemToTheCart,
+   addNonExistingItemInTheCart,
+   addToTheCart,
+   plusTheQuantityOfTheExistingItem,
+} from "../../../store/actions/CartAction";
+import { showCart } from "../../../store/actions/domActions";
 
 interface CardProps {
    available_offer: boolean;
@@ -10,6 +18,7 @@ interface CardProps {
    offer_time_till: string;
    regular_price: string;
    id: string;
+   img: any;
 }
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -46,16 +55,21 @@ export const Card: React.FC<CardProps> = ({
    offer_time_till,
    regular_price,
    id,
+   img,
 }) => {
+   // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);
 
+   // Time countdown states
    const [timerDays, setTimerDays] = useState<string | number>("00");
    const [timerHours, setTimerHours] = useState<string | number>("00");
    const [timerMins, setTimerMins] = useState<string | number>("00");
    const [timerSecs, setTimerSecs] = useState<string | number>("00");
 
+   // Ref for time
    let interval = useRef<any>();
 
+   // Caculate and setting time action
    const startTimer = () => {
       const countdownDate = new Date(offer_time_till).getTime();
 
@@ -90,6 +104,34 @@ export const Card: React.FC<CardProps> = ({
          clearInterval(interval.current);
       };
    }, []);
+
+   // global store
+   const {
+      domDispatch,
+      cartState: { inCartProducts },
+      cartDispatch,
+   } = useCtx();
+
+   // Adding product to the cart
+   const addToTheCartAction = (name, price, quantity, id, img) => {
+      const item = { name, price, quantity, id, img };
+      domDispatch(showCart());
+
+      if (inCartProducts.length > 0) {
+         let itemExistInTheCart = inCartProducts.some((i) => i.id === id);
+
+         if (itemExistInTheCart) {
+            // If that item exist in the cart
+            cartDispatch(plusTheQuantityOfTheExistingItem(id));
+         } else {
+            // If that item dont exist in the cart
+            cartDispatch(addNonExistingItemInTheCart(item));
+         }
+      } else {
+         // If there is no item in the cart
+         cartDispatch(addFirstItemToTheCart(item));
+      }
+   };
 
    return (
       <motion.div
@@ -170,7 +212,28 @@ export const Card: React.FC<CardProps> = ({
                      +
                   </button>
                </div>
-               <button className=" productBtn bg-gray-500 hover:bg-gray-600  ">
+               <button
+                  className=" productBtn bg-gray-500 hover:bg-gray-600 "
+                  onClick={() => {
+                     available_offer
+                        ? // If offer avilable
+                          addToTheCartAction(
+                             name,
+                             offer_price,
+                             productQuantity,
+                             id,
+                             img
+                          )
+                        : // If no offer avilable
+                          addToTheCartAction(
+                             name,
+                             regular_price,
+                             productQuantity,
+                             id,
+                             img
+                          );
+                  }}
+               >
                   ADD TO CART
                </button>
                <button className=" productBtn bg-lightBlue hover:bg-darkBlue ">

@@ -4,6 +4,8 @@ import {
    SHOW_SIDE_BAR,
    HIDE_SEARCH_PAGE,
    SET_PAGE_WIDTH_ON_RESIZE,
+   SHOW_CART_SIDEBAR,
+   HIDE_CART_SIDEBAR,
 } from "../types";
 
 export const showSideNavBar = () => {
@@ -34,5 +36,17 @@ export const pageResizeWidth = (payload: number) => {
    return {
       type: SET_PAGE_WIDTH_ON_RESIZE,
       payload,
+   };
+};
+
+export const showCart = () => {
+   return {
+      type: SHOW_CART_SIDEBAR,
+   };
+};
+
+export const hideCart = () => {
+   return {
+      type: HIDE_CART_SIDEBAR,
    };
 };

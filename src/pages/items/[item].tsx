@@ -61,6 +61,7 @@ const item: React.FC<itemProps> = ({
                   offer_time_till={offer_time_till}
                   regular_price={regular_price}
                   id={id}
+                  img={img[0].url}
                />
             </section>
             <Tabs

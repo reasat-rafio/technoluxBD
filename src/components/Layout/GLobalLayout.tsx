@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useCtx } from "../../store";
 import { pageResizeWidth } from "../../store/actions/domActions";
 import { usePageResize } from "../../utils/hooks/usePageResize";
+import { ShoppingCartSideBar } from "../ShoppingCartSideBar/ShoppingCartSideBar";
 
 interface GLobalLayoutProps {}
 
@@ -11,12 +12,20 @@ toast.configure();
 export const GLobalLayout: React.FC<GLobalLayoutProps> = ({ children }) => {
    const pageRef = useRef<HTMLDivElement>(null);
    // store
-   const { domDispatch } = useCtx();
+   const {
+      domDispatch,
+      domState: { showCartSidebar },
+   } = useCtx();
    const { width } = usePageResize(pageRef);
    // Setting the page width in the global state
    useEffect(() => {
       domDispatch(pageResizeWidth(width));
    }, [width]);
 
-   return <main ref={pageRef}>{children}</main>;
+   return (
+      <main ref={pageRef}>
+         <ShoppingCartSideBar />
+         {children}
+      </main>
+   );
 };

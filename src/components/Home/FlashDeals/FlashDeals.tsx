@@ -90,10 +90,10 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
                               {offer_price && (
                                  <div className="my-2 flex gap-2 items-center justify-center">
                                     <span className="line-through  text-sm text-gray-400 font-text">
-                                       ${regular_price}
+                                       ৳{regular_price}
                                     </span>
                                     <span className="text-darkBlue font-semibold font-text">
-                                       ${offer_price}
+                                       ৳{offer_price}
                                     </span>
                                  </div>
                               )}

@@ -3,7 +3,7 @@ import { useClientSize } from "../../../utils/hooks/useClientSIze";
 import { Cart, Menu, Search } from "../../../utils/svgs/Svg";
 import Image from "next/image";
 import { useCtx } from "../../../store";
-import { showSideNavBar } from "../../../store/actions/domActions";
+import { showCart, showSideNavBar } from "../../../store/actions/domActions";
 
 interface MainLgNavProps {}
 
@@ -75,7 +75,10 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
             </div>
             <div className="flex mx-5">
                <div className="p-2  md:border-r border-gray-400">
-                  <div className="relative cursor-pointer">
+                  <div
+                     className="relative cursor-pointer"
+                     onClick={() => domDispatch(showCart())}
+                  >
                      <Cart />
                      <span
                         style={{ padding: "1px 3px" }}
@@ -86,7 +89,10 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                   </div>
                </div>
                <div className="my-auto p-2  ">
-                  <div className="hidden md:block">
+                  <div
+                     className="hidden md:block cursor-pointer"
+                     onClick={() => domDispatch(showCart())}
+                  >
                      <span>0</span>/ <span>৳0.00</span>
                   </div>
                   <span

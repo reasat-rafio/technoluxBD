@@ -89,9 +89,68 @@ export const Search = ({ searchBarFocus, height }) => {
    );
 };
 
+// export const Cart = () => {
+//    return (
+//       <svg
+//          width="30"
+//          height="30"
+//          xmlns="http://www.w3.org/2000/svg"
+//          fill="none"
+//          viewBox="0 0 24 24"
+//          stroke="currentColor"
+//       >
+//          <path
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             strokeWidth={2}
+//             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+//          />
+//       </svg>
+//    );
+// };
+
 export const Cart = () => {
    return (
       <svg
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 24 24"
+         width="30"
+         height="30"
+      >
+         <path fill="none" d="M0 0h24v24H0z" />
+         <path d="M4 16V4H2V2h3a1 1 0 0 1 1 1v12h12.438l2-8H8V5h13.72a1 1 0 0 1 .97 1.243l-2.5 10a1 1 0 0 1-.97.757H5a1 1 0 0 1-1-1zm2 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm12 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+      </svg>
+   );
+};
+
+export const EmptyCart = () => {
+   return (
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         width="44"
+         height="44"
+         viewBox="0 0 24 24"
+         strokeWidth="1.5"
+         stroke="#597e8d"
+         fill="none"
+         strokeLinecap="round"
+         strokeLinejoin="round"
+      >
+         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+         <circle cx="6" cy="19" r="2" />
+         <circle cx="17" cy="19" r="2" />
+         <path d="M17 17h-11v-14h-2" />
+         <path d="M6 5l7.999 .571m5.43 4.43l-.429 2.999h-13" />
+         <path d="M17 3l4 4" />
+         <path d="M21 3l-4 4" />
+      </svg>
+   );
+};
+
+export const Cross = () => {
+   return (
+      <svg
+         className="text-gray-500 cursor-pointer hover:text-darkBlue"
          width="30"
          height="30"
          xmlns="http://www.w3.org/2000/svg"
@@ -103,18 +162,18 @@ export const Cart = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            d="M6 18L18 6M6 6l12 12"
          />
       </svg>
    );
 };
 
-export const Cross = () => {
+export const SmCross = () => {
    return (
       <svg
          className="text-gray-500 cursor-pointer hover:text-darkBlue"
-         width="30"
-         height="30"
+         width="15"
+         height="15"
          xmlns="http://www.w3.org/2000/svg"
          fill="none"
          viewBox="0 0 24 24"

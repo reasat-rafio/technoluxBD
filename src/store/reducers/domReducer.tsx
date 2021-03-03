@@ -2,8 +2,10 @@ import {
    HIDE_SEARCH_PAGE,
    HIDE_SIDE_BAR,
    SET_PAGE_WIDTH_ON_RESIZE,
+   SHOW_CART_SIDEBAR,
    SHOW_SEARCH_PAGE,
    SHOW_SIDE_BAR,
+   HIDE_CART_SIDEBAR,
 } from "../types";
 
 type Action = {
@@ -24,6 +26,7 @@ export const initialDomState = {
    showSidebar: false,
    showOverlayAuthPage: false,
    showSearchPage: false,
+   showCartSidebar: false,
    pageWidth: 0,
 };
 
@@ -39,7 +42,16 @@ export const domReducer = (state: stateInterFace, action: Action) => {
             ...state,
             showSidebar: false,
          };
-
+      case SHOW_CART_SIDEBAR:
+         return {
+            ...state,
+            showCartSidebar: true,
+         };
+      case HIDE_CART_SIDEBAR:
+         return {
+            ...state,
+            showCartSidebar: false,
+         };
       case SHOW_SEARCH_PAGE:
          return {
             ...state,
