@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCtx } from "../../store";
 import { hideCart } from "../../store/actions/domActions";
 import { HIDE_CART_SIDEBAR } from "../../store/types";
 import { sideBarVarients } from "../../utils/animation";
 import { useOutsideAlerter } from "../../utils/hooks/useOutSideClickAlerter";
-import { SmCross, Cross } from "../../utils/svgs/Svg";
+import { SmCross, Cross, EmptyCart } from "../../utils/svgs/Svg";
 import { useRouter } from "next/router";
 import { removeFromCart } from "../../store/actions/CartAction";
 interface ShoppingCartSideBarProps {}
@@ -17,7 +17,29 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
       cartDispatch,
       domState: { showCartSidebar },
       cartState: { inCartProducts },
+      cartState,
    } = useCtx();
+
+   // items subtotal
+   const [subTotal, setSubTotal] = useState<number>(
+      () =>
+         inCartProducts.reduce(
+            (result: number, { subtotal }) => result + subtotal,
+            0
+         ) || 0
+   );
+   //  doing the sum of the items price
+   useEffect(() => {
+      if (inCartProducts.length > 0) {
+         const _subtotal = inCartProducts.reduce(
+            (result: number, { subtotal }) => result + subtotal,
+            0
+         );
+         setSubTotal(_subtotal);
+      } else {
+         setSubTotal(0);
+      }
+   }, [cartState]);
 
    // router
    const router = useRouter();
@@ -65,45 +87,66 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                   </div>
                   {/* Selected products */}
                   <div className="flex-1 border-b  ">
-                     {inCartProducts.map(
-                        ({ name, img, price, quantity, id }) => (
-                           <div className=" text-sm font-nav py-3 border-b hover:bg-gray-50 transition-all duration-150 flex  justify-center items-center cursor-pointer">
-                              <img
-                                 className="w-4/12"
-                                 src={img}
-                                 alt=""
-                                 onClick={() => ItemOnCLickAction(id)}
-                              />
+                     {inCartProducts.length > 0 ? (
+                        inCartProducts.map(
+                           ({ name, img, price, quantity, id, subtotal }) => (
+                              <div className=" text-sm font-nav py-3 border-b hover:bg-gray-50 transition-all duration-150 flex  justify-center items-center cursor-pointer">
+                                 <img
+                                    className="w-4/12"
+                                    src={img}
+                                    alt={name}
+                                    onClick={() => ItemOnCLickAction(id)}
+                                 />
 
-                              <div
-                                 className="flex-1 "
-                                 onClick={() => ItemOnCLickAction(id)}
-                              >
-                                 <h2 className="font-bold">{name}</h2>
-                                 <div className="py-3">
-                                    <span className="text-gray-400">
-                                       {quantity} x
-                                    </span>
-                                    <span className="text-darkBlue ml-2 font-bold">
-                                       ৳{price}
-                                    </span>
+                                 <div
+                                    className="flex-1 "
+                                    onClick={() => ItemOnCLickAction(id)}
+                                 >
+                                    <h2 className="font-bold">{name}</h2>
+                                    <div className="py-3">
+                                       <span className="text-gray-400">
+                                          {quantity} x
+                                       </span>
+                                       <span className="text-darkBlue ml-2 font-bold">
+                                          ৳{price}
+                                       </span>
+                                    </div>
                                  </div>
+                                 <span
+                                    className="px-4 "
+                                    onClick={() => removeFromTheCartAction(id)}
+                                 >
+                                    <SmCross />
+                                 </span>
                               </div>
-                              <span
-                                 className="px-4 "
-                                 onClick={() => removeFromTheCartAction(id)}
-                              >
-                                 <SmCross />
-                              </span>
-                           </div>
+                           )
                         )
+                     ) : (
+                        <div className="flex flex-col items-center my-10 gap-5">
+                           <span>
+                              <EmptyCart />
+                           </span>
+                           <div className="flex flex-col items-center gap-2">
+                              <h2 className="font-nav font-medium text-lg">
+                                 NO PRODUCTS IN THE CART.
+                              </h2>
+                              <button
+                                 onClick={() => router.push("/shop")}
+                                 className="bg-darkBlue text-white rounded-md p-3 font-nav text-sm font-bold"
+                              >
+                                 RETURN TO THE SHOP
+                              </button>
+                           </div>
+                        </div>
                      )}
                   </div>
                   {/* Footer (Checkout) */}
                   <div className="py-4 flex flex-col justify-center gap-2 p-5">
                      <div className="flex font-text font-bold">
                         <p className="flex-1"> SUBTOTAL:</p>
-                        <p className="text-darkBlue">৳ 15,950</p>
+                        <p className="text-darkBlue">
+                           ৳ {subTotal.toLocaleString()}
+                        </p>
                      </div>
                      <button className="p-3 bg-gray-200 rounded-lg text-sm">
                         VIEW CART

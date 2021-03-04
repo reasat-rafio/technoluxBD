@@ -127,11 +127,11 @@ export const EmptyCart = () => {
    return (
       <svg
          xmlns="http://www.w3.org/2000/svg"
-         width="44"
-         height="44"
+         width="120"
+         height="120"
          viewBox="0 0 24 24"
          strokeWidth="1.5"
-         stroke="#597e8d"
+         stroke="#d3d3d3"
          fill="none"
          strokeLinecap="round"
          strokeLinejoin="round"

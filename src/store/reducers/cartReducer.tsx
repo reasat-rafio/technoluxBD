@@ -36,9 +36,15 @@ export const cartReducer = (state: any, action: Action) => {
          };
       case PLUS_QUANTITY:
          const findTheItem = state.inCartProducts.filter(
-            (f) => f.id === action.payload
+            (f) => f.id === action.payload.id
          );
-         findTheItem[0].quantity++;
+
+         findTheItem[0].quantity =
+            findTheItem[0].quantity + action.payload.quantity;
+         findTheItem[0].subtotal =
+            findTheItem[0].quantity *
+            parseInt(findTheItem[0].price.replace(/,/g, ""), 10);
+
          return {
             ...state,
          };

@@ -111,10 +111,28 @@ export const Card: React.FC<CardProps> = ({
       cartState: { inCartProducts },
       cartDispatch,
    } = useCtx();
+   // console.log(inCartProducts);
 
    // Adding product to the cart
    const addToTheCartAction = (name, price, quantity, id, img) => {
-      const item = { name, price, quantity, id, img };
+      const item = {
+         name,
+         price,
+         quantity,
+         id,
+         img,
+         subtotal: parseInt(price.replace(/,/g, ""), 10),
+      };
+
+      const _itemToTheCart = {
+         name,
+         price,
+         quantity,
+         id,
+         img,
+         subtotal: parseInt(price.replace(/,/g, ""), 10) * quantity,
+      };
+
       domDispatch(showCart());
 
       if (inCartProducts.length > 0) {
@@ -122,15 +140,16 @@ export const Card: React.FC<CardProps> = ({
 
          if (itemExistInTheCart) {
             // If that item exist in the cart
-            cartDispatch(plusTheQuantityOfTheExistingItem(id));
+            cartDispatch(plusTheQuantityOfTheExistingItem({ id, quantity }));
          } else {
             // If that item dont exist in the cart
             cartDispatch(addNonExistingItemInTheCart(item));
          }
       } else {
          // If there is no item in the cart
-         cartDispatch(addFirstItemToTheCart(item));
+         cartDispatch(addFirstItemToTheCart(_itemToTheCart));
       }
+      setProductQuantity(1);
    };
 
    return (
