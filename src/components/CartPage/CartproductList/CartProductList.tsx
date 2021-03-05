@@ -12,9 +12,7 @@ interface CartProductListProps {}
 
 export const CartProductList: React.FC<CartProductListProps> = ({}) => {
    const {
-      domDispatch,
       cartDispatch,
-      domState: { showCartSidebar },
       cartState: { inCartProducts },
       cartState,
    } = useCtx();

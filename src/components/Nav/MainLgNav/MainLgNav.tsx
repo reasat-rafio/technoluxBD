@@ -4,10 +4,15 @@ import { Cart, Menu, Search } from "../../../utils/svgs/Svg";
 import Image from "next/image";
 import { useCtx } from "../../../store";
 import { showCart, showSideNavBar } from "../../../store/actions/domActions";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface MainLgNavProps {}
 
 export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
+   // router
+   const router = useRouter();
+
    // navbar ref to cal the height width of the page and components
    const navRef = useRef<HTMLDivElement>(null);
    const { Pageheight, compHeight } = useClientSize(navRef);
@@ -32,7 +37,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
    const [totoalItemInCart, setTotalItemsInTheCart] = useState<number>(0);
 
    useEffect(() => {
-      if (inCartProducts && inCartProducts.length > 0) {
+      if (inCartProducts) {
          const _total = inCartProducts.reduce(
             (result: number, { quantity }) => result + quantity,
             0
@@ -40,6 +45,36 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
          setTotalItemsInTheCart(_total);
       }
    }, [cartState]);
+
+   // Search result State
+   const [showSearchResult, setShowSearchResult] = useState<boolean>(false);
+
+   // Search Input value
+   const [inputValue, setInputValue] = useState<string>("");
+   // Search result ref
+   const searchRef = useRef<HTMLDivElement>(null);
+   // showing and closing the search result based on the input value action
+   useEffect(() => {
+      if (inputValue.length > 0) {
+         setShowSearchResult(true);
+      } else {
+         setShowSearchResult(false);
+      }
+   }, [inputValue]);
+   // chosing the search result when its clicked ourtside the components
+   useEffect(() => {
+      const handleClickOutside = (e) => {
+         if (searchRef.current && !searchRef.current.contains(e.target)) {
+            setShowSearchResult(false);
+         }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+         // Unbind the event listener on clean up
+         document.removeEventListener("mousedown", handleClickOutside);
+      };
+   }, [searchRef]);
+
    return (
       <nav
          ref={navRef}
@@ -61,6 +96,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                >
                   <Menu strokes={menuStokes} />
                </span>
+
                <div className="cursor-pointer mx-5">
                   <Image
                      src="/img/logo.png"
@@ -71,7 +107,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                </div>
             </div>
 
-            <div className="flex-1 hidden md:block">
+            <div className="flex-1 hidden md:block relative">
                <div
                   className={`flex border  transition-all duration-300  ${
                      searchBarFocus ? "border-darkBlue" : "border-gray-400"
@@ -83,11 +119,33 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                      placeholder="What are you looking for?"
                      onFocus={() => setSearchBarFocus(true)}
                      onBlur={() => setSearchBarFocus(false)}
+                     onChange={(e) => setInputValue(e.target.value)}
                   />
                   <button className="outline-none overflow-auto">
                      <Search height={30} searchBarFocus={searchBarFocus} />
                   </button>
                </div>
+               {/*---------- SEARCH RESULT ------------  */}
+               {showSearchResult && (
+                  <div
+                     ref={searchRef}
+                     className=" bg-red-400 absolute z-30 p-3 "
+                  >
+                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                     Perspiciatis itaque quam id dicta at, nostrum sequi
+                     inventore, nihil necessitatibus alias officiis voluptatum
+                     impedit neque ipsa explicabo, quasi quas facilis. Pariatur
+                     veritatis architecto ullam delectus ut nam, amet, facilis
+                     rem sequi beatae sint facere ad dignissimos, repudiandae
+                     asperiores fugit nulla quas soluta! Quae minima quas rem
+                     veniam distinctio repellendus, alias maxime repudiandae
+                     voluptatum animi tempore qui nihil quia exercitationem
+                     nostrum eum incidunt est ad voluptates esse veritatis odit.
+                     Assumenda saepe molestiae aut iusto quisquam enim!
+                     Perferendis quasi et odit explicabo minima quod provident
+                     ea totam nam quas? Excepturi doloremque fugiat aspernatur.
+                  </div>
+               )}
             </div>
             <div className="flex mx-5">
                <div className="p-2  md:border-r border-gray-400">
