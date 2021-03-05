@@ -135,7 +135,7 @@ export const Card: React.FC<CardProps> = ({
 
       domDispatch(showCart());
 
-      if (inCartProducts.length > 0) {
+      if (inCartProducts && inCartProducts.length > 0) {
          let itemExistInTheCart = inCartProducts.some((i) => i.id === id);
 
          if (itemExistInTheCart) {

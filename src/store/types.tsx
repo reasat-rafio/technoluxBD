@@ -10,5 +10,6 @@ export const SET_PAGE_WIDTH_ON_RESIZE = "SET_PAGE_WIDTH_ON_RESIZE";
 export const ADD_TO_THE_CART = "ADD_TO_THE_CART";
 export const ADD_FIRST_ITEM = "ADD_FIRST_ITEM";
 export const PLUS_QUANTITY = "PLUS_QUANTITY";
+export const MINUS_QUANTITY = "MINUS_QUANTITY";
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";

@@ -4,6 +4,7 @@ import {
    PLUS_QUANTITY,
    ADD_ITEM,
    REMOVE_ITEM,
+   MINUS_QUANTITY,
 } from "../types";
 
 export const addToTheCart = (item) => {
@@ -20,10 +21,17 @@ export const addFirstItemToTheCart = (item) => {
    };
 };
 
-export const plusTheQuantityOfTheExistingItem = (id) => {
+export const plusTheQuantityOfTheExistingItem = (payload) => {
    return {
       type: PLUS_QUANTITY,
-      payload: id,
+      payload: payload,
+   };
+};
+
+export const minuTheQuantityOfTheExistingItem = (payload) => {
+   return {
+      type: MINUS_QUANTITY,
+      payload: payload,
    };
 };
 

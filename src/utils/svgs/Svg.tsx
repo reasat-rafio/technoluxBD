@@ -89,25 +89,25 @@ export const Search = ({ searchBarFocus, height }) => {
    );
 };
 
-// export const Cart = () => {
-//    return (
-//       <svg
-//          width="30"
-//          height="30"
-//          xmlns="http://www.w3.org/2000/svg"
-//          fill="none"
-//          viewBox="0 0 24 24"
-//          stroke="currentColor"
-//       >
-//          <path
-//             strokeLinecap="round"
-//             strokeLinejoin="round"
-//             strokeWidth={2}
-//             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-//          />
-//       </svg>
-//    );
-// };
+export const SearchSm = () => {
+   return (
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         width={"18"}
+         height={"18"}
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+         />
+      </svg>
+   );
+};
 
 export const Cart = () => {
    return (
@@ -174,6 +174,27 @@ export const SmCross = () => {
          className="text-gray-500 cursor-pointer hover:text-darkBlue"
          width="15"
          height="15"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+         />
+      </svg>
+   );
+};
+
+export const MdCross = () => {
+   return (
+      <svg
+         className="text-gray-500 cursor-pointer hover:text-darkBlue"
+         width="20"
+         height="20"
          xmlns="http://www.w3.org/2000/svg"
          fill="none"
          viewBox="0 0 24 24"
@@ -429,6 +450,42 @@ export const RightArrowPointer = () => {
          <path
             fillRule="evenodd"
             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clipRule="evenodd"
+         />
+      </svg>
+   );
+};
+
+export const DownArrowSm = () => {
+   return (
+      <svg
+         width="16"
+         height="16"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 20 20"
+         fill="currentColor"
+      >
+         <path
+            fillRule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clipRule="evenodd"
+         />
+      </svg>
+   );
+};
+
+export const UpArrowSm = () => {
+   return (
+      <svg
+         width="16"
+         height="16"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 20 20"
+         fill="currentColor"
+      >
+         <path
+            fillRule="evenodd"
+            d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
             clipRule="evenodd"
          />
       </svg>

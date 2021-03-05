@@ -21,16 +21,10 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
    } = useCtx();
 
    // items subtotal
-   const [subTotal, setSubTotal] = useState<number>(
-      () =>
-         inCartProducts.reduce(
-            (result: number, { subtotal }) => result + subtotal,
-            0
-         ) || 0
-   );
+   const [subTotal, setSubTotal] = useState<number>(0);
    //  doing the sum of the items price
    useEffect(() => {
-      if (inCartProducts.length > 0) {
+      if (inCartProducts && inCartProducts.length > 0) {
          const _subtotal = inCartProducts.reduce(
             (result: number, { subtotal }) => result + subtotal,
             0
@@ -55,6 +49,14 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
    // Removing item from the cart action
    const removeFromTheCartAction = (id) => {
       cartDispatch(removeFromCart(id));
+   };
+
+   // redirectingToCartPageAction
+   const redirectingToCartPageAction = () => {
+      domDispatch({
+         type: HIDE_CART_SIDEBAR,
+      });
+      router.push("/cart");
    };
 
    // Cart Sidebar ref
@@ -87,7 +89,7 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                   </div>
                   {/* Selected products */}
                   <div className="flex-1 border-b  ">
-                     {inCartProducts.length > 0 ? (
+                     {inCartProducts && inCartProducts.length > 0 ? (
                         inCartProducts.map(
                            ({ name, img, price, quantity, id, subtotal }) => (
                               <div className=" text-sm font-nav py-3 border-b hover:bg-gray-50 transition-all duration-150 flex  justify-center items-center cursor-pointer">
@@ -148,7 +150,10 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                            ৳ {subTotal.toLocaleString()}
                         </p>
                      </div>
-                     <button className="p-3 bg-gray-200 rounded-lg text-sm">
+                     <button
+                        className="p-3 bg-gray-200 rounded-lg text-sm"
+                        onClick={redirectingToCartPageAction}
+                     >
                         VIEW CART
                      </button>
                      <button className="p-3 bg-darkBlue text-white rounded-lg  text-sm font-semibold">

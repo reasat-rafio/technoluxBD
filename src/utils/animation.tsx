@@ -92,3 +92,24 @@ export const TabPageChangeVariants = {
       opacity: 0,
    },
 };
+
+export const ChangeAddressVariants = {
+   inital: {
+      y: "-50px",
+      opacity: 0,
+   },
+   animate: {
+      y: 0,
+      transition: {
+         duration: 0.5,
+      },
+      opacity: 1,
+   },
+   exit: {
+      transition: {
+         duration: 0.3,
+      },
+      y: "-50px",
+      opacity: 0,
+   },
+};

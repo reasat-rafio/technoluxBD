@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useClientSize } from "../../../utils/hooks/useClientSIze";
 import { Cart, Menu, Search } from "../../../utils/svgs/Svg";
 import Image from "next/image";
@@ -14,7 +14,11 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
    // searchbar border focus state
    const [searchBarFocus, setSearchBarFocus] = useState<boolean>(false);
    // store
-   const { domDispatch } = useCtx();
+   const {
+      domDispatch,
+      cartState: { inCartProducts },
+      cartState,
+   } = useCtx();
    // MenuBtn Click Action
    const sideBarOpenAction = () => {
       domDispatch(showSideNavBar());
@@ -24,6 +28,18 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
       "M4 6h16M4 12h16M4 18h16"
    );
 
+   // Total Items in the cart
+   const [totoalItemInCart, setTotalItemsInTheCart] = useState<number>(0);
+
+   useEffect(() => {
+      if (inCartProducts && inCartProducts.length > 0) {
+         const _total = inCartProducts.reduce(
+            (result: number, { quantity }) => result + quantity,
+            0
+         );
+         setTotalItemsInTheCart(_total);
+      }
+   }, [cartState]);
    return (
       <nav
          ref={navRef}
@@ -84,7 +100,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                         style={{ padding: "1px 3px" }}
                         className="absolute top-0 right-0 text-xs text-white  transform -translate-y-2 bg-darkBlue rounded-full translate-x-1"
                      >
-                        0
+                        {totoalItemInCart}
                      </span>
                   </div>
                </div>
