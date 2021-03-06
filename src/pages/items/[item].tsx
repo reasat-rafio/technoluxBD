@@ -1,12 +1,10 @@
-import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React, { useEffect, useRef, useState } from "react";
 import { Layout } from "../../components/Layout/Layout";
 import { Card } from "../../components/Product/Card/Card";
 import { ProductImages } from "../../components/Product/ProductImages/ProductImages";
 import { Tabs } from "../../components/Product/Tabs/Tabs";
-
-import { GET_ALL_PRODUCTS_ID } from "../../graphql/queries";
+import axios from "axios";
 
 interface itemProps {
    item: product;
@@ -24,6 +22,7 @@ interface product {
    regular_price: string;
    review: any[];
    id: string;
+   slug: string;
 }
 
 const item: React.FC<itemProps> = ({
@@ -40,12 +39,12 @@ const item: React.FC<itemProps> = ({
       regular_price,
       review,
       id,
+      slug,
    },
 }) => {
    return (
       <Layout>
          <main className=" w-full">
-            {/* Card */}
             <section className="container m-auto grid gap-3  lg:grid-cols-3 grid-cols-2 p-8 font-text">
                {/* Image preview */}
                <div className="lg:col-span-1 col-span-2">
@@ -61,6 +60,7 @@ const item: React.FC<itemProps> = ({
                   offer_time_till={offer_time_till}
                   regular_price={regular_price}
                   id={id}
+                  slug={slug}
                   img={img[0].url}
                />
             </section>
@@ -77,14 +77,10 @@ const item: React.FC<itemProps> = ({
 export default item;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-   const client = new ApolloClient({
-      uri: "http://localhost:1337/graphql",
-      cache: new InMemoryCache(),
-   });
-   const { data } = await client.query({ query: GET_ALL_PRODUCTS_ID });
+   const { data } = await axios.get(`${process.env.DEVELOP_URL}/products`);
 
-   const paths = data.products.map(({ id }) => ({
-      params: { item: id },
+   const paths = data.map(({ slug }) => ({
+      params: { item: slug },
    }));
 
    return {
@@ -94,51 +90,46 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-   // setting the apolloclient
-   const client = new ApolloClient({
-      uri: "http://localhost:1337/graphql",
-      cache: new InMemoryCache(),
-   });
-
-   //   query
-   const GET_PRODUCTS = gql`
-      query product($product_id: ID!) {
-         product(id: $product_id) {
-            id
-            img {
-               url
-               formats
-            }
-            categories {
-               name
-            }
-            offer_time_till
-            available_offer
-            offer_price
-            regular_price
-            name
-            Specifications
-            review
-            Features
-            brand
-         }
-      }
-   `;
-
    // setting the request variable
-   const variables = {
-      product_id: context.params.item,
-   };
 
-   //  request
-   const { data } = await client.query({
-      query: GET_PRODUCTS,
-      variables,
-   });
+   const slug = context.params.item;
+
+   const { data } = await axios.get(
+      `${process.env.DEVELOP_URL}/products?slug=${slug}`
+   );
+
+   const {
+      id,
+      img,
+      categories,
+      offer_time_till,
+      available_offer,
+      offer_price,
+      regular_price,
+      name,
+      Specifications,
+      review,
+      Features,
+      brand,
+   } = data[0];
 
    return {
       props: {
-         item: data.product,
+         item: {
+            id,
+            img,
+            categories,
+            offer_time_till,
+            available_offer,
+            offer_price,
+            regular_price,
+            name,
+            Specifications,
+            review,
+            Features,
+            brand,
+            slug: data[0].slug,
+         },
       },
    };
 };

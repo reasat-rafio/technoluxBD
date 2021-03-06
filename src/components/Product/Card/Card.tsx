@@ -4,7 +4,6 @@ import { useCtx } from "../../../store";
 import {
    addFirstItemToTheCart,
    addNonExistingItemInTheCart,
-   addToTheCart,
    plusTheQuantityOfTheExistingItem,
 } from "../../../store/actions/CartAction";
 import { showCart } from "../../../store/actions/domActions";
@@ -19,6 +18,7 @@ interface CardProps {
    regular_price: string;
    id: string;
    img: any;
+   slug: string;
 }
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -56,6 +56,7 @@ export const Card: React.FC<CardProps> = ({
    regular_price,
    id,
    img,
+   slug,
 }) => {
    // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);

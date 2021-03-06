@@ -62,13 +62,13 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
                spaceBetween={10}
             >
                {flashDeals.map(
-                  ({ name, img, offer_price, regular_price, id }, i) => (
+                  ({ name, img, offer_price, regular_price, id, slug }, i) => (
                      <SwiperSlide key={i}>
                         <div
                            className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-300 ${
                               pgWidth == "sm" && "h-smCard"
                            } ${pgWidth == "xs" && "h-lgCard"}`}
-                           onClick={() => router.push(`/items/${id}`)}
+                           onClick={() => router.push(`/items/${slug}`)}
                         >
                            <Swiper
                               slidesPerView={1}
