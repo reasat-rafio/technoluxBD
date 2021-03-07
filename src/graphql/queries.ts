@@ -71,6 +71,13 @@ export const GET_PRODUCT = (product_id) => {
 //    uri: "http://localhost:1337/graphql",
 //    cache: new InMemoryCache(),
 // });
+// const client = new ApolloClient({
+//    uri: "http://localhost:1337/graphql",
+//    cache: new InMemoryCache(),
+// });
+
+// const flash_deals = await client.query({ query: GET_HOME_FLASH_DEALS });
+// const cover_img = await client.query({ query: GET_THE_COVER_IMGS });
 
 //   query
 const GET_PRODUCTS = gql`
@@ -99,9 +106,6 @@ const GET_PRODUCTS = gql`
 `;
 
 // setting the request variable
-const variables = {
-   product_slug: context.params.item,
-};
 
 // //  request
 // const { data } = await client.query({

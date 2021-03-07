@@ -8,7 +8,6 @@
       "start": "next start"
    },
    "dependencies": {
-      "@apollo/client": "^3.3.11",
       "@hookform/resolvers": "^2.0.0-rc.1",
       "axios": "^0.21.1",
       "dotenv": "^8.2.0",

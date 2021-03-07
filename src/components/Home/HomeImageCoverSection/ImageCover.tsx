@@ -23,7 +23,7 @@ export const ImageCover: React.FC<ImageCoverProps> = ({ coverImg }) => {
             autoplay={{ disableOnInteraction: false }}
             pagination={{ clickable: true }}
          >
-            {coverImg[0].img.map(({ _id, url }, i) => (
+            {coverImg.map(({ _id, url }, i) => (
                <SwiperSlide key={i}>
                   <img
                      src={url}

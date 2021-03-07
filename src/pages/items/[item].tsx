@@ -77,7 +77,7 @@ const item: React.FC<itemProps> = ({
 export default item;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-   const { data } = await axios.get(`${process.env.DEVELOP_URL}/products`);
+   const { data } = await axios.get(`${process.env.URL}/products`);
 
    const paths = data.map(({ slug }) => ({
       params: { item: slug },
@@ -94,9 +94,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
    const slug = context.params.item;
 
-   const { data } = await axios.get(
-      `${process.env.DEVELOP_URL}/products?slug=${slug}`
-   );
+   const { data } = await axios.get(`${process.env.URL}/products?slug=${slug}`);
 
    const {
       id,
