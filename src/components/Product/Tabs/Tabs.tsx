@@ -5,6 +5,7 @@ import { Description } from "./Description/Description";
 import { DeliveryProcess } from "./DeliveryProcess/DeliveryProcess";
 import { ReturnRefunds } from "./ReturnRefund/ReturnRefunds";
 import { Reviews } from "./Reviews/Reviews";
+import { Details, Process, Return, Star } from "../../../utils/svgs/Svg";
 
 interface TabsProps {
    Features: [string];
@@ -21,15 +22,18 @@ export const Tabs: React.FC<TabsProps> = ({
 
    return (
       <>
-         <div className="w-full  border-t">
-            <ul className="container mx-auto flex justify-center items-center gap-12 font-nav font-semibold text-lg  border-b">
+         <div className="w-full  border-t  ">
+            <ul className="  container m-auto flex justify-center items-center gap-12 font-nav lg:font-semibold  font-medium text-lg  border-b">
                <li
                   onClick={() => setTab("description")}
                   className={`py-5 cursor-pointer relative  ${
                      tab === "description" ? "text-gray-800" : "text-gray-500"
                   }`}
                >
-                  <span>DESCRIPTION</span>{" "}
+                  <span className="lg:block text-lg hidden ">DESCRIPTION</span>
+                  <span className="block lg:hidden">
+                     <Details />
+                  </span>
                   <AnimatePresence exitBeforeEnter>
                      {tab === "description" && (
                         <motion.span
@@ -50,7 +54,12 @@ export const Tabs: React.FC<TabsProps> = ({
                         : "text-gray-500"
                   }`}
                >
-                  <span>DELIVERY PROCESS</span>
+                  <span className="lg:block text-lg hidden">
+                     DELIVERY PROCESS
+                  </span>
+                  <span className="block lg:hidden">
+                     <Process />
+                  </span>
                   <AnimatePresence exitBeforeEnter>
                      {tab === "delivery_process" && (
                         <motion.span
@@ -69,7 +78,12 @@ export const Tabs: React.FC<TabsProps> = ({
                      tab === "return_refund" ? "text-gray-800" : "text-gray-500"
                   }`}
                >
-                  <span>RETURN & REFUND</span>
+                  <span className="lg:block text-lg hidden">
+                     RETURN & REFUND
+                  </span>
+                  <span className="block lg:hidden">
+                     <Return />
+                  </span>
                   <AnimatePresence exitBeforeEnter>
                      {tab === "return_refund" && (
                         <motion.span
@@ -88,7 +102,10 @@ export const Tabs: React.FC<TabsProps> = ({
                      tab === "reviews" ? "text-gray-800" : "text-gray-500"
                   }`}
                >
-                  <span>REVIEWS</span>
+                  <span className="lg:block text-lg hidden">REVIEWS</span>
+                  <span className="block lg:hidden">
+                     <Star />
+                  </span>
                   <AnimatePresence exitBeforeEnter>
                      {tab === "reviews" && (
                         <motion.span
@@ -103,25 +120,27 @@ export const Tabs: React.FC<TabsProps> = ({
                </li>
             </ul>
          </div>
-         <div className="container mx-auto border-b py-3 font-text text-gray-400">
-            <AnimatePresence exitBeforeEnter>
-               {tab === "description" && (
-                  <Description
-                     name={name}
-                     Features={Features}
-                     Specifications={Specifications}
-                  />
-               )}
-            </AnimatePresence>
-            <AnimatePresence exitBeforeEnter>
-               {tab === "delivery_process" && <DeliveryProcess />}
-            </AnimatePresence>
-            <AnimatePresence exitBeforeEnter>
-               {tab === "return_refund" && <ReturnRefunds />}
-            </AnimatePresence>
-            <AnimatePresence exitBeforeEnter>
-               {tab === "reviews" && <Reviews />}
-            </AnimatePresence>
+         <div className="w-full px-3">
+            <div className=" container mx-auto border-b py-3 font-text text-gray-400">
+               <AnimatePresence exitBeforeEnter>
+                  {tab === "description" && (
+                     <Description
+                        name={name}
+                        Features={Features}
+                        Specifications={Specifications}
+                     />
+                  )}
+               </AnimatePresence>
+               <AnimatePresence exitBeforeEnter>
+                  {tab === "delivery_process" && <DeliveryProcess />}
+               </AnimatePresence>
+               <AnimatePresence exitBeforeEnter>
+                  {tab === "return_refund" && <ReturnRefunds />}
+               </AnimatePresence>
+               <AnimatePresence exitBeforeEnter>
+                  {tab === "reviews" && <Reviews />}
+               </AnimatePresence>
+            </div>
          </div>
       </>
    );

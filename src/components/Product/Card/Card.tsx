@@ -157,7 +157,7 @@ export const Card: React.FC<CardProps> = ({
       <motion.div
          initial="inital"
          animate="animate"
-         className="shadow-lg md:col-span-2 col-span-3 lg:p-8 p-2"
+         className="lg:shadow-lg col-span-6 lg:col-span-4   lg:p-8 p-2"
          variants={stagger}
       >
          <div>

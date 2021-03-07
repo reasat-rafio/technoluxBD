@@ -98,12 +98,16 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                </span>
 
                <div className="cursor-pointer mx-5">
-                  <Image
-                     src="/img/logo.png"
-                     layout="intrinsic"
-                     height={60}
-                     width={180}
-                  />
+                  <Link href="/">
+                     <a>
+                        <Image
+                           src="/img/logo.png"
+                           layout="intrinsic"
+                           height={60}
+                           width={180}
+                        />
+                     </a>
+                  </Link>
                </div>
             </div>
 

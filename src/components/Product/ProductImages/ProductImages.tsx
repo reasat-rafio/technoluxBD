@@ -8,7 +8,8 @@ import SwiperCore, {
 } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useState } from "react";
-import ReactImageZoom from "react-image-zoom";
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
+import InnerImageZoom from "react-inner-image-zoom";
 import { motion } from "framer-motion";
 
 interface ProductImagesProps {
@@ -32,15 +33,12 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
             {img.map(({ url }, i) => (
                <SwiperSlide key={i}>
                   <motion.div
+                     className="m-auto"
                      initial={{ x: 200, opacity: 0 }}
                      animate={{ x: 0, opacity: 1 }}
                      transition={{ delay: 0.2 }}
                   >
-                     <ReactImageZoom
-                        className="lg:m-0 md:m-auto"
-                        img={url}
-                        zoomPosition="original"
-                     />
+                     <InnerImageZoom zoomType="hover" src={url} zoomSrc={url} />
                   </motion.div>
                </SwiperSlide>
             ))}

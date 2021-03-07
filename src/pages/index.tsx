@@ -4,10 +4,7 @@ import { useCtx } from "../store";
 // import { getSession, signIn, signOut, useSession } from "next-auth/client";
 import React from "react";
 import { GetStaticProps } from "next";
-
 import { HomePage } from "../components/Home/HomePage";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GET_HOME_FLASH_DEALS, GET_THE_COVER_IMGS } from "../graphql/queries";
 import axios from "axios";
 
 export default function Home({ flashDeals, coverImg }) {
