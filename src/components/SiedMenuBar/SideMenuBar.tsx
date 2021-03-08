@@ -20,6 +20,7 @@ import { HIDE_SIDE_BAR } from "../../store/types";
 import { logOutAaction } from "../../store/actions/userAction";
 import { Notify } from "../../utils/Toast";
 import { useCookies } from "react-cookie";
+import { signIn, signOut, useSession } from "next-auth/client";
 
 interface SideMenuBarProps {}
 
@@ -43,10 +44,11 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
    //cookies
    const [cookies, removeCookie] = useCookies(["userjwt"]);
 
-   // Logout action
+   // // Logout action
    const logOut = () => {
+      signOut();
       userDispatch(logOutAaction());
-      removeCookie("userjwt", "", { path: "/" });
+      // removeCookie("userjwt", "", { path: "/" });
       Notify("info", "Loggedout Successfully");
    };
    return (

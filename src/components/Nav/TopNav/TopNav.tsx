@@ -1,11 +1,19 @@
 import Link from "next/link";
 import { FB, Mail, Phone } from "../../../utils/svgs/Svg";
 import { useRouter } from "next/router";
+import { useCtx } from "../../../store";
+import { signIn, signOut, useSession } from "next-auth/client";
 
 interface TopNavProps {}
 
 export const TopNav: React.FC<TopNavProps> = ({}) => {
    const router = useRouter();
+
+   // global state
+   const {
+      userDispatch,
+      userState: { isLoggedIn },
+   } = useCtx();
 
    return (
       <nav className=" w-full transition-all duration-300  bg-black text-white xl:block lg:block   text-xs hidden  ">
@@ -49,12 +57,21 @@ export const TopNav: React.FC<TopNavProps> = ({}) => {
                <li className="topNavLi">
                   <p>WELCOME TO TECHNOLUX BD</p>
                </li>
-               <li
-                  className="topNavLi  border-l border-gray-300"
-                  onClick={() => router.push("/customer/account/auth")}
-               >
-                  <button>LOGIN / REGISTER</button>
-               </li>
+               {isLoggedIn ? (
+                  <li
+                     className="topNavLi  border-l border-gray-300"
+                     onClick={signOut}
+                  >
+                     <button>LOGOUT</button>
+                  </li>
+               ) : (
+                  <li
+                     className="topNavLi  border-l border-gray-300"
+                     onClick={() => router.push("/customer/account/auth")}
+                  >
+                     <button>LOGIN / REGISTER</button>
+                  </li>
+               )}
             </ul>
          </section>
       </nav>

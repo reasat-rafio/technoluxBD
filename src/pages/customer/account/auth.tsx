@@ -8,7 +8,7 @@ interface authProps {}
 // toast.configure();
 const auth: React.FC<authProps> = ({}) => {
    // state for outputing login || register section
-   const [auth, setAuth] = useState<string>("register");
+   const [auth, setAuth] = useState<string>("login");
 
    // router
    const router = useRouter();

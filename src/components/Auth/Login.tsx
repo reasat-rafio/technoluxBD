@@ -9,7 +9,8 @@ import getConfig from "next/config";
 import { Notify } from "../../utils/Toast";
 import { useCtx } from "../../store";
 import { loginUserAction } from "../../store/actions/userAction";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
+import { signIn, signOut, useSession } from "next-auth/client";
 
 interface LoginProps {}
 interface onSubmitInterface {
@@ -26,8 +27,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
    // store
    const { userState, userDispatch } = useCtx();
 
-   // Cookies
-   const [cookies, setCookie] = useCookies(["userjwt"]);
+   // // Cookies
+   // const [cookies, setCookie] = useCookies(["userjwt"]);
 
    //   setting up yup as useForm resolver
    const { handleSubmit, register, errors } = useForm({
@@ -41,55 +42,33 @@ export const Login: React.FC<LoginProps> = ({}) => {
       password,
    }: onSubmitInterface) => {
       try {
-         const { data } = await axios.post(
-            `${publicRuntimeConfig.API_URL}/auth/local`,
-            {
-               identifier,
-               password,
-            }
-         );
+         const { data } = await axios.post(`http://localhost:1337/auth/local`, {
+            identifier,
+            password,
+         });
 
          // Setting the jwt to cookies
-         setCookie("userjwt", data.jwt, { path: "/" });
+         // setCookie("userjwt", data.jwt, { path: "/" });
          //  User Global Dispatch
          userDispatch(loginUserAction(data));
          // toast
          Notify("success", `welcome back ${data.user.username}  !`);
-         router.push("/");
       } catch (error) {
          Notify(
             "error",
             `${error.response.data.message[0].messages[0].message}`
          );
+         console.log(error);
       }
    };
 
-   // Facebook login
-   const faceBookLogin = async () => {
+   // Social loguin action
+
+   const socialLoginAction = async (platform: string) => {
       try {
-         console.log("test");
-
-         const res = await axios.get(
-            `https://technoluxbd.herokuapp.com/connect/facebook`
-         );
-         console.log(res);
+         await signIn(platform);
       } catch (error) {
-         console.log("error", error);
-      }
-   };
-
-   // Google login
-
-   const googleLogin = async () => {
-      try {
-         console.log("test");
-
-         const { data } = await axios.get(
-            `https://technoluxbd.herokuapp.com/connect/google`
-         );
-         console.log(data);
-      } catch (error) {
-         console.log("error", error);
+         console.log(error);
       }
    };
 
@@ -133,7 +112,12 @@ export const Login: React.FC<LoginProps> = ({}) => {
          </h2>
 
          <div className="w-96 gap-3 flex justify-center items-center my-5 cursor-pointer ">
-            <span className="socialIcons" onClick={faceBookLogin}>
+            <span
+               className="socialIcons"
+               onClick={() => {
+                  socialLoginAction("facebook");
+               }}
+            >
                <Image
                   src={FacebookIcon}
                   height="40"
@@ -141,7 +125,10 @@ export const Login: React.FC<LoginProps> = ({}) => {
                   layout="intrinsic"
                />
             </span>
-            <span className="socialIcons" onClick={googleLogin}>
+            <span
+               className="socialIcons"
+               onClick={async () => socialLoginAction("google")}
+            >
                <Image
                   src={GoogleIcon}
                   height="40"

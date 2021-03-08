@@ -34,13 +34,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
    const imgRes = await axios.get(`${process.env.URL}/cover-images`);
 
    // getting the flash deals
-   const coverImages = await axios.get(`${process.env.URL}/products`);
+   const flash_deals = await axios.get(`${process.env.URL}/products?_limit=10`);
    const { img } = imgRes.data[0];
 
    return {
       props: {
          coverImg: img,
-         flashDeals: coverImages.data,
+         flashDeals: flash_deals.data,
       },
    };
 };

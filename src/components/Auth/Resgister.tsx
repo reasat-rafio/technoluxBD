@@ -7,6 +7,7 @@ import { RegisterSchema } from "../../utils/yupSchema";
 import axios from "axios";
 import getConfig from "next/config";
 import { Notify } from "../../utils/Toast";
+import { signIn, signOut, useSession } from "next-auth/client";
 
 interface ResgisterProps {}
 
@@ -40,13 +41,14 @@ export const Resgister: React.FC<ResgisterProps> = ({}) => {
    }: onSubmitInterface) => {
       try {
          const { data } = await axios.post(
-            `${publicRuntimeConfig.API_URL}/auth/local/register`,
+            `http://localhost:1337/auth/local/register`,
             {
                username: `${first_name} ${last_name}`,
                email,
                password,
             }
          );
+         router.push("/");
          Notify("success", "registration done!");
       } catch (error) {
          Notify(
@@ -137,7 +139,12 @@ export const Resgister: React.FC<ResgisterProps> = ({}) => {
          </h2>
 
          <div className="w-96 gap-3 flex justify-center items-center my-5 cursor-pointer ">
-            <span className="socialIcons">
+            <span
+               className="socialIcons"
+               onClick={() => {
+                  signIn("facebook");
+               }}
+            >
                <Image
                   src={FacebookIcon}
                   height="40"
@@ -145,7 +152,12 @@ export const Resgister: React.FC<ResgisterProps> = ({}) => {
                   layout="intrinsic"
                />
             </span>
-            <span className="socialIcons">
+            <span
+               className="socialIcons"
+               onClick={() => {
+                  signIn("google");
+               }}
+            >
                <Image
                   src={GoogleIcon}
                   height="40"
