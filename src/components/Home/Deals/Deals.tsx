@@ -6,12 +6,13 @@ import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
 import { Poster } from "../../../utils/_components/Poster";
 import { useRouter } from "next/router";
+import LinesEllipsis from "react-lines-ellipsis";
 
-interface FlashDealsProps {
-   flashDeals: any[];
+interface DealsProps {
+   deals: any[];
 }
 
-export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
+export const Deals: React.FC<DealsProps> = ({ deals }) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
    // swiper slidesPerView
@@ -44,7 +45,7 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
    }, [pageWidth]);
 
    return (
-      <main>
+      <>
          <section className="flex border-b font-nav text-xl font-semibold ">
             <div className="py-3 border-b-4 border-darkBlue flex gap-1">
                <span>
@@ -61,7 +62,7 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
                autoplay={{ disableOnInteraction: false }}
                spaceBetween={10}
             >
-               {flashDeals.map(
+               {deals.map(
                   ({ name, img, offer_price, regular_price, id, slug }, i) => (
                      <SwiperSlide key={i}>
                         <div
@@ -84,9 +85,14 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
                            </Swiper>
 
                            <div className="p-3">
-                              <h1 className="text-sm font-medium text-center font-nav ">
-                                 {name}
-                              </h1>
+                              <LinesEllipsis
+                                 className="text-sm font-medium text-center font-nav   "
+                                 text={name}
+                                 maxLine="3"
+                                 ellipsis="..."
+                                 trimRight
+                                 basedOn="letters"
+                              />
                               {offer_price && (
                                  <div className="my-2 flex gap-2 items-center justify-center">
                                     <span className="line-through  text-sm text-gray-400 font-text">
@@ -125,6 +131,6 @@ export const FlashDeals: React.FC<FlashDealsProps> = ({ flashDeals }) => {
          officia magni similique facilis molestias veritatis voluptate
          consequuntur ducimus dolorem, libero nobis sit. Animi eum aliquam
          quisquam? Molestiae veritatis impedit id! Beatae, nam suscipit.
-      </main>
+      </>
    );
 };

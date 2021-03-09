@@ -8,15 +8,21 @@ import { Reviews } from "./Reviews/Reviews";
 import { Details, Process, Return, Star } from "../../../utils/svgs/Svg";
 
 interface TabsProps {
-   Features: [string];
-   Specifications: [string];
+   Features: any;
+   features: any;
+   Specifications: any;
+   specifications: any;
    name: string;
+   details: string;
 }
 
 export const Tabs: React.FC<TabsProps> = ({
+   features,
    Features,
+   specifications,
    Specifications,
    name,
+   details,
 }) => {
    const [tab, setTab] = useState<string>("description");
 
@@ -126,8 +132,11 @@ export const Tabs: React.FC<TabsProps> = ({
                   {tab === "description" && (
                      <Description
                         name={name}
+                        features={features}
                         Features={Features}
+                        specifications={specifications}
                         Specifications={Specifications}
+                        details={details}
                      />
                   )}
                </AnimatePresence>

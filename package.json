@@ -21,6 +21,7 @@
       "react-dom": "17.0.1",
       "react-hook-form": "^6.15.1",
       "react-inner-image-zoom": "^2.0.0",
+      "react-lines-ellipsis": "^0.14.1",
       "react-toastify": "^7.0.3",
       "sass": "^1.32.7",
       "swiper": "^6.4.15",
