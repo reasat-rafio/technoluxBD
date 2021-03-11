@@ -19,25 +19,25 @@ const item: React.FC<itemProps> = ({
 }) => {
    // product state
    const [product, setProduct] = useState<any>(() => {
-      if (flash_deals[0]) {
+      if ( flash_deals && flash_deals[0] ) {
          return flash_deals;
       }
-      if (new_arrivals[0]) {
+      if ( new_arrivals && new_arrivals[0]) {
          return new_arrivals;
       }
-      if (gaming_accessories[0]) {
+      if ( gaming_accessories &&  gaming_accessories[0]) {
          return gaming_accessories;
       }
    });
 
    useEffect(() => {
-      if (flash_deals[0]) {
+      if (flash_deals && flash_deals[0]) {
          setProduct(flash_deals);
       }
-      if (new_arrivals[0]) {
+      if ( new_arrivals && new_arrivals[0]) {
          setProduct(new_arrivals);
       }
-      if (gaming_accessories[0]) {
+      if (( gaming_accessories &&  gaming_accessories[0]) {
          setProduct(gaming_accessories);
       }
    }, [flash_deals, new_arrivals, gaming_accessories]);
