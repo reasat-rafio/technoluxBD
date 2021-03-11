@@ -161,7 +161,10 @@ export const Card: React.FC<CardProps> = ({
          variants={stagger}
       >
          <div>
-            <motion.p variants={fadeIn} className="font-bold text-xl py-4">
+            <motion.p
+               variants={fadeIn}
+               className="font-bold text-xl py-4 font-text"
+            >
                {name}
             </motion.p>
             <div className="py-3 border-b">

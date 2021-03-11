@@ -30,6 +30,17 @@ const item: React.FC<itemProps> = ({
       }
    });
 
+   useEffect(() => {
+      if (flash_deals[0]) {
+         setProduct(flash_deals);
+      }
+      if (new_arrivals[0]) {
+         setProduct(new_arrivals);
+      }
+      if (gaming_accessories[0]) {
+         setProduct(gaming_accessories);
+      }
+   }, [flash_deals, new_arrivals, gaming_accessories]);
    return (
       <Layout>
          <main className=" w-full">

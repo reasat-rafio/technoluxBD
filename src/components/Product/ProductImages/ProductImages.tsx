@@ -46,7 +46,7 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
 
          <Swiper
             id="thumbs"
-            onSwiper={setThumbsSwiper}
+            onSwiper={() => setThumbsSwiper}
             spaceBetween={5}
             slidesPerView={3}
          >

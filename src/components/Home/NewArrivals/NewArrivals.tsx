@@ -7,10 +7,11 @@ import TextTruncate from "react-text-truncate";
 import { motion } from "framer-motion";
 
 interface NewArrivalsProps {
-   new_arrivals: any[];
+   new_arrivals: any;
+   to: string;
 }
 
-export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
+export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals , to}) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
    const [pgWidth, setPgWidth] = useState<string>("");
@@ -18,7 +19,6 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
    const {
       domState: { pageWidth },
    } = useCtx();
-   // router
 
    useEffect(() => {
       if (pageWidth > 1180) {
@@ -33,6 +33,8 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
          return;
       }
    }, [pageWidth]);
+
+   // router
    const router = useRouter();
 
    return (
@@ -94,7 +96,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
          {/* <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
             VIEW ALL
          </div> */}
-         <button className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300">
+         <button className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300" onClick={() => router.push(to)}>
             LOAD MORE PRODUCTS
          </button>
          {/* <button>LOADING</button> */}

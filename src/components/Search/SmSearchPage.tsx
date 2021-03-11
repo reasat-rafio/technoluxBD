@@ -3,6 +3,9 @@ import { hideSearchPage } from "../../store/actions/domActions";
 import { Cross } from "../../utils/svgs/Svg";
 import { motion, AnimatePresence } from "framer-motion";
 import { searchPageVarients } from "../../utils/animation";
+import { useState } from "react";
+import { useSearchFilter } from "../../utils/hooks/useFilterByInput";
+import { SearchbarResult } from "../SearchbarResult/SearchbarResult";
 
 interface SmSearchPageProps {}
 
@@ -10,7 +13,27 @@ export const SmSearchPage: React.FC<SmSearchPageProps> = ({}) => {
    const {
       domState: { showSearchPage },
       domDispatch,
+      productsState,
    } = useCtx();
+
+   // Search Input value
+   const [inputValue, setInputValue] = useState<string>("");
+
+   // search filter state
+   const [searchFilterItems, setSearchFilterItems] = useState([]);
+
+   // On change searchfilter action
+   const searchInputOnChangeAction = (e) => {
+      setInputValue(e.target.value);
+      const all_products = productsState.products.map(
+         ({ name, img, offer_price, regular_price, slug }) => {
+            return { name, img, offer_price, regular_price, slug };
+         }
+      );
+
+      const { filteredItme } = useSearchFilter(all_products, e.target.value);
+      setSearchFilterItems(filteredItme);
+   };
 
    return (
       <>
@@ -33,15 +56,25 @@ export const SmSearchPage: React.FC<SmSearchPageProps> = ({}) => {
                         </span>
                      </div>
 
-                     <div className=" flex items-center justify-center flex-col">
+                     <form className=" flex items-center justify-center flex-col">
                         <input
                            type="text"
                            className="border rounded-sm py-3 px-2 outline-none  w-11/12 container "
+                           onChange={(e) => searchInputOnChangeAction(e)}
                         />
-                        <p className="text-sm text-gray-500 font-text">
-                           Type here any product name
-                        </p>
-                     </div>
+                        {inputValue.length <= 0 && (
+                           <p className="text-sm text-gray-500 font-text">
+                              Type here any product name
+                           </p>
+                        )}
+
+                        {inputValue.length > 0 && (
+                           <SearchbarResult
+                              searchFilterItems={searchFilterItems}
+                              inputValue={inputValue}
+                           />
+                        )}
+                     </form>
                   </div>
                </motion.section>
             )}

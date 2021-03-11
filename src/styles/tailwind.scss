@@ -36,7 +36,7 @@ $darkBlue: #00adb5;
 
 // bottom sm nav
 .btmNavLi {
-   @apply cursor-pointer flex flex-col justify-center items-center;
+   @apply cursor-pointer flex flex-col justify-center items-center text-xs;
 }
 
 // poster images
@@ -63,7 +63,6 @@ $darkBlue: #00adb5;
       width: 100%;
    }
 }
-
 
 // single product page
 .productBtn {

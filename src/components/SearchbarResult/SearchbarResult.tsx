@@ -1,6 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
+import { useCtx } from "../../store";
+import { hideSearchPage } from "../../store/actions/domActions";
 
 interface SearchbarResultProps {
    searchFilterItems: any[];
@@ -20,7 +22,10 @@ export const SearchbarResult: React.FC<SearchbarResultProps> = ({
    inputValue,
 }) => {
    const router = useRouter();
-
+   const {
+      domState: { showSearchPage },
+      domDispatch,
+   } = useCtx();
    return (
       <>
          {searchFilterItems && searchFilterItems.length > 0 ? (
@@ -29,7 +34,17 @@ export const SearchbarResult: React.FC<SearchbarResultProps> = ({
                   <motion.div
                      whileHover={{ scale: 1.1, originX: 0 }}
                      className="flex max-h-20 gap-2 px-2 border-b text-sm cursor-pointer  hover:bg-gray-50  "
-                     onClick={() => router.push(`items/${slug}`)}
+                     onClick={() => {
+                        // router.push(`/items/${slug}`);
+                        router.push(
+                           {
+                              pathname: `/items/${slug}`,
+                           }
+                           // undefined,
+                           // { shallow: true }
+                        );
+                        domDispatch(hideSearchPage());
+                     }}
                   >
                      <img src={img[0].url} alt={name} />
                      <span className="bg-white my-auto">

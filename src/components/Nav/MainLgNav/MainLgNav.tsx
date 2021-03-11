@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useClientSize } from "../../../utils/hooks/useClientSIze";
-import { Cart, Menu, Search } from "../../../utils/svgs/Svg";
+import { Cart, GoBack, Menu, Search } from "../../../utils/svgs/Svg";
 import Image from "next/image";
 import { useCtx } from "../../../store";
 import { showCart, showSideNavBar } from "../../../store/actions/domActions";
@@ -105,26 +105,34 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
       >
          <section
             className={` ${
-               compHeight + 10 < Pageheight ? "py-1" : "py-4"
+               compHeight + 10 < Pageheight ? "py-1" : "lg:py-4 py-0"
             } container m-auto flex justify-between items-center font-nav  transition-all duration-300`}
          >
             <div className="flex ">
                <span
                   onMouseOver={() => setMenuStrokes("M4 6h16M4 12h16M4 18h7")}
                   onMouseOut={() => setMenuStrokes("M4 6h16M4 12h16M4 18h16")}
-                  className="my-auto hidden md:block hover:text-gray-500"
+                  className="my-auto hidden lg:block hover:text-gray-500"
                   onClick={sideBarOpenAction}
                >
                   <Menu strokes={menuStokes} />
                </span>
+               {router.pathname !== "/" && (
+                  <span
+                     className="my-auto block  lg:hidden hover:text-gray-500"
+                     onClick={() => router.back()}
+                  >
+                     <GoBack />
+                  </span>
+               )}
 
-               <div className="cursor-pointer mx-5">
+               <div className="cursor-pointer mx-5 lg:">
                   <Link href="/">
                      <a>
                         <Image
                            src="/img/logo.png"
                            layout="intrinsic"
-                           height={60}
+                           height={70}
                            width={180}
                         />
                      </a>
@@ -132,7 +140,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                </div>
             </div>
 
-            <div className="flex-1 hidden md:block relative">
+            <div className="flex-1 hidden lg:block relative">
                <form
                   className={`flex   transition-all duration-300  ${
                      searchBarFocus ? "border-darkBlue" : "border-gray-400"
@@ -143,7 +151,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                   }`}
                   onSubmit={() => {
                      if (inputValue.length > 0) {
-                        router.push(`items/${searchFilterItems[0].slug}`);
+                        router.push(`/items/${searchFilterItems[0].slug}`);
                      }
                   }}
                >
@@ -162,7 +170,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                {/*---------- SEARCH RESULT ------------  */}
                {showSearchResult && (
                   <div
-                     style={{ minHeight: "100px" }}
+                     style={{ minHeight: "70px" }}
                      ref={searchRef}
                      className=" bg-white absolute z-30 p-3 max-h-96 overflow-y-auto overflow-x-hidden flex border-darkBlue border flex-col rounded-sm w-full  "
                   >
@@ -174,7 +182,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                )}
             </div>
             <div className="flex mx-5">
-               <div className="p-2  md:border-r border-gray-400">
+               <div className="p-2  lg:border-r border-gray-400">
                   <div
                      className="relative cursor-pointer"
                      onClick={() => domDispatch(showCart())}
@@ -190,7 +198,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                </div>
                <div className="my-auto p-2  ">
                   <div
-                     className="hidden md:block cursor-pointer"
+                     className="hidden lg:block cursor-pointer"
                      onClick={() => domDispatch(showCart())}
                   >
                      <span>0</span>/ <span>৳0.00</span>
@@ -202,7 +210,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                      onMouseOut={() =>
                         setMenuStrokes("M4 6h16M4 12h16M4 18h16")
                      }
-                     className="my-auto block md:hidden"
+                     className="my-auto block lg:hidden"
                      onClick={sideBarOpenAction}
                   >
                      <Menu strokes={menuStokes} />

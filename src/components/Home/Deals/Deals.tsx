@@ -10,11 +10,11 @@ import TextTruncate from "react-text-truncate";
 import { motion } from "framer-motion";
 
 interface DealsProps {
-   deals: any[];
-   name: string;
+   deals: any;
+   to: string;
 }
 
-export const Deals: React.FC<DealsProps> = ({ deals, name }) => {
+export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
    // swiper slidesPerView
@@ -66,7 +66,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, name }) => {
             >
                {deals.map(
                   ({ name, img, offer_price, regular_price, id, slug }, i) => (
-                     <SwiperSlide key={i}>
+                     <SwiperSlide key={id}>
                         <motion.div
                            whileHover={{ y: -10 }}
                            className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-150 hover:border-gray-800 my-3 ${
@@ -111,7 +111,10 @@ export const Deals: React.FC<DealsProps> = ({ deals, name }) => {
                   )
                )}
             </Swiper>
-            <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
+            <div
+               className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm"
+               onClick={() => router.push(to)}
+            >
                VIEW ALL
             </div>
 

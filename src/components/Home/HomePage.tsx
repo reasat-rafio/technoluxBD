@@ -19,11 +19,17 @@ export const HomePage: React.FC<IndexProps> = ({
    return (
       <div className="mx-auto container">
          <ImageCover coverImg={coverImg} />
-         <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png" />
-         <Deals name="FLASH DEAL" deals={flashDeals} />
-         <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Gaming-Consoles-v2.png" />
-         <Deals name="GAMING ACCESSORIES" deals={gaming_accessories} />
-         <NewArrivals new_arrivals={new_arrivals} />
+         <Poster
+            src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png"
+            to="/flash-sales"
+         />
+         <Deals deals={flashDeals} to="/flash-sales" />
+         <Poster
+            src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Gaming-Consoles-v2.png"
+            to="/new-arrivals"
+         />
+         <Deals deals={gaming_accessories} to="/gaming-accessories" />
+         <NewArrivals new_arrivals={new_arrivals} to="/new-arrivals" />
       </div>
    );
 };
