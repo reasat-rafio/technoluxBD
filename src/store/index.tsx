@@ -2,13 +2,8 @@ import { useContext, createContext, useReducer, useEffect } from "react";
 import { cartReducer, initialCartState } from "./reducers/cartReducer";
 
 import { domReducer, initialDomState } from "./reducers/domReducer";
+import { initialProductState, productReducer } from "./reducers/productReducer";
 import { initialUserState, userReducer } from "./reducers/userState";
-
-// import {
-//    initialSearchbarState,
-//    searchReducer,
-// } from "./reducers/searchbarReducer";
-// import { initialUserState, userReducer } from "./reducers/userReducer";
 
 const Store = createContext<any>(null);
 
@@ -40,11 +35,6 @@ export const GlobalState: React.FC<StoreProps> = ({ children }) => {
       localStorage.setItem("TxBDuserState", JSON.stringify(userState));
    }, [userState]);
 
-   //    const [searchState, searchDispatch] = useReducer(
-   //       searchReducer,
-   //       initialSearchbarState
-   //    );
-
    // CART STATE
    const [cartState, cartDispatch] = useReducer(
       cartReducer,
@@ -61,18 +51,38 @@ export const GlobalState: React.FC<StoreProps> = ({ children }) => {
       localStorage.setItem("TxBDCartState", JSON.stringify(cartState));
    }, [cartState]);
 
+   // PRODUCTS STATE
+   const [productsState, productsDispatch] = useReducer(
+      productReducer,
+      initialProductState,
+      () => {
+         if (typeof window !== "undefined") {
+            const localData = localStorage.getItem("TxBDProductState");
+            return localData ? JSON.parse(localData) : initialProductState;
+         }
+         return initialProductState;
+      }
+   );
+   useEffect(() => {
+      localStorage.setItem("TxBDProductState", JSON.stringify(productsState));
+   }, [productsState]);
+
    // DOM STATE
    const [domState, domDispatch] = useReducer(domReducer, initialDomState);
+
+   // A
 
    return (
       <Store.Provider
          value={{
             domState,
             userState,
+            productsState,
             domDispatch,
             userDispatch,
             cartState,
             cartDispatch,
+            productsDispatch,
          }}
       >
          {children}

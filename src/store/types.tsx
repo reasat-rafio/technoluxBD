@@ -13,3 +13,4 @@ export const PLUS_QUANTITY = "PLUS_QUANTITY";
 export const MINUS_QUANTITY = "MINUS_QUANTITY";
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";

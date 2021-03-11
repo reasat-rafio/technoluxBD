@@ -14,6 +14,9 @@ interface TabsProps {
    specifications: any;
    name: string;
    details: string;
+   description_img: any;
+   dts: any;
+   yt_url: string;
 }
 
 export const Tabs: React.FC<TabsProps> = ({
@@ -23,6 +26,9 @@ export const Tabs: React.FC<TabsProps> = ({
    Specifications,
    name,
    details,
+   description_img,
+   dts,
+   yt_url,
 }) => {
    const [tab, setTab] = useState<string>("description");
 
@@ -137,6 +143,9 @@ export const Tabs: React.FC<TabsProps> = ({
                         specifications={specifications}
                         Specifications={Specifications}
                         details={details}
+                        description_img={description_img}
+                        dts={dts}
+                        yt_url={yt_url}
                      />
                   )}
                </AnimatePresence>

@@ -18,6 +18,7 @@ export const GLobalLayout: React.FC<GLobalLayoutProps> = ({ children }) => {
    useEffect(() => {
       if (session) {
          userDispatch(loginUserAction(session.user));
+         console.log(session.user);
       } else {
          userDispatch(logOutAaction());
       }

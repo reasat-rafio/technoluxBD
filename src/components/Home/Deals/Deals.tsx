@@ -6,13 +6,15 @@ import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
 import { Poster } from "../../../utils/_components/Poster";
 import { useRouter } from "next/router";
-import LinesEllipsis from "react-lines-ellipsis";
+import TextTruncate from "react-text-truncate";
+import { motion } from "framer-motion";
 
 interface DealsProps {
    deals: any[];
+   name: string;
 }
 
-export const Deals: React.FC<DealsProps> = ({ deals }) => {
+export const Deals: React.FC<DealsProps> = ({ deals, name }) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
    // swiper slidesPerView
@@ -46,14 +48,14 @@ export const Deals: React.FC<DealsProps> = ({ deals }) => {
 
    return (
       <>
-         <section className="flex border-b font-nav text-xl font-semibold ">
+         {/* <section className="flex border-b font-nav text-xl font-semibold ">
             <div className="py-3 border-b-4 border-darkBlue flex gap-1">
                <span>
                   <Lignting_bolt position={25} />
                </span>
-               <h1>FLASH DEALS</h1>
+               <h1>{name}</h1>
             </div>
-         </section>
+         </section> */}
          {/* card section */}
          <section className="my-4 ">
             <Swiper
@@ -65,8 +67,9 @@ export const Deals: React.FC<DealsProps> = ({ deals }) => {
                {deals.map(
                   ({ name, img, offer_price, regular_price, id, slug }, i) => (
                      <SwiperSlide key={i}>
-                        <div
-                           className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-300 ${
+                        <motion.div
+                           whileHover={{ y: -10 }}
+                           className={`border cursor-pointer lg:h-lgCard md:h-80  text-center hover:shadow-2xl  transition-all duration-150 hover:border-gray-800 my-3 ${
                               pgWidth == "sm" && "h-smCard"
                            } ${pgWidth == "xs" && "h-lgCard"}`}
                            onClick={() => router.push(`/items/${slug}`)}
@@ -85,13 +88,12 @@ export const Deals: React.FC<DealsProps> = ({ deals }) => {
                            </Swiper>
 
                            <div className="p-3">
-                              <LinesEllipsis
+                              <TextTruncate
+                                 line={3}
+                                 element="span"
+                                 truncateText="…"
                                  className="text-sm font-medium text-center font-nav   "
                                  text={name}
-                                 maxLine="3"
-                                 ellipsis="..."
-                                 trimRight
-                                 basedOn="letters"
                               />
                               {offer_price && (
                                  <div className="my-2 flex gap-2 items-center justify-center">
@@ -104,7 +106,7 @@ export const Deals: React.FC<DealsProps> = ({ deals }) => {
                                  </div>
                               )}
                            </div>
-                        </div>
+                        </motion.div>
                      </SwiperSlide>
                   )
                )}
@@ -113,24 +115,10 @@ export const Deals: React.FC<DealsProps> = ({ deals }) => {
                VIEW ALL
             </div>
 
-            <div className="grid  md:grid-cols-3 grid-cols-1 md:gap-4">
-               <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png" />
-               <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png" />
-               <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Gaming-Consoles-v2.png" />
-            </div>
+            {/* <div className="grid  md:grid-cols-3 grid-cols-1 md:gap-4"></div>
+            <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png" />
+            <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png" /> */}
          </section>
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-         dicta, aspernatur quidem perferendis asperiores quas consequatur
-         consectetur provident dolores fugiat quo temporibus labore sit ipsam.
-         Harum, quis sapiente architecto eligendi nam tempore dignissimos
-         corrupti quam sit earum voluptatum recusandae totam nemo obcaecati
-         explicabo laudantium fuga rerum, saepe voluptatibus nobis doloremque
-         fugiat exercitationem adipisci. Voluptatum ab harum, mollitia dolorem
-         cupiditate nesciunt, quisquam officiis commodi asperiores natus dolor?
-         Quasi, fugit atque quam reiciendis tempore voluptas labore velit ab
-         officia magni similique facilis molestias veritatis voluptate
-         consequuntur ducimus dolorem, libero nobis sit. Animi eum aliquam
-         quisquam? Molestiae veritatis impedit id! Beatae, nam suscipit.
       </>
    );
 };

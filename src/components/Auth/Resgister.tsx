@@ -48,6 +48,8 @@ export const Resgister: React.FC<ResgisterProps> = ({}) => {
                password,
             }
          );
+         console.log(data);
+
          router.push("/");
          Notify("success", "registration done!");
       } catch (error) {

@@ -18,6 +18,7 @@ interface CardProps {
    regular_price: string;
    id: string;
    img: any;
+   in_stock: boolean;
 }
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -55,6 +56,7 @@ export const Card: React.FC<CardProps> = ({
    regular_price,
    id,
    img,
+   in_stock,
 }) => {
    // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);
@@ -163,11 +165,16 @@ export const Card: React.FC<CardProps> = ({
                {name}
             </motion.p>
             <div className="py-3 border-b">
-               <motion.p variants={fadeIn}>
-                  Brand: <span className="text-darkBlue">{brand}</span>
-               </motion.p>
+               {brand && (
+                  <motion.p variants={fadeIn}>
+                     Brand: <span className="text-darkBlue">{brand}</span>
+                  </motion.p>
+               )}
+
+               {!in_stock && <p className="text-red-600">out of stock</p>}
+
                <motion.div variants={fadeIn} className="text-xl flex gap-4">
-                  {available_offer ? (
+                  {offer_price ? (
                      <>
                         <span className="line-through text-gray-500">
                            ৳{regular_price}
@@ -186,26 +193,29 @@ export const Card: React.FC<CardProps> = ({
          </div>
          {/* Timer section */}
          <motion.div variants={fadeIn} className="py-4 text-xs border-b">
-            <div className=" my-4 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-darkBlue rounded-full">
-               <img src={"/img/flash-sale-badge.png"} alt="" />
-               <section>
-                  <span className="font-bold text-sm pr-1">{timerDays}</span>
-                  <span className="text-gray-500">Day</span>
-               </section>
-               <section>
-                  <span className="font-bold text-sm pr-1">{timerHours}</span>
-                  <span className="text-gray-500">Hour</span>
-               </section>
-               <section>
-                  <span className="font-bold text-sm pr-1">{timerMins}</span>
-                  <span className="text-gray-500">Min</span>
-               </section>
-               <section>
-                  <span className="font-bold text-sm pr-1">{timerSecs}</span>
-                  <span className="text-gray-500">Sec</span>
-               </section>
-            </div>
-
+            {offer_time_till && (
+               <div className=" my-4 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-darkBlue rounded-full">
+                  <img src={"/img/flash-sale-badge.png"} alt="" />
+                  <section>
+                     <span className="font-bold text-sm pr-1">{timerDays}</span>
+                     <span className="text-gray-500">Day</span>
+                  </section>
+                  <section>
+                     <span className="font-bold text-sm pr-1">
+                        {timerHours}
+                     </span>
+                     <span className="text-gray-500">Hour</span>
+                  </section>
+                  <section>
+                     <span className="font-bold text-sm pr-1">{timerMins}</span>
+                     <span className="text-gray-500">Min</span>
+                  </section>
+                  <section>
+                     <span className="font-bold text-sm pr-1">{timerSecs}</span>
+                     <span className="text-gray-500">Sec</span>
+                  </section>
+               </div>
+            )}
             <motion.div variants={fadeIn} className=" flex gap-2">
                <div className="flex justify-center items-center">
                   <button
@@ -233,7 +243,7 @@ export const Card: React.FC<CardProps> = ({
                <button
                   className=" productBtn bg-gray-500 hover:bg-gray-600 "
                   onClick={() => {
-                     available_offer
+                     offer_price
                         ? // If offer avilable
                           addToTheCartAction(
                              name,
@@ -259,7 +269,7 @@ export const Card: React.FC<CardProps> = ({
                </button>
             </motion.div>
          </motion.div>
-         <motion.div variants={fadeIn} className="py-4">
+         <motion.div variants={fadeIn} className="py-4 ">
             <p>
                Product Id:{" "}
                <span className="text-xs text-gray-500">{id.toUpperCase()}</span>
@@ -273,7 +283,6 @@ export const Card: React.FC<CardProps> = ({
                   </span>
                ))}
             </div>
-            <p>Color: </p>
          </motion.div>
       </motion.div>
    );

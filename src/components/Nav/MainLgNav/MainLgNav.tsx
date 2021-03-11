@@ -6,6 +6,11 @@ import { useCtx } from "../../../store";
 import { showCart, showSideNavBar } from "../../../store/actions/domActions";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import {
+   useFilterByInput,
+   useSearchFilter,
+} from "../../../utils/hooks/useFilterByInput";
+import { SearchbarResult } from "../../SearchbarResult/SearchbarResult";
 
 interface MainLgNavProps {}
 
@@ -23,6 +28,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
       domDispatch,
       cartState: { inCartProducts },
       cartState,
+      productsState,
    } = useCtx();
    // MenuBtn Click Action
    const sideBarOpenAction = () => {
@@ -75,6 +81,21 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
       };
    }, [searchRef]);
 
+   // search filter state
+   const [searchFilterItems, setSearchFilterItems] = useState([]);
+   // On change searchfilter action
+   const searchInputOnChangeAction = (e) => {
+      setInputValue(e.target.value);
+      const all_products = productsState.products.map(
+         ({ name, img, offer_price, regular_price, slug }) => {
+            return { name, img, offer_price, regular_price, slug };
+         }
+      );
+
+      const { filteredItme } = useSearchFilter(all_products, e.target.value);
+      setSearchFilterItems(filteredItme);
+   };
+
    return (
       <nav
          ref={navRef}
@@ -112,10 +133,19 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
             </div>
 
             <div className="flex-1 hidden md:block relative">
-               <div
-                  className={`flex border  transition-all duration-300  ${
+               <form
+                  className={`flex   transition-all duration-300  ${
                      searchBarFocus ? "border-darkBlue" : "border-gray-400"
-                  }  p-2 rounded-md `}
+                  }  p-2  ${
+                     showSearchResult
+                        ? "border-t border-l border-r rounded-t-md"
+                        : "border  rounded-md"
+                  }`}
+                  onSubmit={() => {
+                     if (inputValue.length > 0) {
+                        router.push(`items/${searchFilterItems[0].slug}`);
+                     }
+                  }}
                >
                   <input
                      className="my-auto border-none disabled:bg-blue-100 outline-none flex-1 text-sm"
@@ -123,31 +153,23 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                      placeholder="What are you looking for?"
                      onFocus={() => setSearchBarFocus(true)}
                      onBlur={() => setSearchBarFocus(false)}
-                     onChange={(e) => setInputValue(e.target.value)}
+                     onChange={(e) => searchInputOnChangeAction(e)}
                   />
                   <button className="outline-none overflow-auto">
                      <Search height={30} searchBarFocus={searchBarFocus} />
                   </button>
-               </div>
+               </form>
                {/*---------- SEARCH RESULT ------------  */}
                {showSearchResult && (
                   <div
+                     style={{ minHeight: "100px" }}
                      ref={searchRef}
-                     className=" bg-red-400 absolute z-30 p-3 "
+                     className=" bg-white absolute z-30 p-3 max-h-96 overflow-y-auto overflow-x-hidden flex border-darkBlue border flex-col rounded-sm w-full  "
                   >
-                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                     Perspiciatis itaque quam id dicta at, nostrum sequi
-                     inventore, nihil necessitatibus alias officiis voluptatum
-                     impedit neque ipsa explicabo, quasi quas facilis. Pariatur
-                     veritatis architecto ullam delectus ut nam, amet, facilis
-                     rem sequi beatae sint facere ad dignissimos, repudiandae
-                     asperiores fugit nulla quas soluta! Quae minima quas rem
-                     veniam distinctio repellendus, alias maxime repudiandae
-                     voluptatum animi tempore qui nihil quia exercitationem
-                     nostrum eum incidunt est ad voluptates esse veritatis odit.
-                     Assumenda saepe molestiae aut iusto quisquam enim!
-                     Perferendis quasi et odit explicabo minima quod provident
-                     ea totam nam quas? Excepturi doloremque fugiat aspernatur.
+                     <SearchbarResult
+                        searchFilterItems={searchFilterItems}
+                        inputValue={inputValue}
+                     />
                   </div>
                )}
             </div>

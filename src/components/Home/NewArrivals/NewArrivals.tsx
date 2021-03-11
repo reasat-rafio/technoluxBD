@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, EffectFade } from "swiper";
 import { useCtx } from "../../../store";
 import { useRouter } from "next/router";
-import LinesEllipsis from "react-lines-ellipsis";
+import TextTruncate from "react-text-truncate";
+import { motion } from "framer-motion";
 
 interface NewArrivalsProps {
    new_arrivals: any[];
@@ -18,7 +19,22 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
       domState: { pageWidth },
    } = useCtx();
    // router
+
+   useEffect(() => {
+      if (pageWidth > 1180) {
+         setPgWidth("lg");
+      } else if (pageWidth < 1180 && pageWidth > 720) {
+         setPgWidth("md");
+      } else if (pageWidth < 720 && pageWidth > 550) {
+         setPgWidth("sm");
+      } else if (pageWidth < 550 && pageWidth > 0) {
+         setPgWidth("xs");
+      } else if (pageWidth == 0) {
+         return;
+      }
+   }, [pageWidth]);
    const router = useRouter();
+
    return (
       <>
          <div className="flex border-b font-nav text-xl font-semibold ">
@@ -31,8 +47,9 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
          <section className="my-4 grid grid-cols-12 gap-2 ">
             {new_arrivals.map(
                ({ name, img, offer_price, regular_price, id, slug }, i) => (
-                  <div
-                     className={`border cursor-pointer   text-center hover:shadow-2xl  transition-all duration-300 col-span-6 md:col-span-3 lg:col-span-2  ${
+                  <motion.div
+                     whileHover={{ y: -10 }}
+                     className={`border cursor-pointer  text-center hover:shadow-2xl  transition-all duration-150 col-span-6 md:col-span-3 lg:col-span-2 hover:border-gray-800  ${
                         pgWidth == "sm" && "h-smCard"
                      } ${pgWidth == "xs" && "h-lgCard"}           
                         `}
@@ -52,13 +69,12 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
                      </Swiper>
 
                      <div className="p-3">
-                        <LinesEllipsis
+                        <TextTruncate
+                           line={3}
+                           element="span"
+                           truncateText="…"
                            className="text-sm font-medium text-center font-nav   "
                            text={name}
-                           maxLine="3"
-                           ellipsis="..."
-                           trimRight
-                           basedOn="letters"
                         />
                         {offer_price && (
                            <div className="my-2 flex gap-2 items-center justify-center">
@@ -71,13 +87,17 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals }) => {
                            </div>
                         )}
                      </div>
-                  </div>
+                  </motion.div>
                )
             )}
          </section>
-         <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
+         {/* <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
             VIEW ALL
-         </div>
+         </div> */}
+         <button className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300">
+            LOAD MORE PRODUCTS
+         </button>
+         {/* <button>LOADING</button> */}
       </>
    );
 };
