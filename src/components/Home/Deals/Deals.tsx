@@ -17,12 +17,12 @@ interface DealsProps {
 export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
-   // swiper slidesPerView
-
+   // global state
    const {
       domState: { pageWidth },
    } = useCtx();
 
+   // swiper slidesPerView
    const [cardsPerView, setCardsPerView] = useState<number>(() => {
       if (pageWidth > 1180) {
          return 6;
@@ -35,8 +35,8 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
       }
    });
 
-   // global state
    const [pgWidth, setPgWidth] = useState<string>("");
+
    // router
    const router = useRouter();
 
