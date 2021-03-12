@@ -24,7 +24,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
    const [loading, setLoading] = useState(false);
    const [pgWidth, setPgWidth] = useState<string>("");
    // swiper slidesPerView
-   const [cardsPerView, setCardsPerView] = useState<number>(0);
+   const [cardsPerView, setCardsPerView] = useState<number>(6);
 
    // router
    const router = useRouter();
@@ -48,9 +48,10 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
          setLoading(false);
       } else if (pageWidth == 0) {
          setLoading(true);
-         setCardsPerView(0);
+         setCardsPerView(6);
       }
    }, [pageWidth]);
+   console.log(cardsPerView);
 
    return (
       <>
