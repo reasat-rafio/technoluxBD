@@ -21,7 +21,8 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
    const {
       domState: { pageWidth },
    } = useCtx();
-
+   const [loading, setLoading] = useState(false);
+   const [pgWidth, setPgWidth] = useState<string>("");
    // swiper slidesPerView
    const [cardsPerView, setCardsPerView] = useState<number>(() => {
       if (pageWidth > 1180) {
@@ -36,9 +37,6 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
          setLoading(true);
       }
    });
-
-   const [pgWidth, setPgWidth] = useState<string>("");
-   const [loading, setLoading] = useState(false);
 
    // router
    const router = useRouter();
