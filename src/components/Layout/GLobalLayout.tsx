@@ -3,10 +3,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCtx } from "../../store";
 import { pageResizeWidth } from "../../store/actions/domActions";
-import { usePageResize } from "../../utils/hooks/usePageResize";
+import {
+   usePageResize,
+   usePageResizerGlobal,
+} from "../../utils/hooks/usePageResize";
 import { ShoppingCartSideBar } from "../ShoppingCartSideBar/ShoppingCartSideBar";
 import { useSession } from "next-auth/client";
 import { loginUserAction, logOutAaction } from "../../store/actions/userAction";
+import { useRouter } from "next/router";
 
 interface GLobalLayoutProps {}
 
@@ -14,6 +18,9 @@ toast.configure();
 export const GLobalLayout: React.FC<GLobalLayoutProps> = ({ children }) => {
    const [session, loading] = useSession();
    const { userDispatch } = useCtx();
+
+   const router = useRouter();
+
    // setting the user to the store
    useEffect(() => {
       if (session) {
@@ -28,13 +35,15 @@ export const GLobalLayout: React.FC<GLobalLayoutProps> = ({ children }) => {
    // store
    const {
       domDispatch,
-      domState: { showCartSidebar },
+
+      domState: { showCartSidebar, pageWidth },
    } = useCtx();
-   const { width } = usePageResize(pageRef);
-   // Setting the page width in the global state
-   useEffect(() => {
-      domDispatch(pageResizeWidth(width));
-   }, [width]);
+   usePageResizerGlobal(pageRef, router.pathname);
+
+   // // Setting the page width in the global state
+   // useEffect(() => {
+   //    domDispatch(pageResizeWidth(width));
+   // }, [width, router.pathname]);
 
    return (
       <main ref={pageRef}>

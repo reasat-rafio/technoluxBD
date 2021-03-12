@@ -24,19 +24,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
    const [loading, setLoading] = useState(false);
    const [pgWidth, setPgWidth] = useState<string>("");
    // swiper slidesPerView
-   const [cardsPerView, setCardsPerView] = useState<number>(() => {
-      if (pageWidth > 1180) {
-         return 6;
-      } else if (pageWidth < 1180 && pageWidth > 720) {
-         return 4;
-      } else if (pageWidth < 720 && pageWidth > 550) {
-         return 2;
-      } else if (pageWidth < 550 && pageWidth > 0) {
-         return 2;
-      } else if (pageWidth == 0) {
-         setLoading(true);
-      }
-   });
+   const [cardsPerView, setCardsPerView] = useState<number>(0);
 
    // router
    const router = useRouter();
@@ -60,8 +48,9 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
          setLoading(false);
       } else if (pageWidth == 0) {
          setLoading(true);
+         setCardsPerView(0);
       }
-   }, [pageWidth || router.pathname]);
+   }, [pageWidth]);
 
    return (
       <>
@@ -74,7 +63,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
             </div>
          </section> */}
          {/* card section */}
-         {!loading && (
+         {!loading && cardsPerView != 0 && (
             <section>
                <Swiper
                   className="my-4"
