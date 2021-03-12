@@ -18,15 +18,27 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
    // swiper slidesPerView
-   const [cardsPerView, setCardsPerView] = useState<number>(0);
-   // global state
-   const [pgWidth, setPgWidth] = useState<string>("");
-   // router
-   const router = useRouter();
 
    const {
       domState: { pageWidth },
    } = useCtx();
+
+   const [cardsPerView, setCardsPerView] = useState<number>(() => {
+      if (pageWidth > 1180) {
+         return 6;
+      } else if (pageWidth < 1180 && pageWidth > 720) {
+         return 4;
+      } else if (pageWidth < 720 && pageWidth > 550) {
+         return 2;
+      } else if (pageWidth < 550 && pageWidth > 0) {
+         return 2;
+      }
+   });
+
+   // global state
+   const [pgWidth, setPgWidth] = useState<string>("");
+   // router
+   const router = useRouter();
 
    useEffect(() => {
       if (pageWidth > 1180) {

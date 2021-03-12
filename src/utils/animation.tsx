@@ -122,13 +122,13 @@ export const BackToTheTopVariants = {
    animate: {
       y: 0,
       transition: {
-         duration: 0.2,
+         duration: 0.3,
       },
       opacity: 1,
    },
    exit: {
       transition: {
-         duration: 0.1,
+         duration: 0.2,
       },
       y: "-20px",
       opacity: 0,
