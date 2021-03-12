@@ -63,7 +63,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
       } else if (pageWidth == 0) {
          setLoading(true);
       }
-   }, [pageWidth]);
+   }, [pageWidth || router.pathname]);
 
    return (
       <>
