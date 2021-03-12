@@ -29,10 +29,10 @@ export default function Home({
       ];
       productsDispatch(getAllTheProducts(allProducts));
    }, []);
-   console.log(productsState);
+
    return (
       <Layout>
-         <div className="">
+         <div className="" id="top">
             <Head>
                <title>Technolux BD</title>
                <link rel="icon" href="/favicon.ico" />

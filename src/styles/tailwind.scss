@@ -39,6 +39,10 @@ $darkBlue: #00adb5;
    @apply cursor-pointer flex flex-col justify-center items-center text-xs;
 }
 
+html {
+   scroll-behavior: smooth;
+}
+
 // poster images
 .posterImg {
    backface-visibility: hidden;

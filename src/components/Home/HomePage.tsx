@@ -1,4 +1,6 @@
+import { useCtx } from "../../store";
 import { Poster } from "../../utils/_components/Poster";
+import { BackToTheTop } from "../BackToTheTop/BackToTheTop";
 import { Deals } from "./Deals/Deals";
 import { ImageCover } from "./HomeImageCoverSection/ImageCover";
 import { NewArrivals } from "./NewArrivals/NewArrivals";
@@ -16,6 +18,7 @@ export const HomePage: React.FC<IndexProps> = ({
    new_arrivals,
    gaming_accessories,
 }) => {
+   const { domState } = useCtx();
    return (
       <div className="mx-auto container">
          <ImageCover coverImg={coverImg} />
@@ -26,10 +29,11 @@ export const HomePage: React.FC<IndexProps> = ({
          <Deals deals={flashDeals} to="/flash-sales" />
          <Poster
             src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Gaming-Consoles-v2.png"
-            to="/new-arrivals"
+            to="/gaming-consoles-accessories"
          />
-         <Deals deals={gaming_accessories} to="/gaming-accessories" />
+         <Deals deals={gaming_accessories} to="/gaming-consoles-accessories" />
          <NewArrivals new_arrivals={new_arrivals} to="/new-arrivals" />
+         <BackToTheTop />
       </div>
    );
 };

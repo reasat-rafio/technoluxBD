@@ -11,6 +11,7 @@ import {
    useSearchFilter,
 } from "../../../utils/hooks/useFilterByInput";
 import { SearchbarResult } from "../../SearchbarResult/SearchbarResult";
+import { motion } from "framer-motion";
 
 interface MainLgNavProps {}
 
@@ -126,7 +127,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                   </span>
                )}
 
-               <div className="cursor-pointer mx-5 lg:">
+               <motion.div drag className="cursor-pointer mx-5 lg:mx-0">
                   <Link href="/">
                      <a>
                         <Image
@@ -137,7 +138,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                         />
                      </a>
                   </Link>
-               </div>
+               </motion.div>
             </div>
 
             <div className="flex-1 hidden lg:block relative">

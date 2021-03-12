@@ -51,6 +51,13 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
       // removeCookie("userjwt", "", { path: "/" });
       Notify("info", "Loggedout Successfully");
    };
+
+   // Chaning nav action
+
+   const navAction = () => {
+      domDispatch(hideSideNavBar());
+   };
+
    return (
       <>
          <div
@@ -107,13 +114,15 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                                  variants={sideBarMoreVarients}
                                  exit="exit"
                               >
-                                 <li>
-                                    <a className="sideBarMainNavMore" href="#">
-                                       <span className="my-auto">
-                                          <Lignting_bolt position={20} />
-                                       </span>
-                                       Flash Deals
-                                    </a>
+                                 <li onClick={navAction}>
+                                    <Link href="/flash-sales">
+                                       <a className="sideBarMainNavMore">
+                                          <span className="my-auto">
+                                             <Lignting_bolt position={20} />
+                                          </span>
+                                          Flash Deals
+                                       </a>
+                                    </Link>
                                  </li>
                                  <li>
                                     <a className="sideBarMainNavMore" href="#">

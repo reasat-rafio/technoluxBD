@@ -6,6 +6,8 @@ import {
    SHOW_SEARCH_PAGE,
    SHOW_SIDE_BAR,
    HIDE_CART_SIDEBAR,
+   SHOW_BACK_TO_THE_TOP,
+   HIDE_BACK_TO_THE_TOP,
 } from "../types";
 
 type Action = {
@@ -19,6 +21,7 @@ interface stateInterFace {
    showOverlayAuthPage: boolean;
    showSearchPage: boolean;
    pageWidth: number;
+   showBackToTheTop: boolean;
 }
 
 export const initialDomState = {
@@ -28,6 +31,7 @@ export const initialDomState = {
    showSearchPage: false,
    showCartSidebar: false,
    pageWidth: 0,
+   showBackToTheTop: false,
 };
 
 export const domReducer = (state: stateInterFace, action: Action) => {
@@ -66,6 +70,16 @@ export const domReducer = (state: stateInterFace, action: Action) => {
          return {
             ...state,
             pageWidth: action.payload,
+         };
+
+      case SHOW_BACK_TO_THE_TOP:
+         return {
+            ...state,
+            showBackToTheTop: true,
+         };
+      case HIDE_BACK_TO_THE_TOP:
+         return {
+            showBackToTheTop: false,
          };
 
       default:

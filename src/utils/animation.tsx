@@ -113,3 +113,24 @@ export const ChangeAddressVariants = {
       opacity: 0,
    },
 };
+
+export const BackToTheTopVariants = {
+   inital: {
+      y: "-20px",
+      opacity: 0,
+   },
+   animate: {
+      y: 0,
+      transition: {
+         duration: 0.2,
+      },
+      opacity: 1,
+   },
+   exit: {
+      transition: {
+         duration: 0.1,
+      },
+      y: "-20px",
+      opacity: 0,
+   },
+};

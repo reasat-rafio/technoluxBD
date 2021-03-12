@@ -6,6 +6,8 @@ import {
    SET_PAGE_WIDTH_ON_RESIZE,
    SHOW_CART_SIDEBAR,
    HIDE_CART_SIDEBAR,
+   SHOW_BACK_TO_THE_TOP,
+   HIDE_BACK_TO_THE_TOP,
 } from "../types";
 
 export const showSideNavBar = () => {
@@ -48,5 +50,17 @@ export const showCart = () => {
 export const hideCart = () => {
    return {
       type: HIDE_CART_SIDEBAR,
+   };
+};
+
+export const showBackToTheTopAction = () => {
+   return {
+      type: SHOW_BACK_TO_THE_TOP,
+   };
+};
+
+export const hideBackToTheTopAction = () => {
+   return {
+      type: HIDE_BACK_TO_THE_TOP,
    };
 };
