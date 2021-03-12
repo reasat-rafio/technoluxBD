@@ -32,6 +32,8 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
          return 2;
       } else if (pageWidth < 550 && pageWidth > 0) {
          return 2;
+      } else if (pageWidth == 0) {
+         setLoading(true);
       }
    });
 
