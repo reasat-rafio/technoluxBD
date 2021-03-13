@@ -51,8 +51,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
          setCardsPerView(6);
       }
    }, [pageWidth]);
-   console.log(cardsPerView);
-
+ 
    return (
       <>
          {/* <section className="flex border-b font-nav text-xl font-semibold ">

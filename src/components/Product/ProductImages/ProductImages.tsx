@@ -19,7 +19,7 @@ interface ProductImagesProps {
 // configring swiper
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs]);
 export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
-   const [thumbsSwiper, setThumbsSwiper] = useState();
+   const [thumbsSwiper, setThumbsSwiper] = useState<any>();
    return (
       <div>
          <Swiper
@@ -46,7 +46,7 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
 
          <Swiper
             id="thumbs"
-            onSwiper={() => setThumbsSwiper}
+            onSwiper={setThumbsSwiper}
             spaceBetween={5}
             slidesPerView={3}
          >
