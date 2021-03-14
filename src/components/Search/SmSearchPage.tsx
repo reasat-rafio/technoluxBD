@@ -44,7 +44,7 @@ export const SmSearchPage: React.FC<SmSearchPageProps> = ({}) => {
                   animate="animate"
                   exit="exit"
                   variants={searchPageVarients}
-                  className={"fixed h-screen w-screen bg-white z-50 block"}
+                  className={"fixed h-screen w-screen bg-white z-50 block "}
                >
                   <div className="container mx-auto">
                      <div className="flex justify-end">
@@ -56,14 +56,14 @@ export const SmSearchPage: React.FC<SmSearchPageProps> = ({}) => {
                         </span>
                      </div>
 
-                     <form className=" flex justify-center flex-col">
+                     <form className=" flex justify-center flex-col ">
                         <input
                            type="text"
-                           className="border rounded-sm py-3 px-2 outline-none  w-11/12 container "
+                           className="border rounded-sm py-3 px-2 outline-none mx-auto  w-11/12  "
                            onChange={(e) => searchInputOnChangeAction(e)}
                         />
                         {inputValue.length <= 0 && (
-                           <p className="text-sm text-gray-500 font-text">
+                           <p className="text-sm text-gray-500 font-text  mx-auto">
                               Type here any product name
                            </p>
                         )}

@@ -9,9 +9,13 @@ export const Poster: React.FC<PosterProps> = ({ src, to }) => {
    return (
       <div className="my-4 relative posterDiv">
          <Link href={to}>
-            <a>
+            <a className="">
                <div className="posterImg" />
-               <img className="w-full" src={src} alt="" />
+               <img
+                  className="w-full md:rounded-none  rounded-xl"
+                  src={src}
+                  alt=""
+               />
             </a>
          </Link>
       </div>
