@@ -138,11 +138,3 @@ export const Contact_Info = [
       text: "info.technolux.bd@gmail.com",
    },
 ];
-
-// export const Social_Links = [
-//    {
-//       icon: <Facebook />,
-//       to: "",
-//    },
-//    { icon: <WhatsApp />, to: "" },
-// ];

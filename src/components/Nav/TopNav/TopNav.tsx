@@ -16,7 +16,7 @@ export const TopNav: React.FC<TopNavProps> = ({}) => {
    } = useCtx();
 
    return (
-      <nav className=" w-full transition-all duration-300  bg-black text-white xl:block lg:block   text-xs hidden  ">
+      <nav className=" w-full transition-all duration-300  bg-gray-800 text-white xl:block lg:block   text-xs hidden  ">
          <section className="container  m-auto flex justify-between items-center font-nav ">
             {/* LEFT SIDE NAV */}
             <ul className="flex ">

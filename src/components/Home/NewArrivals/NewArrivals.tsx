@@ -23,6 +23,13 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
       domState: { pageWidth },
    } = useCtx();
 
+   // products
+   const [products, setProducts] = useState(new_arrivals.slice(0, 12));
+
+   // show all products
+   const [showAll, setShowALl] = useState(false);
+   const [loading, setLoading] = useState(false);
+
    useEffect(() => {
       if (pageWidth > 1180) {
          setPgWidth("lg");
@@ -37,8 +44,28 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
       }
    }, [pageWidth]);
 
+   // Load more products
+   const showMoreProducts = () => {
+      setLoading(true);
+      setTimeout(() => {
+         setShowALl(true);
+         setProducts(new_arrivals);
+         setLoading(false);
+      }, 1000);
+   };
+   // load less products
+   const showLessProducts = () => {
+      setLoading(true);
+      setTimeout(() => {
+         setShowALl(false);
+         setProducts(new_arrivals.slice(0, 12));
+         setLoading(false);
+      }, 1000);
+   };
+
    // router
    const router = useRouter();
+   console.log(loading);
 
    return (
       <>
@@ -50,7 +77,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
 
          {/* card section */}
          <section className="my-4 grid grid-cols-12 gap-2 px-3 md:px-0">
-            {new_arrivals.map(
+            {products.map(
                ({ name, img, offer_price, regular_price, id, slug }, i) => (
                   <motion.div
                      whileHover={{ y: -10 }}
@@ -96,16 +123,58 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
                )
             )}
          </section>
-         {/* <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
-            VIEW ALL
-         </div> */}
-         <button
-            className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300 mb-16"
-            onClick={() => router.push(to)}
-         >
-            LOAD MORE PRODUCTS
-         </button>
-         {/* <button>LOADING</button> */}
+
+         {showAll && !loading && (
+            <button
+               className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300 mb-16"
+               onClick={showLessProducts}
+            >
+               LOAD LESS PRODUCTS
+            </button>
+         )}
+
+         {!showAll && !loading && (
+            <button
+               className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300 mb-16"
+               onClick={showMoreProducts}
+            >
+               LOAD MORE PRODUCTS
+            </button>
+         )}
+
+         {!showAll && loading && (
+            <button
+               className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border   font-semibold transition-all duration-300 mb-16 cursor-not-allowed"
+               disabled={true}
+            >
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="animate-spin h-5 w-5 mr-3"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+               >
+                  <path d="M12,22c5.421,0,10-4.579,10-10h-2c0,4.337-3.663,8-8,8s-8-3.663-8-8c0-4.336,3.663-8,8-8V2C6.579,2,2,6.58,2,12 C2,17.421,6.579,22,12,22z"></path>
+               </svg>
+               Processing
+            </button>
+         )}
+
+         {showAll && loading && (
+            <button
+               className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border   font-semibold transition-all duration-300 mb-16 cursor-not-allowed"
+               disabled={true}
+            >
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="animate-spin h-5 w-5 mr-3"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+               >
+                  <path d="M12,22c5.421,0,10-4.579,10-10h-2c0,4.337-3.663,8-8,8s-8-3.663-8-8c0-4.336,3.663-8,8-8V2C6.579,2,2,6.58,2,12 C2,17.421,6.579,22,12,22z"></path>
+               </svg>
+               Processing
+            </button>
+         )}
       </>
    );
 };
