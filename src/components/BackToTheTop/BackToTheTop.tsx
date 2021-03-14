@@ -22,7 +22,6 @@ export const BackToTheTop: React.FC<BackToTheTopProps> = ({}) => {
 
    useEffect(() => {
       if (Pageheight > 500) {
-         //  domDispatch(showBackToTheTopAction());
          domDispatch(showBackToTheTopAction());
       } else {
          domDispatch(hideBackToTheTopAction());

@@ -56,7 +56,7 @@ export const SmSearchPage: React.FC<SmSearchPageProps> = ({}) => {
                         </span>
                      </div>
 
-                     <form className=" flex items-center justify-center flex-col">
+                     <form className=" flex justify-center flex-col">
                         <input
                            type="text"
                            className="border rounded-sm py-3 px-2 outline-none  w-11/12 container "

@@ -111,7 +111,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
             or sign in with social platforms
          </h2>
 
-         <div className="w-96 gap-3 flex justify-center items-center my-5 cursor-pointer ">
+         <div className=" gap-3 flex justify-center items-center my-5 cursor-pointer ">
             <span
                className="socialIcons"
                onClick={() => {
@@ -137,14 +137,13 @@ export const Login: React.FC<LoginProps> = ({}) => {
                />
             </span>
          </div>
-         <div className="w-96  flex">
-            <button
-               onClick={() => router.push("/")}
-               className="m-auto text-darkBlue px-5 py-1 font-semibold "
-            >
-               CLOSE
-            </button>
-         </div>
+
+         <button
+            onClick={() => router.push("/")}
+            className="m-auto flex text-darkBlue px-5 py-1 font-semibold "
+         >
+            CLOSE
+         </button>
       </div>
    );
 };

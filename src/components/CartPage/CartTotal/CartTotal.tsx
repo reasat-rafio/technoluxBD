@@ -31,7 +31,7 @@ export const CartTotal: React.FC<CartTotalProps> = ({}) => {
    }, [cartState]);
 
    // ADDRESS STATE
-   const [showMoreAdress, setShowMoreAdress] = useState<boolean>(false);
+   const [showMoreAdress, setShowMoreAdress] = useState<boolean>(true);
    const [showMoreCountry, setShowMoreCountry] = useState<boolean>(false);
    const [showMoreDistrict, setShowMoreDistrict] = useState<boolean>(false);
 

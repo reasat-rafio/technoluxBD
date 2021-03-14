@@ -1,10 +1,8 @@
-import { Lignting_bolt } from "../../../utils/svgs/Svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, EffectFade } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
-import { Poster } from "../../../utils/_components/Poster";
 import { useRouter } from "next/router";
 import TextTruncate from "react-text-truncate";
 import { motion } from "framer-motion";

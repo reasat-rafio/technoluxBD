@@ -53,7 +53,6 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
    };
 
    // Chaning nav action
-
    const navAction = () => {
       domDispatch(hideSideNavBar());
    };
@@ -86,6 +85,14 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                      >
                         <Link href="/">
                            <a className="sideBarMainNav">Home</a>
+                        </Link>
+                     </li>
+                     <li
+                        className="flex justify-between"
+                        onClick={closeSideMenubarAction}
+                     >
+                        <Link href="/shop">
+                           <a className="sideBarMainNav">Shop</a>
                         </Link>
                      </li>
                      <li className="">
@@ -190,8 +197,8 @@ export const SideMenuBar: React.FC<SideMenuBarProps> = ({}) => {
                            )}
                         </AnimatePresence>
                      </li>
-                     <li className="flex justify-between">
-                        <Link href="">
+                     <li className="flex justify-between" onClick={navAction}>
+                        <Link href="/new-arrivals">
                            <a className="sideBarMainNav">New Arrivals</a>
                         </Link>
                      </li>

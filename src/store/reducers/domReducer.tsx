@@ -79,6 +79,7 @@ export const domReducer = (state: stateInterFace, action: Action) => {
          };
       case HIDE_BACK_TO_THE_TOP:
          return {
+            ...state,
             showBackToTheTop: false,
          };
 

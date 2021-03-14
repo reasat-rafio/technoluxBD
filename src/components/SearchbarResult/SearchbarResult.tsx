@@ -9,14 +9,6 @@ interface SearchbarResultProps {
    inputValue: string;
 }
 
-// interface SearchItems {
-//    name: string;
-//    img: any[];
-//    offer_price: string;
-//    regular_price: string;
-//    slug: string;
-// }
-
 export const SearchbarResult: React.FC<SearchbarResultProps> = ({
    searchFilterItems,
    inputValue,
@@ -33,21 +25,16 @@ export const SearchbarResult: React.FC<SearchbarResultProps> = ({
                ({ name, img, offer_price, regular_price, slug }) => (
                   <motion.div
                      whileHover={{ scale: 1.1, originX: 0 }}
-                     className="flex max-h-20 gap-2 px-2 border-b text-sm cursor-pointer  hover:bg-gray-50  "
+                     className="flex  max-h-20 gap-2 px-2 border-b text-sm cursor-pointer  hover:bg-gray-50   overflow-auto"
                      onClick={() => {
-                        // router.push(`/items/${slug}`);
-                        router.push(
-                           {
-                              pathname: `/items/${slug}`,
-                           }
-                           // undefined,
-                           // { shallow: true }
-                        );
+                        router.push({
+                           pathname: `/items/${slug}`,
+                        });
                         domDispatch(hideSearchPage());
                      }}
                   >
-                     <img src={img[0].url} alt={name} />
-                     <span className="bg-white my-auto">
+                     <img className="w-16" src={img[0].url} alt={name} />
+                     <span className="bg-white my-auto ">
                         <p>{name}</p>
                         {offer_price ? (
                            <>

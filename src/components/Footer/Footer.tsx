@@ -18,16 +18,18 @@ export const Footer: React.FC<FooterProps> = ({}) => {
       <footer className="w-full bg-gray-800 text-gray-400 mb-11 lg:mb-0 text-sm  font-text">
          <div className="container mx-auto">
             {/* Footer Summary */}
-            <div className="grid grid-cols-12 py-4 divide-gray-500  lg:divide-x divide-x-0 border-b border-gray-500">
+            <div className="grid grid-cols-12 py-4 divide-gray-500  lg:divide-x divide-x-0 border-b border-gray-500 ">
                {Footer_Summary.map(
                   ({ icon, title, text, style }, i: number) => (
                      <section
                         key={i}
-                        className={`col-span-6 lg:col-span-3   justify-center items-center gap-3  mx-auto  px-5 font-nav grid grid-cols-12`}
+                        className={`col-span-6 lg:col-span-3  justify-center items-center md:gap-3 gap-0   mx-auto  px-5 font-nav grid grid-cols-12`}
                      >
-                        <span className="col-span-4">{icon}</span>
+                        <span className="md:col-span-4 col-span-12">
+                           {icon}
+                        </span>
 
-                        <span className="col-span-8">
+                        <span className="md:col-span-8 col-span-12">
                            <h4 className="font-bold text-lg text-gray-200">
                               {title}
                            </h4>
@@ -61,7 +63,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
                ))}
             </div>
 
-            <div className="py-4 grid grid-cols-12 ">
+            <div className="py-4 grid grid-cols-12  px-5 gap-1">
                {/* CONTACT US */}
                <section className="col-span-6 lg:col-span-6 mx-auto font-nav">
                   <h3 className="font-bold text-lg text-gray-200 mt-2 mb-4 ">
@@ -78,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({}) => {
                </section>
 
                {/* Copy Right */}
-               <section className="col-span-6 lg:col-span-3  flex justify-center items-center mx-auto font-nav">
+               <section className="col-span-6 lg:col-span-3  flex justify-center items-center mx-auto font-nav ">
                   <p>
                      © {year.getFullYear()} technoluxbd.com | All Rights
                      Reserved.

@@ -34,7 +34,7 @@ const auth: React.FC<authProps> = ({}) => {
                   Register
                </h2>
             </section>
-            <section className=" w-96">
+            <section className=" px-6">
                {/* login */}
                {auth === "login" && <Login />}
                {/* register */}

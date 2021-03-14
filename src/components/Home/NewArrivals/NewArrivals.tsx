@@ -65,7 +65,6 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
 
    // router
    const router = useRouter();
-   console.log(loading);
 
    return (
       <>
