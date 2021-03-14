@@ -11,7 +11,10 @@ interface NewArrivalsProps {
    to: string;
 }
 
-export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals , to}) => {
+export const NewArrivals: React.FC<NewArrivalsProps> = ({
+   new_arrivals,
+   to,
+}) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
    const [pgWidth, setPgWidth] = useState<string>("");
@@ -46,7 +49,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals , to}) =>
          </div>
 
          {/* card section */}
-         <section className="my-4 grid grid-cols-12 gap-2 ">
+         <section className="my-4 grid grid-cols-12 gap-2 px-3 md:px-0">
             {new_arrivals.map(
                ({ name, img, offer_price, regular_price, id, slug }, i) => (
                   <motion.div
@@ -96,7 +99,10 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ new_arrivals , to}) =>
          {/* <div className="flex bg-gray-100 my-4 py-2 justify-center items-center hover:bg-gray-300 transition-all duration-150 cursor-pointer rounded-sm font-nav font-medium text-sm">
             VIEW ALL
          </div> */}
-         <button className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300" onClick={() => router.push(to)}>
+         <button
+            className="mx-auto flex my-2 rounded-sm  p-3 border-darkBlue text-darkBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300 mb-16"
+            onClick={() => router.push(to)}
+         >
             LOAD MORE PRODUCTS
          </button>
          {/* <button>LOADING</button> */}

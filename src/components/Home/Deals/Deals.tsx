@@ -51,7 +51,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
          setCardsPerView(6);
       }
    }, [pageWidth]);
- 
+
    return (
       <>
          {/* <section className="flex border-b font-nav text-xl font-semibold ">
@@ -64,7 +64,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to }) => {
          </section> */}
          {/* card section */}
          {!loading && cardsPerView != 0 && (
-            <section>
+            <section className=" px-3 md:px-0">
                <Swiper
                   className="my-4"
                   slidesPerView={cardsPerView}

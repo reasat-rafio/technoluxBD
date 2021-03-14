@@ -7,6 +7,7 @@ import {
 } from "../../../store/actions/CartAction";
 import { MdCross } from "../../../utils/svgs/Svg";
 import { Notify } from "../../../utils/Toast";
+import TextTruncate from "react-text-truncate";
 
 interface CartProductListProps {}
 
@@ -81,9 +82,13 @@ export const CartProductList: React.FC<CartProductListProps> = ({}) => {
                                              />
                                           </div>
                                           <div className="ml-4">
-                                             <div className="text-sm text-gray-500 ">
-                                                {name}
-                                             </div>
+                                             <TextTruncate
+                                                line={3}
+                                                element="span"
+                                                truncateText="…"
+                                                className="text-sm text-gray-500 "
+                                                text={name}
+                                             />
                                           </div>
                                        </div>
                                     </td>

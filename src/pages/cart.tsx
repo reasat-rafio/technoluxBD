@@ -14,7 +14,7 @@ const cart: React.FC<cartProps> = ({}) => {
       <Layout>
          <div className="w-full  font-nav">
             {inCartProducts && inCartProducts.length > 0 ? (
-               <div className="container mx-auto grid gap-5 grid-cols-5 my-9">
+               <div className="container mx-auto  grid md:gap-5 gap-0  grid-cols-5 my-9">
                   <CartProductList />
                   <CartTotal />
                </div>

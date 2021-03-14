@@ -1,4 +1,5 @@
 import { useCtx } from "../../store";
+import { Footer } from "../Footer/Footer";
 
 import { MainLgNav } from "../Nav/MainLgNav/MainLgNav";
 import { SmBottomNav } from "../Nav/SmBottomNav/SmBottomNav";
@@ -23,6 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
          <SmBottomNav />
 
          {children}
+         <Footer />
       </>
    );
 };

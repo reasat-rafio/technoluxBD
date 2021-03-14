@@ -63,7 +63,7 @@ export const CartTotal: React.FC<CartTotalProps> = ({}) => {
    };
 
    return (
-      <div className="lg:col-span-2  col-span-5 p-6  border-2 transition-all duration-150  border-gray-200">
+      <div className="lg:col-span-2 w-full  col-span-5 p-6  border-2 transition-all duration-150  border-gray-200 ">
          <div className="border-b">
             <h1 className="py-2 font-semibold text-lg">CART TOTALS</h1>
             <div className="flex items-center py-2 text-sm">
