@@ -19,13 +19,14 @@ export const SearchbarResult: React.FC<SearchbarResultProps> = ({
       domDispatch,
    } = useCtx();
    return (
-      <>
+      <div className="h-full">
          {searchFilterItems && searchFilterItems.length > 0 ? (
             searchFilterItems.map(
-               ({ name, img, offer_price, regular_price, slug }) => (
+               ({ name, img, offer_price, regular_price, slug }, i) => (
                   <motion.div
+                     key={i}
                      whileHover={{ scale: 1.1, originX: 0 }}
-                     className="flex  max-h-20 gap-2 px-2 border-b text-sm cursor-pointer  hover:bg-gray-50   overflow-auto"
+                     className="flex  gap-2 px-2 border-b text-sm cursor-pointer  hover:bg-gray-50    "
                      onClick={() => {
                         router.push({
                            pathname: `/items/${slug}`,
@@ -60,6 +61,6 @@ export const SearchbarResult: React.FC<SearchbarResultProps> = ({
                <span className="font-semibold ml-2">{inputValue}</span>
             </p>
          )}
-      </>
+      </div>
    );
 };

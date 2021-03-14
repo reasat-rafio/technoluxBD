@@ -7,11 +7,11 @@ interface PosterProps {
 
 export const Poster: React.FC<PosterProps> = ({ src, to }) => {
    return (
-      <div className="my-4 relative  posterDiv">
+      <div className="my-4 relative posterDiv">
          <Link href={to}>
             <a>
                <div className="posterImg" />
-               <img src={src} alt="" />
+               <img className="w-full" src={src} alt="" />
             </a>
          </Link>
       </div>

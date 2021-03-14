@@ -112,3 +112,13 @@ html {
 .pagination > li:last-child > span {
    border-radius: unset;
 }
+
+// hiding the search scrollbar
+.disable-scrollbars::-webkit-scrollbar {
+   display: none;
+}
+
+.disable-scrollbars {
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+}

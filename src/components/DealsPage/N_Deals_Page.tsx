@@ -17,6 +17,9 @@ export const N_Deals_Page: React.FC<N_Deals_PageProps> = ({ products }) => {
    const PagesVisited = pageNumber * productPerPage;
 
    const displayProrducts = allProducts
+      .sort((a, b) =>
+         a.highlight_item === b.highlight_item ? 0 : a.highlight_item ? -1 : 1
+      )
       .slice(PagesVisited, PagesVisited + productPerPage)
       .map(({ name, img, offer_price, regular_price, id, slug }) => {
          return (

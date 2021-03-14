@@ -173,7 +173,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                   <div
                      style={{ minHeight: "70px" }}
                      ref={searchRef}
-                     className=" bg-white absolute z-30 p-3 max-h-96 overflow-y-auto overflow-x-hidden flex border-darkBlue border flex-col rounded-sm w-full  "
+                     className=" bg-white absolute z-30 p-3 max-h-96 disable-scrollbars overflow-x-hidden flex border-darkBlue border flex-col rounded-sm w-full  "
                   >
                      <SearchbarResult
                         searchFilterItems={searchFilterItems}

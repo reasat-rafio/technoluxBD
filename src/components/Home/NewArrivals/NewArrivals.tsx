@@ -67,7 +67,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
    const router = useRouter();
 
    return (
-      <>
+      <div className=" px-3 md:px-0">
          <div className="flex border-b font-nav text-xl font-semibold ">
             <h2 className="py-3 border-b-4 border-darkBlue flex gap-1">
                NEW ARRIVALS
@@ -75,52 +75,60 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
          </div>
 
          {/* card section */}
-         <section className="my-4 grid grid-cols-12 gap-2 px-3 md:px-0">
-            {products.map(
-               ({ name, img, offer_price, regular_price, id, slug }, i) => (
-                  <motion.div
-                     whileHover={{ y: -10 }}
-                     className={`border cursor-pointer  text-center hover:shadow-2xl  transition-all duration-150 col-span-6 md:col-span-3 lg:col-span-2 hover:border-gray-800  ${
-                        pgWidth == "sm" && "h-smCard"
-                     } ${pgWidth == "xs" && "h-lgCard"}           
-                        `}
-                     onClick={() => router.push(`/items/${slug}`)}
-                  >
-                     <Swiper
-                        slidesPerView={1}
-                        id="main"
-                        autoplay={{ disableOnInteraction: false }}
-                        style={{ maxWidth: "200px" }}
-                     >
-                        {img.map((a, i) => (
-                           <SwiperSlide key={i}>
-                              <img src={a.url} alt="" />
-                           </SwiperSlide>
-                        ))}
-                     </Swiper>
-
-                     <div className="p-3">
-                        <TextTruncate
-                           line={3}
-                           element="span"
-                           truncateText="…"
-                           className="text-sm font-medium text-center font-nav   "
-                           text={name}
-                        />
-                        {offer_price && (
-                           <div className="my-2 flex gap-2 items-center justify-center">
-                              <span className="line-through  text-sm text-gray-400 font-text">
-                                 ৳{regular_price}
-                              </span>
-                              <span className="text-darkBlue font-semibold font-text">
-                                 ৳{offer_price}
-                              </span>
-                           </div>
-                        )}
-                     </div>
-                  </motion.div>
+         <section className="my-4 grid grid-cols-12 gap-2 ">
+            {products
+               .sort((a, b) =>
+                  a.highlight_item === b.highlight_item
+                     ? 0
+                     : a.highlight_item
+                     ? -1
+                     : 1
                )
-            )}
+               .map(
+                  ({ name, img, offer_price, regular_price, id, slug }, i) => (
+                     <motion.div
+                        whileHover={{ y: -10 }}
+                        className={`border cursor-pointer  text-center hover:shadow-2xl  transition-all duration-150 col-span-6 md:col-span-3 lg:col-span-2 hover:border-gray-800  ${
+                           pgWidth == "sm" && "h-smCard"
+                        } ${pgWidth == "xs" && "h-lgCard"}           
+                        `}
+                        onClick={() => router.push(`/items/${slug}`)}
+                     >
+                        <Swiper
+                           slidesPerView={1}
+                           id="main"
+                           autoplay={{ disableOnInteraction: false }}
+                           style={{ maxWidth: "200px" }}
+                        >
+                           {img.map((a, i) => (
+                              <SwiperSlide key={i}>
+                                 <img src={a.url} alt="" />
+                              </SwiperSlide>
+                           ))}
+                        </Swiper>
+
+                        <div className="p-3">
+                           <TextTruncate
+                              line={3}
+                              element="span"
+                              truncateText="…"
+                              className="text-sm font-medium text-center font-nav   "
+                              text={name}
+                           />
+                           {offer_price && (
+                              <div className="my-2 flex gap-2 items-center justify-center">
+                                 <span className="line-through  text-sm text-gray-400 font-text">
+                                    ৳{regular_price}
+                                 </span>
+                                 <span className="text-darkBlue font-semibold font-text">
+                                    ৳{offer_price}
+                                 </span>
+                              </div>
+                           )}
+                        </div>
+                     </motion.div>
+                  )
+               )}
          </section>
 
          {showAll && !loading && (
@@ -174,6 +182,6 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
                Processing
             </button>
          )}
-      </>
+      </div>
    );
 };

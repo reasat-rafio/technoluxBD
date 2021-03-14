@@ -30,7 +30,7 @@ module.exports = {
          sm: "600px",
          md: "720px",
          lg: "920px",
-         xl: "1200px",
+         xl: "1300px",
          "2xl": "1536px",
       },
    },
@@ -57,7 +57,7 @@ module.exports = {
                   maxWidth: "920px",
                },
                "@screen xl": {
-                  maxWidth: "1200px",
+                  maxWidth: "1300px",
                },
             },
          });

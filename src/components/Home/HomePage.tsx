@@ -26,12 +26,16 @@ export const HomePage: React.FC<IndexProps> = ({
             src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png"
             to="/flash-sales"
          />
-         <Deals deals={flashDeals} to="/flash-sales" />
+         <Deals deals={flashDeals} to="/flash-sales" name="FLASH DEALS" />
          <Poster
             src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Gaming-Consoles-v2.png"
             to="/gaming-consoles-accessories"
          />
-         <Deals deals={gaming_accessories} to="/gaming-consoles-accessories" />
+         <Deals
+            deals={gaming_accessories}
+            to="/gaming-consoles-accessories"
+            name="GAMING ACCESSORIES"
+         />
          <NewArrivals new_arrivals={new_arrivals} to="/new-arrivals" />
          <BackToTheTop />
       </div>
