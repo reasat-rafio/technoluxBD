@@ -73,6 +73,7 @@ html {
    @apply text-white font-semibold  p-3 rounded-md transition-colors duration-200;
 }
 
+// pagination
 .pagination {
    margin: 15px auto;
    display: flex;
@@ -122,3 +123,9 @@ html {
    -ms-overflow-style: none; /* IE and Edge */
    scrollbar-width: none; /* Firefox */
 }
+
+// swiper arrow
+// .swiper-button-next {
+//    width: 5px !important;
+//    height: 5px !important;
+// }

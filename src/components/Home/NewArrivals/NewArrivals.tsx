@@ -87,6 +87,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
                .map(
                   ({ name, img, offer_price, regular_price, id, slug }, i) => (
                      <motion.div
+                        key={i}
                         whileHover={{ y: -10 }}
                         className={`border cursor-pointer  text-center hover:shadow-2xl  transition-all duration-150 col-span-6 md:col-span-3 lg:col-span-2 hover:border-gray-800  ${
                            pgWidth == "sm" && "h-smCard"
@@ -96,13 +97,12 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({
                      >
                         <Swiper
                            slidesPerView={1}
-                           id="main"
                            autoplay={{ disableOnInteraction: false }}
                            style={{ maxWidth: "200px" }}
                         >
                            {img.map((a, i) => (
                               <SwiperSlide key={i}>
-                                 <img src={a.url} alt="" />
+                                 <img src={a.url} alt={name} />
                               </SwiperSlide>
                            ))}
                         </Swiper>

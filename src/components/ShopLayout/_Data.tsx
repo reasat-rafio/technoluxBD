@@ -2,13 +2,17 @@ export const Categories = [
    {
       category_name: "Gaming Equipments",
       link: "gaming-equipment",
+
       sub_category: [
-         { sub_category_name: "Games", link: "games" },
-         { sub_category_name: "Console", link: "console" },
-         { sub_category_name: "Controllers", link: "controllers" },
-         { sub_category_name: "Mice & Keyboard", link: "mice-keyboard" },
-         { sub_category_name: "Gaming Headphones", link: "gaming-headphone" },
-         { sub_category_name: "Mobile Controller", link: "mobile-controller" },
+         { sub_category_name: "Games", sub_link: "games" },
+         { sub_category_name: "Console", sub_link: "console" },
+         { sub_category_name: "Controllers", sub_link: "controller" },
+         { sub_category_name: "Mice & Keyboard", sub_link: "mice-keyboard" },
+         { sub_category_name: "Gaming Headphones", sub_link: "headphone" },
+         {
+            sub_category_name: "Mobile Controller",
+            sub_link: "mobile-controller",
+         },
       ],
    },
 
@@ -18,7 +22,7 @@ export const Categories = [
       sub_category: [
          {
             sub_category_name: "Charger & Cable",
-            sub_link: "charger-cables",
+            sub_link: "cherger-cable",
          },
          {
             sub_category_name: "Power Bank",
@@ -51,12 +55,12 @@ export const Categories = [
    {
       category_name: "Home Appliances",
       link: "home-appliances",
-      sub_category: [{ sub_category_name: "Tv", link: "tv" }],
+      sub_category: [{ sub_category_name: "Tv", sub_link: "tv" }],
    },
 
    {
       category_name: "Watches",
-      link: "watch",
+      link: "smart-watch",
    },
    {
       category_name: "Speakers",

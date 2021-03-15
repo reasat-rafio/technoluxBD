@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import { ChangeCategoryVariants } from "../../utils/animation";
 import { MoreCtg } from "../../utils/svgs/Svg";
@@ -50,12 +51,14 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                      exit="exit"
                   >
                      {sub_category.map((sub_c, i) => (
-                        <li
-                           key={i}
-                           className="hover:text-darkBlue cursor-pointer my-2"
-                        >
-                           <p>{sub_c.sub_category_name}</p>
-                        </li>
+                        <Link href={`/shop/${sub_c.sub_link}`}>
+                           <li
+                              key={i}
+                              className="hover:text-darkBlue cursor-pointer my-2"
+                           >
+                              <p>{sub_c.sub_category_name}</p>
+                           </li>
+                        </Link>
                      ))}
                   </motion.ul>
                )}

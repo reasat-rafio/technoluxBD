@@ -1,8 +1,8 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
-import { Layout } from "../components/Layout/Layout";
-import { ShopLayout } from "../components/ShopLayout/ShopLayout";
-import { ShopProducts } from "../components/ShopLayout/ShopProducts";
+import { Layout } from "../../components/Layout/Layout";
+import { ShopLayout } from "../../components/ShopLayout/ShopLayout";
+import { ShopProducts } from "../../components/ShopLayout/ShopProducts";
 
 const Shop = ({ products }) => {
    return (

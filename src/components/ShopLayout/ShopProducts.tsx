@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { FourGrid, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
+import { ShopShortDropDown } from "./ShopShortDropDown";
 interface ShopProductsProps {
    products: any;
 }
@@ -18,10 +19,49 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    // Products grid
    const [gridCount, setGridCount] = useState(3);
 
+   // sort items state
+   const [showMoreFilter, setShowMoreFilter] = useState<boolean>(false);
+   const [selectedFilter, setSelectedFilter] = useState<string>(
+      "Sort by popularity"
+   );
+
    const displayProrducts = allProducts
-      .sort((a, b) =>
-         a.highlight_item === b.highlight_item ? 0 : a.highlight_item ? -1 : 1
-      )
+      .sort((a, b) => {
+         if (selectedFilter === "Sort by popularity") {
+            return a.highlight_item === b.highlight_item
+               ? 0
+               : a.highlight_item
+               ? -1
+               : 1;
+         }
+         if (selectedFilter === "Sort by latest") {
+            return a.createdAt > b.createdAt ? 1 : -1;
+         }
+         if (selectedFilter === "Sort by Price: low to high") {
+            if (a.offer_price && b.offer_price) {
+               return parseInt(a.offer_price.replace(/,/g, ""), 10) <
+                  parseInt(b.offer_price.replace(/,/g, ""), 10)
+                  ? -1
+                  : 1;
+            } else {
+               return parseInt(a.regular_price) < parseInt(b.regular_price)
+                  ? -1
+                  : 1;
+            }
+         }
+         if (selectedFilter === "Sort by Price: high to low") {
+            if (a.offer_price && b.offer_price) {
+               return parseInt(a.offer_price.replace(/,/g, ""), 10) >
+                  parseInt(b.offer_price.replace(/,/g, ""), 10)
+                  ? -1
+                  : 1;
+            } else {
+               return parseInt(a.regular_price) > parseInt(b.regular_price)
+                  ? -1
+                  : 1;
+            }
+         }
+      })
       .slice(PagesVisited, PagesVisited + productPerPage)
       .map(({ name, img, offer_price, regular_price, id, slug }) => {
          return (
@@ -68,7 +108,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    return (
       <div className="">
          {/* filter section */}
-         <div className="flex gap-2 my-5">
+         <div className="flex gap-2 my-5 items-center justify-end">
             <span
                onClick={() => setGridCount(6)}
                className={`cursor-pointer hover:text-darkBlue  ${
@@ -93,6 +133,13 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
             >
                <FourGrid />
             </span>
+
+            <ShopShortDropDown
+               showMoreFilter={showMoreFilter}
+               selectedFilter={selectedFilter}
+               setShowMoreFilter={setShowMoreFilter}
+               setSelectedFilter={setSelectedFilter}
+            />
          </div>
          <section className="grid grid-cols-12 my-5 gap-2">
             {displayProrducts}

@@ -1,11 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-   Autoplay,
-   EffectFade,
-   Navigation,
-   Pagination,
-   Thumbs,
-} from "swiper";
+import SwiperCore, { EffectFade, Navigation, Pagination, Thumbs } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useState } from "react";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
@@ -17,23 +11,21 @@ interface ProductImagesProps {
 }
 
 // configring swiper
-SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs]);
+SwiperCore.use([Navigation, Pagination, EffectFade, Thumbs]);
 export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
    const [thumbsSwiper, setThumbsSwiper] = useState<any>();
    return (
       <div>
          <Swiper
-            id="main"
             thumbs={{ swiper: thumbsSwiper }}
             effect="fade"
             navigation
-            autoplay={{ disableOnInteraction: false }}
             pagination={{ clickable: true }}
          >
             {img.map(({ url }, i) => (
                <SwiperSlide key={i}>
                   <motion.div
-                     className="m-auto"
+                     className={`m-auto`}
                      initial={{ x: 200, opacity: 0 }}
                      animate={{ x: 0, opacity: 1 }}
                      transition={{ delay: 0.2 }}
@@ -49,10 +41,12 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
             onSwiper={setThumbsSwiper}
             spaceBetween={5}
             slidesPerView={3}
+            watchSlidesVisibility
+            watchSlidesProgress
          >
             {img.map(({ formats: { thumbnail: { url } } }, i) => (
                <SwiperSlide key={i}>
-                  <img className="cursor-pointer" src={url} alt="img" />
+                  <img className={`cursor-pointer`} src={url} alt="img" />
                </SwiperSlide>
             ))}
          </Swiper>

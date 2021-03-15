@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, EffectFade } from "swiper";
+import SwiperCore, { Autoplay, EffectFade, Navigation } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
@@ -15,7 +15,7 @@ interface DealsProps {
 
 export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
    // configring swiper
-   SwiperCore.use([Autoplay, EffectFade]);
+   SwiperCore.use([Autoplay, EffectFade, Navigation]);
    // global state
    const {
       domState: { pageWidth },
@@ -67,6 +67,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                   id="main"
                   autoplay={{ disableOnInteraction: false }}
                   spaceBetween={10}
+                  navigation
                >
                   {deals
                      .sort((a, b) =>
@@ -95,13 +96,16 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                               >
                                  <Swiper
                                     slidesPerView={1}
-                                    id="main"
                                     autoplay={{ disableOnInteraction: false }}
                                     style={{ maxWidth: "200px" }}
                                  >
                                     {img.map((a, i) => (
                                        <SwiperSlide key={i}>
-                                          <img src={a.url} alt="" />
+                                          <img
+                                             className="w-11/12 lg:w-full"
+                                             src={a.url}
+                                             alt={name}
+                                          />
                                        </SwiperSlide>
                                     ))}
                                  </Swiper>
