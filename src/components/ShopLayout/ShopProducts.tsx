@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { FourGrid, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
 import { ShopShortDropDown } from "./ShopShortDropDown";
@@ -12,6 +12,11 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    const router = useRouter();
 
    const [allProducts, setAllProducts] = useState(products);
+
+   useEffect(() => {
+      setAllProducts(products);
+   }, [products]);
+
    const [pageNumber, setPageNumber] = useState<number>(0);
    const productPerPage = 12;
    const PagesVisited = pageNumber * productPerPage;
@@ -66,7 +71,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
       .map(({ name, img, offer_price, regular_price, id, slug }) => {
          return (
             <div
-               className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer  flex flex-col`}
+               className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer  flex flex-col `}
                key={id}
             >
                <div
@@ -106,7 +111,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    };
 
    return (
-      <div className="">
+      <div className="min-h-screen">
          {/* filter section */}
          <div className="flex gap-2 my-5 items-center justify-end">
             <span
@@ -141,7 +146,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
                setSelectedFilter={setSelectedFilter}
             />
          </div>
-         <section className="grid grid-cols-12 my-5 gap-2">
+         <section className="grid grid-cols-12 my-5 gap-2 ">
             {displayProrducts}
          </section>
          <span className="mx-auto flex">

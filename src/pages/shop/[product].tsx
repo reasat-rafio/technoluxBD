@@ -6,20 +6,29 @@ import { Layout } from "../../components/Layout/Layout";
 import { ShopLayout } from "../../components/ShopLayout/ShopLayout";
 import { ShopProducts } from "../../components/ShopLayout/ShopProducts";
 
-const product = ({ ctg, products }) => {
+const product = ({ products }) => {
+   const router = useRouter();
+   console.log();
+
+   const { product } = router.query;
    const [allFilteredProdtucts, setAllFiltredProducts] = useState(() => {
       return products;
    });
+   console.log(router);
 
    useEffect(() => {
       setAllFiltredProducts(products);
-   }, [products]);
+   }, [product]);
 
    return (
       <Layout>
          <ShopLayout>
-            {allFilteredProdtucts && allFilteredProdtucts.length > 0 && (
+            {allFilteredProdtucts && allFilteredProdtucts.length > 0 ? (
                <ShopProducts products={allFilteredProdtucts} />
+            ) : (
+               <div className="min-h-screen">
+                  <p>Not found</p>
+               </div>
             )}
          </ShopLayout>
       </Layout>
@@ -63,7 +72,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
    return {
       props: {
          products,
-         ctg,
       },
    };
 };

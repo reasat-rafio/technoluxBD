@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, EffectFade, Navigation } from "swiper";
+import SwiperCore, { Autoplay, EffectFade } from "swiper";
 import "swiper/swiper-bundle.css";
 import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
@@ -15,7 +15,7 @@ interface DealsProps {
 
 export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
    // configring swiper
-   SwiperCore.use([Autoplay, EffectFade, Navigation]);
+   SwiperCore.use([Autoplay, EffectFade]);
    // global state
    const {
       domState: { pageWidth },
@@ -60,14 +60,13 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
          </section>
          {/* card section */}
          {!loading && cardsPerView != 0 && (
-            <section className=" md:px-0">
+            <section className=" md:px-0" style={{ cursor: "grab" }}>
                <Swiper
                   className="my-1"
                   slidesPerView={cardsPerView}
                   id="main"
                   autoplay={{ disableOnInteraction: false }}
                   spaceBetween={10}
-                  navigation
                >
                   {deals
                      .sort((a, b) =>
@@ -103,6 +102,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                                        <SwiperSlide key={i}>
                                           <img
                                              className="w-11/12 lg:w-full"
+                                             style={{ cursor: "grab" }}
                                              src={a.url}
                                              alt={name}
                                           />
