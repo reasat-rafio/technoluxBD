@@ -60,7 +60,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
          </section>
          {/* card section */}
          {!loading && cardsPerView != 0 && (
-            <section className=" px-3 md:px-0">
+            <section className=" md:px-0">
                <Swiper
                   className="my-1"
                   slidesPerView={cardsPerView}

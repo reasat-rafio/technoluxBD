@@ -133,7 +133,10 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                                  NO PRODUCTS IN THE CART.
                               </h2>
                               <button
-                                 onClick={() => router.push("/shop")}
+                                 onClick={() => {
+                                    domDispatch(hideCart());
+                                    router.push("/shop");
+                                 }}
                                  className="bg-darkBlue text-white rounded-md p-3 font-nav text-sm font-bold"
                               >
                                  RETURN TO THE SHOP

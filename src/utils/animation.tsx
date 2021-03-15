@@ -134,3 +134,24 @@ export const BackToTheTopVariants = {
       opacity: 0,
    },
 };
+
+export const ChangeCategoryVariants = {
+   inital: {
+      y: "-30px",
+      opacity: 0,
+   },
+   animate: {
+      y: 0,
+      transition: {
+         duration: 0.5,
+      },
+      opacity: 1,
+   },
+   exit: {
+      transition: {
+         duration: 0.2,
+      },
+      y: "-10px",
+      opacity: 0,
+   },
+};

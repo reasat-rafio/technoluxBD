@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CartProductList } from "../components/CartPage/CartproductList/CartProductList";
 import { CartTotal } from "../components/CartPage/CartTotal/CartTotal";
 import { Layout } from "../components/Layout/Layout";
@@ -38,10 +39,11 @@ const cart: React.FC<cartProps> = ({}) => {
                            to your shopping cart. You will find a lot of
                            interesting products on our "Shop" page.
                         </p>
-
-                        <button className="bg-darkBlue p-3 text-nav text-white font-semibold text-sm rounded-md">
-                           RETURN TO SHOP
-                        </button>
+                        <Link href="/shop">
+                           <a className="bg-darkBlue p-3 text-nav text-white font-semibold text-sm rounded-md">
+                              RETURN TO SHOP
+                           </a>
+                        </Link>
                      </>
                   )}
                </div>

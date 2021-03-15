@@ -1,4 +1,6 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { ChangeCategoryVariants } from "../../utils/animation";
 import { MoreCtg } from "../../utils/svgs/Svg";
 import { Categories } from "./_Data";
 
@@ -23,65 +25,106 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
    ] = useState<boolean>(false);
 
    // Show more action
-
    const showSubCategoryAction = (name: string) => {
-      name == "gaming-equipment" && !showMoreGamingEquipment
-         ? SetShowMoreGamingEquipment(true)
-         : SetShowMoreGamingEquipment(false);
+      name == "gaming-equipment" && SetShowMoreGamingEquipment((prev) => !prev);
 
-      name == "mobile-accessories" && !showMoreMobileAccessories
-         ? SetShowMoreMobileAccessories(true)
-         : SetShowMoreMobileAccessories(false);
-      name == "computer-office" && !showMoreComputerAndOffice
-         ? SetShowMoreComputerAndOffice(true)
-         : SetShowMoreComputerAndOffice(false);
-      name == "home-appliances" && !showMoreHomeAppliances
-         ? SetShowMoreHomeAppliances(true)
-         : SetShowMoreHomeAppliances(false);
+      name == "mobile-accessories" &&
+         SetShowMoreMobileAccessories((prev) => !prev);
+
+      name == "computer-office" &&
+         SetShowMoreComputerAndOffice((prev) => !prev);
+
+      name == "home-appliances" && SetShowMoreHomeAppliances((prev) => !prev);
    };
 
-   const sub_ctg = (sub_category) => {
+   const sub_ctg = (sub_category, state) => {
       return (
-         <ul className="ml-4">
-            {sub_category.map((sub_c, i) => (
-               <li key={i} className="hover:text-darkBlue cursor-pointer my-1">
-                  <p>{sub_c.sub_category_name}</p>
-               </li>
-            ))}
-         </ul>
+         <>
+            <AnimatePresence exitBeforeEnter>
+               {state && (
+                  <motion.ul
+                     className="ml-4"
+                     variants={ChangeCategoryVariants}
+                     initial="inital"
+                     animate="animate"
+                     exit="exit"
+                  >
+                     {sub_category.map((sub_c, i) => (
+                        <li
+                           key={i}
+                           className="hover:text-darkBlue cursor-pointer my-2"
+                        >
+                           <p>{sub_c.sub_category_name}</p>
+                        </li>
+                     ))}
+                  </motion.ul>
+               )}
+            </AnimatePresence>
+         </>
       );
    };
 
    const outputGamingEquipment = (name: string, state: any, sub_category) => {
-      return name === "gaming-equipment" && state && sub_ctg(sub_category);
+      return name === "gaming-equipment" && sub_ctg(sub_category, state);
    };
 
    const outPutMobileAccessories = (name: string, state: any, sub_category) => {
-      return name === "mobile-accessories" && state && sub_ctg(sub_category);
+      return name === "mobile-accessories" && sub_ctg(sub_category, state);
    };
    const outPutComputerAndOffice = (name: string, state: any, sub_category) => {
-      return name === "computer-office" && state && sub_ctg(sub_category);
+      return name === "computer-office" && sub_ctg(sub_category, state);
    };
    const outPutHomeAppliances = (name: string, state: any, sub_category) => {
-      return name === "home-appliances" && state && sub_ctg(sub_category);
+      return (
+         name === "home-appliances" && state && sub_ctg(sub_category, state)
+      );
+   };
+
+   const UpOrDownArrowAction = (state) => {
+      return state ? (
+         <span className={`transform rotate-180 transition-all`}>
+            <MoreCtg />
+         </span>
+      ) : (
+         <span className={`transition-all `}>
+            <MoreCtg />
+         </span>
+      );
    };
 
    return (
-      <div className="my-5 px-5 font-text">
+      <div className="my-5 px-5 font-text outline-none">
          <h3 className="font-nav text-lg font-medium my-4">
             PRODUCT CATEGORIES
          </h3>
-         <ul className="text-gray-700 ">
+         <ul className=" ">
             {Categories.map(({ category_name, sub_category, link }, i) => (
-               <li key={i} className="my-2">
+               <li key={i} className="my-4 text-gray-600">
                   <div
                      className="flex justify-end items-center hover:text-darkBlue cursor-pointer"
                      onClick={() => showSubCategoryAction(link)}
                   >
                      <p className="flex-1"> {category_name}</p>
-                     {sub_category && <MoreCtg />}
+
+                     {/* icon up/down */}
+                     {sub_category &&
+                        link === "gaming-equipment" &&
+                        UpOrDownArrowAction(showMoreGamingEquipment)}
+
+                     {sub_category &&
+                        link === "mobile-accessories" &&
+                        UpOrDownArrowAction(showMoreMobileAccessories)}
+
+                     {sub_category &&
+                        link === "computer-office" &&
+                        UpOrDownArrowAction(showMoreComputerAndOffice)}
+
+                     {sub_category &&
+                        link === "home-appliances" &&
+                        UpOrDownArrowAction(showMoreHomeAppliances)}
                   </div>
 
+                  {/* sub ctg */}
                   {sub_category &&
                      outputGamingEquipment(
                         link,

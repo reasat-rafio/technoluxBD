@@ -1,14 +1,14 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
-import { N_Deals_Page } from "../components/DealsPage/N_Deals_Page";
 import { Layout } from "../components/Layout/Layout";
 import { ShopLayout } from "../components/ShopLayout/ShopLayout";
+import { ShopProducts } from "../components/ShopLayout/ShopProducts";
 
 const Shop = ({ products }) => {
    return (
       <Layout>
          <ShopLayout>
-            <N_Deals_Page products={products} />
+            <ShopProducts products={products} />
          </ShopLayout>
       </Layout>
    );
