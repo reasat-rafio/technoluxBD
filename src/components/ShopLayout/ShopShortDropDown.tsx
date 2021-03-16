@@ -5,6 +5,7 @@ import { showMoreSortVariants } from "../../utils/animation";
 interface ShopShortDropDownProps {
    showMoreFilter: boolean;
    selectedFilter: string;
+
    setShowMoreFilter: any;
    setSelectedFilter: any;
 }
