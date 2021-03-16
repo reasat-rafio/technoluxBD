@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useCtx } from "../../store";
 import { hideCategorySidebar } from "../../store/actions/domActions";
@@ -40,6 +41,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
       name == "home-appliances" && SetShowMoreHomeAppliances((prev) => !prev);
    };
 
+   // global state
    const { domDispatch } = useCtx();
 
    // Side Menu close onClick action
@@ -75,6 +77,18 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
             </AnimatePresence>
          </>
       );
+   };
+
+   // router
+   const router = useRouter();
+
+   const itemsWithOutAnySubCategoriesClickACtion = (
+      sub_category,
+      to: string
+   ) => {
+      if (!sub_category) {
+         router.push(`/shop/${to}`);
+      }
    };
 
    const outputGamingEquipment = (name: string, state: any, sub_category) => {
@@ -117,9 +131,20 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                      className="flex justify-end items-center hover:text-darkBlue cursor-pointer"
                      onClick={() => showSubCategoryAction(link)}
                   >
-                     <p className="flex-1"> {category_name}</p>
+                     <p
+                        className="flex-1"
+                        onClick={() =>
+                           itemsWithOutAnySubCategoriesClickACtion(
+                              sub_category,
+                              link
+                           )
+                        }
+                     >
+                        {" "}
+                        {category_name}
+                     </p>
 
-                     {/* icon up/down */}
+                     {/*   icon up/down */}
                      {sub_category &&
                         link === "gaming-equipment" &&
                         UpOrDownArrowAction(showMoreGamingEquipment)}

@@ -10,8 +10,8 @@ export const Categories = [
          { sub_category_name: "Mice & Keyboard", sub_link: "mice-keyboard" },
          { sub_category_name: "Gaming Headphones", sub_link: "headphone" },
          {
-            sub_category_name: "Mobile Controller",
-            sub_link: "mobile-controller",
+            sub_category_name: "Trigger ",
+            sub_link: "trigger",
          },
       ],
    },
@@ -48,6 +48,10 @@ export const Categories = [
             sub_category_name: "Pendrive & SD Card",
             sub_link: "pendrive-sd-card",
          },
+         {
+            sub_category_name: "Router",
+            sub_link: "router",
+         },
          { sub_category_name: "Mice & Keyboard", sub_link: "mice-keyboard" },
          { sub_category_name: "Webcams", sub_link: "webcams" },
       ],
@@ -56,6 +60,10 @@ export const Categories = [
       category_name: "Home Appliances",
       link: "home-appliances",
       sub_category: [{ sub_category_name: "Tv", sub_link: "tv" }],
+   },
+   {
+      category_name: "Earphones",
+      link: "earphone",
    },
 
    {

@@ -33,6 +33,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
       "Sort by popularity"
    );
 
+   // SHORTING THE PRODUCTS. PS:ALL THE SORTING AND FILTERING HAPPENING HERE
    const displayProrducts = allProducts
       .sort((a, b) => {
          if (selectedFilter === "Sort by popularity") {
@@ -107,12 +108,13 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
          );
       });
 
+   // PAGINATION
    const pageCount = Math.ceil(allProducts.length / productPerPage);
-
    const chnagePage = ({ selected }) => {
       setPageNumber(selected);
    };
 
+   // GLOBAL STATE
    const {
       domDispatch,
       domState: { showCategoryOption },
