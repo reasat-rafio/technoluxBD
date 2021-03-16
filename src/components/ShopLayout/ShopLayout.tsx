@@ -1,6 +1,5 @@
 import React from "react";
-import { CategoriesSidebar } from "../CategoriesSidebar/CategoriesSidebar";
-
+import { CategoriesSidebar } from "./CategoriesSidebar";
 import { ProductCategories } from "./ProductCategories";
 
 interface ShopLayoutProps {

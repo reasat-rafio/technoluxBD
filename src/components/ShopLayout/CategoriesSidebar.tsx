@@ -6,7 +6,7 @@ import { HIDE_CATEGORIES_SIDEBAR } from "../../store/types";
 import { sideBarCategoriesVarients } from "../../utils/animation";
 import { useOutsideAlerter } from "../../utils/hooks/useOutSideClickAlerter";
 import { Cross } from "../../utils/svgs/Svg";
-import { ProductCategories } from "../ShopLayout/ProductCategories";
+import { ProductCategories } from "./ProductCategories";
 
 export const CategoriesSidebar = ({}) => {
    const {
