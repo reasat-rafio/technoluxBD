@@ -8,9 +8,7 @@ import { useOutsideAlerter } from "../../utils/hooks/useOutSideClickAlerter";
 import { Cross } from "../../utils/svgs/Svg";
 import { ProductCategories } from "../ShopLayout/ProductCategories";
 
-interface CategoriesSidebarProps {}
-
-export const CategoriesSidebar: React.FC<CategoriesSidebarProps> = ({}) => {
+export const CategoriesSidebar = ({}) => {
    const {
       domDispatch,
       domState: { showCategorySidebar },
