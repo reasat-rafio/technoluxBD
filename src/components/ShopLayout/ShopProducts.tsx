@@ -133,14 +133,6 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
             </span>
             <span className="hidden xl:flex gap-2">
                <span
-                  onClick={() => setGridCount(6)}
-                  className={`cursor-pointer hover:text-darkBlue    ${
-                     gridCount == 6 && "text-darkBlue "
-                  }`}
-               >
-                  <TwoGrid />
-               </span>
-               <span
                   onClick={() => setGridCount(4)}
                   className={`cursor-pointer hover:text-darkBlue hidden xl:block  ${
                      gridCount == 4 && "text-darkBlue"
