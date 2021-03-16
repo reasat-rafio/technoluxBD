@@ -183,7 +183,7 @@ export const MainLgNav: React.FC<MainLgNavProps> = ({}) => {
                )}
             </div>
             <div className="flex mx-5">
-               <div className="p-2  lg:border-r border-gray-400">
+               <div className="p-2 lg:border-r border-gray-400">
                   <div
                      className="relative cursor-pointer"
                      onClick={() => domDispatch(showCart())}

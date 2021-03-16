@@ -14,7 +14,6 @@ const product = ({ products }) => {
    const [allFilteredProdtucts, setAllFiltredProducts] = useState(() => {
       return products;
    });
-   console.log(router);
 
    useEffect(() => {
       setAllFiltredProducts(products);

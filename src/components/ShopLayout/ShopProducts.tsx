@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { debugPort } from "node:process";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { FourGrid, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
+import { useCtx } from "../../store";
+import { showCategorySidebar } from "../../store/actions/domActions";
+import { FourGrid, SmMenu, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
 import { ShopShortDropDown } from "./ShopShortDropDown";
 interface ShopProductsProps {
    products: any;
@@ -71,7 +74,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
       .map(({ name, img, offer_price, regular_price, id, slug }) => {
          return (
             <div
-               className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer  flex flex-col `}
+               className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer flex flex-col `}
                key={id}
             >
                <div
@@ -110,33 +113,49 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
       setPageNumber(selected);
    };
 
+   const {
+      domDispatch,
+      domState: { showCategoryOption },
+   } = useCtx();
+
    return (
       <div className="min-h-screen">
          {/* filter section */}
-         <div className="flex gap-2 my-5 items-center justify-end">
-            <span
-               onClick={() => setGridCount(6)}
-               className={`cursor-pointer hover:text-darkBlue  ${
-                  gridCount == 6 && "text-darkBlue"
-               }`}
-            >
-               <TwoGrid />
+         <div className="flex gap-2 my-5 items-center xl:justify-end ">
+            <span className="flex flex-1 lg:hidden text-gray-300">
+               <button
+                  className="flex"
+                  onClick={() => domDispatch(showCategorySidebar())}
+               >
+                  <SmMenu />
+                  <p className="font-bold text-gray-900 ">OPTION</p>
+               </button>
             </span>
-            <span
-               onClick={() => setGridCount(4)}
-               className={`cursor-pointer hover:text-darkBlue ${
-                  gridCount == 4 && "text-darkBlue"
-               }`}
-            >
-               <ThreeGrid />
-            </span>
-            <span
-               onClick={() => setGridCount(3)}
-               className={`cursor-pointer hover:text-darkBlue ${
-                  gridCount == 3 && "text-darkBlue"
-               }`}
-            >
-               <FourGrid />
+            <span className="hidden xl:flex gap-2">
+               <span
+                  onClick={() => setGridCount(6)}
+                  className={`cursor-pointer hover:text-darkBlue    ${
+                     gridCount == 6 && "text-darkBlue "
+                  }`}
+               >
+                  <TwoGrid />
+               </span>
+               <span
+                  onClick={() => setGridCount(4)}
+                  className={`cursor-pointer hover:text-darkBlue hidden xl:block  ${
+                     gridCount == 4 && "text-darkBlue"
+                  }`}
+               >
+                  <ThreeGrid />
+               </span>
+               <span
+                  onClick={() => setGridCount(3)}
+                  className={`cursor-pointer hover:text-darkBlue  hidden xl:block ${
+                     gridCount == 3 && "text-darkBlue "
+                  }`}
+               >
+                  <FourGrid />
+               </span>
             </span>
 
             <ShopShortDropDown

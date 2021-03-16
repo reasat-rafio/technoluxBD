@@ -8,6 +8,8 @@ import {
    HIDE_CART_SIDEBAR,
    SHOW_BACK_TO_THE_TOP,
    HIDE_BACK_TO_THE_TOP,
+   SHOW_CATEGORIES_SIDEBAR,
+   HIDE_CATEGORIES_SIDEBAR,
 } from "../types";
 
 export const showSideNavBar = () => {
@@ -62,5 +64,17 @@ export const showBackToTheTopAction = () => {
 export const hideBackToTheTopAction = () => {
    return {
       type: HIDE_BACK_TO_THE_TOP,
+   };
+};
+
+export const showCategorySidebar = () => {
+   return {
+      type: SHOW_CATEGORIES_SIDEBAR,
+   };
+};
+
+export const hideCategorySidebar = () => {
+   return {
+      type: HIDE_CATEGORIES_SIDEBAR,
    };
 };

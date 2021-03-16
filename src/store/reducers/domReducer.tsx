@@ -8,6 +8,8 @@ import {
    HIDE_CART_SIDEBAR,
    SHOW_BACK_TO_THE_TOP,
    HIDE_BACK_TO_THE_TOP,
+   SHOW_CATEGORIES_SIDEBAR,
+   HIDE_CATEGORIES_SIDEBAR,
 } from "../types";
 
 type Action = {
@@ -22,6 +24,7 @@ interface stateInterFace {
    showSearchPage: boolean;
    pageWidth: number;
    showBackToTheTop: boolean;
+   showCategorySidebar: boolean;
 }
 
 export const initialDomState = {
@@ -32,6 +35,7 @@ export const initialDomState = {
    showCartSidebar: false,
    pageWidth: 0,
    showBackToTheTop: false,
+   showCategorySidebar: false,
 };
 
 export const domReducer = (state: stateInterFace, action: Action) => {
@@ -81,6 +85,18 @@ export const domReducer = (state: stateInterFace, action: Action) => {
          return {
             ...state,
             showBackToTheTop: false,
+         };
+
+      case SHOW_CATEGORIES_SIDEBAR:
+         return {
+            ...state,
+            showCategorySidebar: true,
+         };
+
+      case HIDE_CATEGORIES_SIDEBAR:
+         return {
+            ...state,
+            showCategorySidebar: false,
          };
 
       default:

@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { useCtx } from "../../store";
+import { hideCategorySidebar } from "../../store/actions/domActions";
 import { ChangeCategoryVariants } from "../../utils/animation";
 import { MoreCtg } from "../../utils/svgs/Svg";
 import { Categories } from "./_Data";
@@ -38,6 +40,13 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
       name == "home-appliances" && SetShowMoreHomeAppliances((prev) => !prev);
    };
 
+   const { domDispatch } = useCtx();
+
+   // Side Menu close onClick action
+   const closeSideMenubarAction = () => {
+      domDispatch(hideCategorySidebar());
+   };
+
    const sub_ctg = (sub_category, state) => {
       return (
          <>
@@ -55,6 +64,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                            <li
                               key={i}
                               className="hover:text-darkBlue cursor-pointer my-2"
+                              onClick={closeSideMenubarAction}
                            >
                               <p>{sub_c.sub_category_name}</p>
                            </li>

@@ -1049,7 +1049,7 @@ export const TwoGrid = () => {
          width="19px"
          height="19px"
          viewBox="0 0 19 19"
-         enable-background="new 0 0 19 19"
+         enableBackground="new 0 0 19 19"
          className="fill-current transition-colors "
       >
          <path d="M7,2v5H2V2H7 M9,0H0v9h9V0L9,0z"></path>
@@ -1071,7 +1071,7 @@ export const ThreeGrid = () => {
          width="19px"
          height="19px"
          viewBox="0 0 19 19"
-         enable-background="new 0 0 19 19"
+         enableBackground="new 0 0 19 19"
          className="fill-current transition-colors "
       >
          <rect width="5" height="5"></rect>
@@ -1098,7 +1098,7 @@ export const FourGrid = () => {
          width="19px"
          height="19px"
          viewBox="0 0 19 19"
-         enable-background="new 0 0 19 19"
+         enableBackground="new 0 0 19 19"
          className="fill-current transition-colors "
       >
          <rect width="4" height="4"></rect>
@@ -1117,6 +1117,20 @@ export const FourGrid = () => {
          <rect x="5" y="10" width="4" height="4"></rect>
          <rect x="10" y="10" width="4" height="4"></rect>
          <rect x="15" y="10" width="4" height="4"></rect>
+      </svg>
+   );
+};
+
+export const SmMenu = () => {
+   return (
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         width="24"
+         height="24"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path d="M4 6H20V8H4zM4 11H20V13H4zM4 16H20V18H4z"></path>
       </svg>
    );
 };
