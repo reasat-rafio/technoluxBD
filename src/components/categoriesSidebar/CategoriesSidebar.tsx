@@ -53,9 +53,7 @@ export const CategoriesSidebar: React.FC<CategoriesSidebarProps> = ({}) => {
                   {/* --------- Ending Header --------- */}
 
                   {/* --------- Starting Categories  --------- */}
-                  <div>
-                     <ProductCategories />
-                  </div>
+                  <ProductCategories />
                   {/* --------- Ending Categories  --------- */}
                </motion.div>
             )}
