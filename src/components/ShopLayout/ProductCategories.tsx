@@ -11,6 +11,9 @@ import { Categories } from "./_Data";
 interface ProductCategoriesProps {}
 
 export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
+   // router
+   const router = useRouter();
+   const { product } = router.query;
    const [
       showMoreGamingEquipment,
       SetShowMoreGamingEquipment,
@@ -65,7 +68,9 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                         <Link href={`/shop/${sub_c.sub_link}`}>
                            <li
                               key={i}
-                              className="hover:text-darkBlue cursor-pointer my-2"
+                              className={`hover:text-darkBlue cursor-pointer my-2 ${
+                                 product == sub_c.sub_link && "text-darkBlue"
+                              }`}
                               onClick={closeSideMenubarAction}
                            >
                               <p>{sub_c.sub_category_name}</p>
@@ -78,9 +83,6 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
          </>
       );
    };
-
-   // router
-   const router = useRouter();
 
    const itemsWithOutAnySubCategoriesClickACtion = (
       sub_category,
@@ -132,7 +134,9 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                      onClick={() => showSubCategoryAction(link)}
                   >
                      <p
-                        className="flex-1"
+                        className={`flex-1 ${
+                           product == link && "text-darkBlue"
+                        }`}
                         onClick={() =>
                            itemsWithOutAnySubCategoriesClickACtion(
                               sub_category,

@@ -11,10 +11,7 @@ export const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
       <>
          <main className="w-full">
             <div className="grid grid-cols-12 container mx-auto ">
-               <section
-                  className="col-span-3
-             hidden lg:block "
-               >
+               <section className="col-span-3 hidden lg:block ">
                   <ProductCategories />
                </section>
                <section className="lg:col-span-9 col-span-12 px-2 lg:px-0">

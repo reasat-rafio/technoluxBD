@@ -1134,3 +1134,85 @@ export const SmMenu = () => {
       </svg>
    );
 };
+
+export const InfoSvg = () => {
+   return (
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         width="24"
+         height="24"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+         />
+      </svg>
+   );
+};
+
+export const TakaSvg = () => {
+   return (
+      <svg
+         className="m-auto"
+         width="24"
+         height="24"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11 11V9a2 2 0 00-2-2m2 4v4a2 2 0 104 0v-1m-4-3H9m2 0h4m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
+         />
+      </svg>
+   );
+};
+
+export const PenPaperSvg = () => {
+   return (
+      <svg
+         className="m-auto"
+         width="24"
+         height="24"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+         />
+      </svg>
+   );
+};
+
+export const UpArrow = () => {
+   return (
+      <svg
+         width="15"
+         height="15"
+         xmlns="http://www.w3.org/2000/svg"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor"
+      >
+         <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+         />
+      </svg>
+   );
+};

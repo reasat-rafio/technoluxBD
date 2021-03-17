@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { debugPort } from "node:process";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useCtx } from "../../store";
 import { showCategorySidebar } from "../../store/actions/domActions";
 import { FourGrid, SmMenu, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
+import { InPageToast } from "../../utils/_components/InPageToast";
 import { ShopShortDropDown } from "./ShopShortDropDown";
 interface ShopProductsProps {
    products: any;
@@ -115,10 +115,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    };
 
    // GLOBAL STATE
-   const {
-      domDispatch,
-      domState: { showCategoryOption },
-   } = useCtx();
+   const { domDispatch } = useCtx();
 
    return (
       <div className="min-h-screen">
@@ -133,50 +130,61 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
                   <p className="font-bold text-gray-900 ">OPTION</p>
                </button>
             </span>
-            <span className="hidden xl:flex gap-2">
-               <span
-                  onClick={() => setGridCount(4)}
-                  className={`cursor-pointer hover:text-darkBlue hidden xl:block  ${
-                     gridCount == 4 && "text-darkBlue"
-                  }`}
-               >
-                  <ThreeGrid />
-               </span>
-               <span
-                  onClick={() => setGridCount(3)}
-                  className={`cursor-pointer hover:text-darkBlue  hidden xl:block ${
-                     gridCount == 3 && "text-darkBlue "
-                  }`}
-               >
-                  <FourGrid />
-               </span>
-            </span>
+            {products && products.length > 0 && (
+               <>
+                  <span className="hidden xl:flex gap-2">
+                     <span
+                        onClick={() => setGridCount(4)}
+                        className={`cursor-pointer hover:text-darkBlue hidden xl:block  ${
+                           gridCount == 4 && "text-darkBlue"
+                        }`}
+                     >
+                        <ThreeGrid />
+                     </span>
+                     <span
+                        onClick={() => setGridCount(3)}
+                        className={`cursor-pointer hover:text-darkBlue  hidden xl:block ${
+                           gridCount == 3 && "text-darkBlue "
+                        }`}
+                     >
+                        <FourGrid />
+                     </span>
+                  </span>
 
-            <ShopShortDropDown
-               showMoreFilter={showMoreFilter}
-               selectedFilter={selectedFilter}
-               setShowMoreFilter={setShowMoreFilter}
-               setSelectedFilter={setSelectedFilter}
-            />
+                  <ShopShortDropDown
+                     showMoreFilter={showMoreFilter}
+                     selectedFilter={selectedFilter}
+                     setShowMoreFilter={setShowMoreFilter}
+                     setSelectedFilter={setSelectedFilter}
+                  />
+               </>
+            )}
          </div>
-         <section className="grid grid-cols-12 my-5 gap-2 ">
-            {displayProrducts}
-         </section>
-         <span className="mx-auto flex">
-            <ReactPaginate
-               previousLabel={"Prev"}
-               nextLabel={"Next"}
-               breakLabel={"..."}
-               breakClassName={"break-me"}
-               onPageChange={chnagePage}
-               pageCount={pageCount}
-               marginPagesDisplayed={2}
-               pageRangeDisplayed={5}
-               containerClassName={"pagination"}
-               subContainerClassName={"pages pagination"}
-               activeClassName={"active"}
-            />
-         </span>
+         {/* ----- PRODUCTS OUTPUT SECTION ----- */}
+         {products && products.length > 0 ? (
+            <>
+               <section className="grid grid-cols-12 my-5 gap-2 ">
+                  {displayProrducts}
+               </section>
+               <span className="mx-auto flex">
+                  <ReactPaginate
+                     previousLabel={"Prev"}
+                     nextLabel={"Next"}
+                     breakLabel={"..."}
+                     breakClassName={"break-me"}
+                     onPageChange={chnagePage}
+                     pageCount={pageCount}
+                     marginPagesDisplayed={2}
+                     pageRangeDisplayed={5}
+                     containerClassName={"pagination"}
+                     subContainerClassName={"pages pagination"}
+                     activeClassName={"active"}
+                  />
+               </span>{" "}
+            </>
+         ) : (
+            <InPageToast text="No products were found matching your selection." />
+         )}
       </div>
    );
 };

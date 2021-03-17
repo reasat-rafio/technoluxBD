@@ -8,7 +8,6 @@ import { ShopProducts } from "../../components/ShopLayout/ShopProducts";
 
 const product = ({ products }) => {
    const router = useRouter();
-   console.log();
 
    const { product } = router.query;
    const [allFilteredProdtucts, setAllFiltredProducts] = useState(() => {
@@ -22,13 +21,9 @@ const product = ({ products }) => {
    return (
       <Layout>
          <ShopLayout>
-            {allFilteredProdtucts && allFilteredProdtucts.length > 0 ? (
+            <div className="min-h-screen">
                <ShopProducts products={allFilteredProdtucts} />
-            ) : (
-               <div className="min-h-screen">
-                  <p>Not found</p>
-               </div>
-            )}
+            </div>
          </ShopLayout>
       </Layout>
    );

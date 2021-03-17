@@ -27,3 +27,16 @@ export const LoginSchema = yup.object().shape({
       .min(4, "Password must be longer than 4 character")
       .required("This field is required"),
 });
+
+export const Checkoutschema = yup.object().shape({
+   first_name: yup.string().required("Please fill out this field"),
+   last_name: yup.string().required("Please fill out this field"),
+   street_address: yup.string().required("Please fill out this field"),
+   town_city: yup.string().required("Please fill out this field"),
+   phone: yup.string().required("Please fill out this field"),
+   email_address: yup
+      .string()
+      .email("Invalid email address")
+      .required("Please fill out this field"),
+   additional_info: yup.string(),
+});

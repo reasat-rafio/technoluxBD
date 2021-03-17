@@ -159,7 +159,13 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                      >
                         VIEW CART
                      </button>
-                     <button className="p-3 bg-darkBlue text-white rounded-lg  text-sm font-semibold">
+                     <button
+                        className="p-3 bg-darkBlue text-white rounded-lg  text-sm font-semibold"
+                        onClick={() => {
+                           domDispatch(hideCart());
+                           router.push("/checkout");
+                        }}
+                     >
                         CHECKOUT
                      </button>
                   </div>

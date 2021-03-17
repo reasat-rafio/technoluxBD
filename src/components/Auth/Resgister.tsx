@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../utils/yupSchema";
 import axios from "axios";
-import getConfig from "next/config";
 import { Notify } from "../../utils/Toast";
 import { signIn, signOut, useSession } from "next-auth/client";
 
@@ -22,8 +21,6 @@ interface onSubmitInterface {
 export const Resgister: React.FC<ResgisterProps> = ({}) => {
    // router
    const router = useRouter();
-   // Server URL
-   const { publicRuntimeConfig } = getConfig();
 
    // Setting up Yup as useFrom resolver
    const { handleSubmit, register, errors } = useForm({
