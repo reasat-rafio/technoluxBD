@@ -22,7 +22,9 @@ const product = ({ products }) => {
       <Layout>
          <ShopLayout>
             <div className="min-h-screen">
-               <ShopProducts products={allFilteredProdtucts} />
+               {allFilteredProdtucts && allFilteredProdtucts.length > 0 && (
+                  <ShopProducts products={allFilteredProdtucts} />
+               )}
             </div>
          </ShopLayout>
       </Layout>
