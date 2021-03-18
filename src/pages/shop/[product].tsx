@@ -16,7 +16,7 @@ const product = ({ products }) => {
 
    useEffect(() => {
       setAllFiltredProducts(products);
-   }, [product]);
+   }, [products]);
 
    return (
       <Layout>
