@@ -133,7 +133,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
                   <p className="font-bold text-gray-900 ">OPTION</p>
                </button>
             </span>
-            {products && products.length > 0 && (
+            {allProducts && allProducts.length > 0 && (
                <>
                   <span className="hidden xl:flex gap-2">
                      <span
@@ -164,7 +164,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
             )}
          </div>
          {/* ----- PRODUCTS OUTPUT SECTION ----- */}
-         {products && products.length > 0 ? (
+         {allProducts && allProducts.length > 0 ? (
             <>
                <section className="grid grid-cols-12 my-5 gap-2 ">
                   {displayProrducts}
