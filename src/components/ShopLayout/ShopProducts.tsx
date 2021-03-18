@@ -12,118 +12,118 @@ interface ShopProductsProps {
 }
 
 export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
-   const router = useRouter();
+   // const router = useRouter();
 
-   const [allProducts, setAllProducts] = useState<[any]>(products);
+   // const [allProducts, setAllProducts] = useState<any>([...products]);
 
-   useEffect(() => {
-      setAllProducts(products);
-   }, [products]);
+   // useEffect(() => {
+   //    setAllProducts(products);
+   // }, [products]);
 
-   const [pageNumber, setPageNumber] = useState<number>(0);
-   const productPerPage = 12;
-   const PagesVisited = pageNumber * productPerPage;
+   // const [pageNumber, setPageNumber] = useState<number>(0);
+   // const productPerPage = 12;
+   // const PagesVisited = pageNumber * productPerPage;
 
-   // Products grid
-   const [gridCount, setGridCount] = useState(3);
+   // // Products grid
+   // const [gridCount, setGridCount] = useState(3);
 
-   // sort items state
-   const [showMoreFilter, setShowMoreFilter] = useState<boolean>(false);
-   const [selectedFilter, setSelectedFilter] = useState<string>(
-      "Sort by popularity"
-   );
+   // // sort items state
+   // const [showMoreFilter, setShowMoreFilter] = useState<boolean>(false);
+   // const [selectedFilter, setSelectedFilter] = useState<string>(
+   //    "Sort by popularity"
+   // );
 
-   // SHORTING THE PRODUCTS. PS:ALL THE SORTING AND FILTERING HAPPENING HERE
-   // const displayProrducts = () => {
-   //    return (
-   //       allProducts &&
-   //       allProducts.length > 0 &&
-   //       allProducts
-   //          .sort((a, b) => {
-   //             if (selectedFilter === "Sort by popularity") {
-   //                return a.highlight_item === b.highlight_item
-   //                   ? 0
-   //                   : a.highlight_item
-   //                   ? -1
-   //                   : 1;
-   //             }
-   //             if (selectedFilter === "Sort by latest") {
-   //                return a.createdAt > b.createdAt ? 1 : -1;
-   //             }
-   //             if (selectedFilter === "Sort by Price: low to high") {
-   //                if (a.offer_price && b.offer_price) {
-   //                   return parseInt(a.offer_price.replace(/,/g, ""), 10) <
-   //                      parseInt(b.offer_price.replace(/,/g, ""), 10)
-   //                      ? -1
-   //                      : 1;
-   //                } else {
-   //                   return parseInt(a.regular_price) <
-   //                      parseInt(b.regular_price)
-   //                      ? -1
-   //                      : 1;
-   //                }
-   //             }
-   //             if (selectedFilter === "Sort by Price: high to low") {
-   //                if (a.offer_price && b.offer_price) {
-   //                   return parseInt(a.offer_price.replace(/,/g, ""), 10) >
-   //                      parseInt(b.offer_price.replace(/,/g, ""), 10)
-   //                      ? -1
-   //                      : 1;
-   //                } else {
-   //                   return parseInt(a.regular_price) >
-   //                      parseInt(b.regular_price)
-   //                      ? -1
-   //                      : 1;
-   //                }
-   //             }
-   //          })
-   //          .slice(PagesVisited, PagesVisited + productPerPage)
-   //          .map(({ name, img, offer_price, regular_price, id, slug }) => {
-   //             return (
-   //                <div
-   //                   className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer flex flex-col `}
-   //                   key={id}
-   //                >
-   //                   <div
-   //                      className="flex-1 overflow-hidden"
-   //                      onClick={() => router.push(`/items/${slug}`)}
-   //                   >
-   //                      <motion.img
-   //                         whileHover={{ scale: 1.1 }}
-   //                         src={img[0].url}
-   //                         alt={name}
-   //                      />
-   //                   </div>
+   // // SHORTING THE PRODUCTS. PS:ALL THE SORTING AND FILTERING HAPPENING HERE
+   // // const displayProrducts = () => {
+   // //    return (
+   // //       allProducts &&
+   // //       allProducts.length > 0 &&
+   // //       allProducts
+   // //          .sort((a, b) => {
+   // //             if (selectedFilter === "Sort by popularity") {
+   // //                return a.highlight_item === b.highlight_item
+   // //                   ? 0
+   // //                   : a.highlight_item
+   // //                   ? -1
+   // //                   : 1;
+   // //             }
+   // //             if (selectedFilter === "Sort by latest") {
+   // //                return a.createdAt > b.createdAt ? 1 : -1;
+   // //             }
+   // //             if (selectedFilter === "Sort by Price: low to high") {
+   // //                if (a.offer_price && b.offer_price) {
+   // //                   return parseInt(a.offer_price.replace(/,/g, ""), 10) <
+   // //                      parseInt(b.offer_price.replace(/,/g, ""), 10)
+   // //                      ? -1
+   // //                      : 1;
+   // //                } else {
+   // //                   return parseInt(a.regular_price) <
+   // //                      parseInt(b.regular_price)
+   // //                      ? -1
+   // //                      : 1;
+   // //                }
+   // //             }
+   // //             if (selectedFilter === "Sort by Price: high to low") {
+   // //                if (a.offer_price && b.offer_price) {
+   // //                   return parseInt(a.offer_price.replace(/,/g, ""), 10) >
+   // //                      parseInt(b.offer_price.replace(/,/g, ""), 10)
+   // //                      ? -1
+   // //                      : 1;
+   // //                } else {
+   // //                   return parseInt(a.regular_price) >
+   // //                      parseInt(b.regular_price)
+   // //                      ? -1
+   // //                      : 1;
+   // //                }
+   // //             }
+   // //          })
+   // //          .slice(PagesVisited, PagesVisited + productPerPage)
+   // //          .map(({ name, img, offer_price, regular_price, id, slug }) => {
+   // //             return (
+   // //                <div
+   // //                   className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer flex flex-col `}
+   // //                   key={id}
+   // //                >
+   // //                   <div
+   // //                      className="flex-1 overflow-hidden"
+   // //                      onClick={() => router.push(`/items/${slug}`)}
+   // //                   >
+   // //                      <motion.img
+   // //                         whileHover={{ scale: 1.1 }}
+   // //                         src={img[0].url}
+   // //                         alt={name}
+   // //                      />
+   // //                   </div>
 
-   //                   <div className="">
-   //                      <p className="text-sm font-medium text-center font-nav   ">
-   //                         {name}
-   //                      </p>
-   //                      {offer_price && (
-   //                         <div className="my-2 flex gap-2 items-center justify-center">
-   //                            <span className="line-through  text-sm text-gray-400 font-text">
-   //                               ৳{regular_price}
-   //                            </span>
-   //                            <span className="text-darkBlue font-semibold font-text">
-   //                               ৳{offer_price}
-   //                            </span>
-   //                         </div>
-   //                      )}
-   //                   </div>
-   //                </div>
-   //             );
-   //          })
-   //    );
+   // //                   <div className="">
+   // //                      <p className="text-sm font-medium text-center font-nav   ">
+   // //                         {name}
+   // //                      </p>
+   // //                      {offer_price && (
+   // //                         <div className="my-2 flex gap-2 items-center justify-center">
+   // //                            <span className="line-through  text-sm text-gray-400 font-text">
+   // //                               ৳{regular_price}
+   // //                            </span>
+   // //                            <span className="text-darkBlue font-semibold font-text">
+   // //                               ৳{offer_price}
+   // //                            </span>
+   // //                         </div>
+   // //                      )}
+   // //                   </div>
+   // //                </div>
+   // //             );
+   // //          })
+   // //    );
+   // // };
+
+   // // PAGINATION
+   // const pageCount = Math.ceil(allProducts.length / productPerPage);
+   // const chnagePage = ({ selected }) => {
+   //    setPageNumber(selected);
    // };
 
-   // PAGINATION
-   const pageCount = Math.ceil(allProducts.length / productPerPage);
-   const chnagePage = ({ selected }) => {
-      setPageNumber(selected);
-   };
-
-   // GLOBAL STATE
-   const { domDispatch } = useCtx();
+   // // GLOBAL STATE
+   // const { domDispatch } = useCtx();
 
    return (
       <div className="min-h-screen">
