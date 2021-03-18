@@ -128,7 +128,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    return (
       <div className="min-h-screen">
          {/* filter section */}
-         <div className="flex gap-2 my-5 items-center xl:justify-end ">
+         {/* <div className="flex gap-2 my-5 items-center xl:justify-end ">
             <span className="flex flex-1 lg:hidden text-gray-300">
                <button
                   className="flex"
@@ -167,32 +167,8 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
                   />
                </>
             )}
-         </div>
+         </div> */}
          {/* ----- PRODUCTS OUTPUT SECTION ----- */}
-         {allProducts && allProducts.length > 0 ? (
-            <>
-               <section className="grid grid-cols-12 my-5 gap-2 ">
-                  {/* {displayProrducts()} */}
-               </section>
-               <span className="mx-auto flex">
-                  <ReactPaginate
-                     previousLabel={"Prev"}
-                     nextLabel={"Next"}
-                     breakLabel={"..."}
-                     breakClassName={"break-me"}
-                     onPageChange={chnagePage}
-                     pageCount={pageCount}
-                     marginPagesDisplayed={2}
-                     pageRangeDisplayed={5}
-                     containerClassName={"pagination"}
-                     subContainerClassName={"pages pagination"}
-                     activeClassName={"active"}
-                  />
-               </span>{" "}
-            </>
-         ) : (
-            <InPageToast text="No products were found matching your selection." />
-         )}
       </div>
    );
 };
