@@ -6,12 +6,27 @@ import { useCtx } from "../../store";
 import { showCategorySidebar } from "../../store/actions/domActions";
 import { FourGrid, SmMenu, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
 import { InPageToast } from "../../utils/_components/InPageToast";
+import { FilterProductSection } from "./FilterProductSection";
 import { ShopShortDropDown } from "./ShopShortDropDown";
 interface ShopProductsProps {
    products: any;
+   gridCount: number;
+   setGridCount: any;
+   showMoreFilter: boolean;
+   setShowMoreFilter: any;
+   selectedFilter: string;
+   setSelectedFilter: any;
 }
 
-export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
+export const ShopProducts: React.FC<ShopProductsProps> = ({
+   products,
+   gridCount,
+   setGridCount,
+   showMoreFilter,
+   setShowMoreFilter,
+   selectedFilter,
+   setSelectedFilter,
+}) => {
    const router = useRouter();
 
    const [allProducts, setAllProducts] = useState<any>([...products]);
@@ -23,15 +38,6 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    const [pageNumber, setPageNumber] = useState<number>(0);
    const productPerPage = 12;
    const PagesVisited = pageNumber * productPerPage;
-
-   // Products grid
-   const [gridCount, setGridCount] = useState(3);
-
-   // sort items state
-   const [showMoreFilter, setShowMoreFilter] = useState<boolean>(false);
-   const [selectedFilter, setSelectedFilter] = useState<string>(
-      "Sort by popularity"
-   );
 
    // SHORTING THE PRODUCTS. PS:ALL THE SORTING AND FILTERING HAPPENING HERE
    const displayProrducts = () => {
@@ -126,72 +132,38 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({ products }) => {
    const { domDispatch } = useCtx();
 
    return (
-      <div className="min-h-screen">
+      <>
          {/* filter section */}
-         <div className="flex gap-2 my-5 items-center xl:justify-end ">
-            <span className="flex flex-1 lg:hidden text-gray-300">
-               <button
-                  className="flex"
-                  onClick={() => domDispatch(showCategorySidebar())}
-               >
-                  <SmMenu />
-                  <p className="font-bold text-gray-900 ">OPTION</p>
-               </button>
-            </span>
-
-            <>
-               <span className="hidden xl:flex gap-2">
-                  <span
-                     onClick={() => setGridCount(4)}
-                     className={`cursor-pointer hover:text-darkBlue hidden xl:block  ${
-                        gridCount == 4 && "text-darkBlue"
-                     }`}
-                  >
-                     <ThreeGrid />
-                  </span>
-                  <span
-                     onClick={() => setGridCount(3)}
-                     className={`cursor-pointer hover:text-darkBlue  hidden xl:block ${
-                        gridCount == 3 && "text-darkBlue "
-                     }`}
-                  >
-                     <FourGrid />
-                  </span>
-               </span>
-
-               <ShopShortDropDown
-                  showMoreFilter={showMoreFilter}
-                  selectedFilter={selectedFilter}
-                  setShowMoreFilter={setShowMoreFilter}
-                  setSelectedFilter={setSelectedFilter}
-               />
-            </>
-         </div>
+         <FilterProductSection
+            setGridCount={setGridCount}
+            gridCount={gridCount}
+            showMoreFilter={showMoreFilter}
+            setShowMoreFilter={setShowMoreFilter}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={setSelectedFilter}
+         />
          {/* ----- PRODUCTS OUTPUT SECTION ----- */}
-         {allProducts && allProducts.length > 0 ? (
-            <>
-               <section className="grid grid-cols-12 my-5 gap-2 ">
-                  {displayProrducts()}
-               </section>
-               <span className="mx-auto flex">
-                  <ReactPaginate
-                     previousLabel={"Prev"}
-                     nextLabel={"Next"}
-                     breakLabel={"..."}
-                     breakClassName={"break-me"}
-                     onPageChange={chnagePage}
-                     pageCount={pageCount}
-                     marginPagesDisplayed={2}
-                     pageRangeDisplayed={5}
-                     containerClassName={"pagination"}
-                     subContainerClassName={"pages pagination"}
-                     activeClassName={"active"}
-                  />
-               </span>{" "}
-            </>
-         ) : (
-            <InPageToast text="No products were found matching your selection." />
-         )}
-      </div>
+
+         <>
+            <section className="grid grid-cols-12 my-5 gap-2 ">
+               {displayProrducts()}
+            </section>
+            <span className="mx-auto flex">
+               <ReactPaginate
+                  previousLabel={"Prev"}
+                  nextLabel={"Next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  onPageChange={chnagePage}
+                  pageCount={pageCount}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  containerClassName={"pagination"}
+                  subContainerClassName={"pages pagination"}
+                  activeClassName={"active"}
+               />
+            </span>
+         </>
+      </>
    );
 };

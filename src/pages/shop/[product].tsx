@@ -3,8 +3,10 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout/Layout";
+import { FilterProductSection } from "../../components/ShopLayout/FilterProductSection";
 import { ShopLayout } from "../../components/ShopLayout/ShopLayout";
 import { ShopProducts } from "../../components/ShopLayout/ShopProducts";
+import { InPageToast } from "../../utils/_components/InPageToast";
 
 const product = ({ products }) => {
    const router = useRouter();
@@ -13,6 +15,14 @@ const product = ({ products }) => {
    const [allFilteredProdtucts, setAllFiltredProducts] = useState(() => {
       return products;
    });
+   // sort items state
+   const [showMoreFilter, setShowMoreFilter] = useState<boolean>(false);
+   const [selectedFilter, setSelectedFilter] = useState<string>(
+      "Sort by popularity"
+   );
+
+   // Products grid
+   const [gridCount, setGridCount] = useState(3);
 
    useEffect(() => {
       setAllFiltredProducts(products);
@@ -22,8 +32,28 @@ const product = ({ products }) => {
       <Layout>
          <ShopLayout>
             <div className="min-h-screen">
-               {allFilteredProdtucts && allFilteredProdtucts.length > 0 && (
-                  <ShopProducts products={allFilteredProdtucts} />
+               {allFilteredProdtucts && allFilteredProdtucts.length > 0 ? (
+                  <ShopProducts
+                     products={allFilteredProdtucts}
+                     gridCount={gridCount}
+                     setGridCount={setGridCount}
+                     showMoreFilter={showMoreFilter}
+                     setShowMoreFilter={setShowMoreFilter}
+                     selectedFilter={selectedFilter}
+                     setSelectedFilter={setSelectedFilter}
+                  />
+               ) : (
+                  <>
+                     <FilterProductSection
+                        gridCount={gridCount}
+                        setGridCount={setGridCount}
+                        showMoreFilter={showMoreFilter}
+                        setShowMoreFilter={setShowMoreFilter}
+                        selectedFilter={selectedFilter}
+                        setSelectedFilter={setSelectedFilter}
+                     />
+                     <InPageToast text="No products were found matching your selection." />
+                  </>
                )}
             </div>
          </ShopLayout>
