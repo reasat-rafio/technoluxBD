@@ -8,6 +8,8 @@ export const loginUserAction = (payload) => {
 };
 
 export const logOutAaction = () => {
+   console.log("action fired");
+
    return {
       type: USER_LOG_OUT,
    };

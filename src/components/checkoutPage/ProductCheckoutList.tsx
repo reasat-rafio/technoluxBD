@@ -1,17 +1,15 @@
-import React from "react";
-import { useCtx } from "../../../store";
+import TextTruncate from "react-text-truncate";
+import { useCtx } from "../../store";
 import {
    minuTheQuantityOfTheExistingItem,
    plusTheQuantityOfTheExistingItem,
    removeFromCart,
-} from "../../../store/actions/CartAction";
-import { MdCross } from "../../../utils/svgs/Svg";
-import { Notify } from "../../../utils/Toast";
-import TextTruncate from "react-text-truncate";
+} from "../../store/actions/CartAction";
+import { MdCross } from "../../utils/svgs/Svg";
 
 interface CartProductListProps {}
 
-export const CartProductList: React.FC<CartProductListProps> = ({}) => {
+export const ProductCheckoutList: React.FC<CartProductListProps> = ({}) => {
    const {
       cartDispatch,
       cartState: { inCartProducts },
@@ -101,15 +99,6 @@ export const CartProductList: React.FC<CartProductListProps> = ({}) => {
                                                    minuTheQuantityOfTheExistingItem(
                                                       { id, quantity: 1 }
                                                    )
-                                                );
-                                             } else {
-                                                //    Remove the item from the cart if the quantity is less than 1
-                                                cartDispatch(
-                                                   removeFromCart(id)
-                                                );
-                                                Notify(
-                                                   "info",
-                                                   `"${name}" is removed from the cart`
                                                 );
                                              }
                                           }}

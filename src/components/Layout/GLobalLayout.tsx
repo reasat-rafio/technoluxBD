@@ -7,10 +7,12 @@ import {
    usePageResize,
    usePageResizerGlobal,
 } from "../../utils/hooks/usePageResize";
+
 import { ShoppingCartSideBar } from "../ShoppingCartSideBar/ShoppingCartSideBar";
 import { useSession } from "next-auth/client";
 import { loginUserAction, logOutAaction } from "../../store/actions/userAction";
 import { useRouter } from "next/router";
+import { Loading } from "../../../../../sunnah_station/client/src/Components/Loading/Loading";
 
 interface GLobalLayoutProps {}
 
@@ -20,6 +22,7 @@ export const GLobalLayout: React.FC<GLobalLayoutProps> = ({ children }) => {
    const { userDispatch } = useCtx();
 
    const router = useRouter();
+   console.log("session", session);
 
    // setting the user to the store
    useEffect(() => {

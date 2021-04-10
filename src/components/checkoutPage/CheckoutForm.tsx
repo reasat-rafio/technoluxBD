@@ -9,10 +9,12 @@ import { UpArrowSm, DownArrowSm, SearchSm } from "../../utils/svgs/Svg";
 
 interface CheckoutFormProps {
    setAdressStepComplete: any;
+   setOrderInfo: any;
 }
 
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    setAdressStepComplete,
+   setOrderInfo,
 }) => {
    // Setting up Yup as useFrom resolver
    const { handleSubmit, register, errors } = useForm({
@@ -29,6 +31,8 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    // Form Submit action
    const onSubmitAction = (data) => {
       setAdressStepComplete(true);
+      data.district = district;
+      setOrderInfo(data);
    };
 
    //  Input onChange Action

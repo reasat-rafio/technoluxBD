@@ -1,33 +1,40 @@
 import { useCtx } from "../../store";
-import {
-   minuTheQuantityOfTheExistingItem,
-   plusTheQuantityOfTheExistingItem,
-   removeFromCart,
-} from "../../store/actions/CartAction";
-import { MdCross } from "../../utils/svgs/Svg";
-import TextTruncate from "react-text-truncate";
-import { Notify } from "../../utils/Toast";
-import { CartTotal } from "../CartPage/CartTotal/CartTotal";
-import { CartProductList } from "../CartPage/CartproductList/CartProductList";
-interface PaymentCheckoutProps {}
+import { PaymentTotal } from "./PaymentTotal";
+import { ProductCheckoutList } from "./ProductCheckoutList";
+interface PaymentCheckoutProps {
+   setOrderPaymentStepComplete: any;
+   setAdressStepComplete: any;
+   setOrderInfo: any;
+   orderInfo: any;
+}
 
-export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({}) => {
+export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
+   setOrderPaymentStepComplete,
+   setAdressStepComplete,
+   setOrderInfo,
+   orderInfo,
+}) => {
    const {
-      cartDispatch,
       cartState: { inCartProducts },
-      cartState,
    } = useCtx();
    return (
       <section className="w-full">
          <div className="container mx-auto">
             {/* product table */}
             <div className="grid md:gap-5 gap-0  grid-cols-12 my-9">
-             {inCartProducts && inCartProducts.length > 0 && (
-                     <>
-                        <CartProductList />
-                        <CartTotal />
-                     </>
-                  )}
+               {inCartProducts && inCartProducts.length > 0 && (
+                  <>
+                     <ProductCheckoutList />
+                     <PaymentTotal
+                        setOrderPaymentStepComplete={
+                           setOrderPaymentStepComplete
+                        }
+                        setOrderInfo={setOrderInfo}
+                        orderInfo={orderInfo}
+                        setAdressStepComplete={setAdressStepComplete}
+                     />
+                  </>
+               )}
             </div>
          </div>
       </section>

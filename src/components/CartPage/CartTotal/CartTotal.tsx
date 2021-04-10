@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useCtx } from "../../../store";
 import { ChangeAddressVariants } from "../../../utils/animation";
@@ -9,6 +10,8 @@ import { Country, subDistrict } from "./_Data";
 interface CartTotalProps {}
 
 export const CartTotal: React.FC<CartTotalProps> = ({}) => {
+   const router = useRouter();
+
    //   GLOBAL STORE
    const {
       cartState: { inCartProducts },
@@ -257,7 +260,10 @@ export const CartTotal: React.FC<CartTotalProps> = ({}) => {
                      ৳ {district == "Dhaka" ? subTotal + 60 : subTotal + 100}
                   </p>
                </div>
-               <button className="bg-darkBlue p-2 rounded-lg text-sm font-semibold text-white shadow-sm mt-3">
+               <button
+                  onClick={() => router.push("/checkout")}
+                  className="bg-darkBlue p-2 rounded-lg text-sm font-semibold text-white shadow-sm mt-3"
+               >
                   PROCEED TO CHECKOUT
                </button>
             </div>
